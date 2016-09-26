@@ -1,0 +1,3238 @@
+#nocompact
+
+#libdefine ACSUTILS_VERSION_MAJOR 1
+#libdefine ACSUTILS_VERSION_MINOR 3
+#libdefine ACSUTILS_VERSION_PATCH 2
+
+function str ACSUtilsVersion(void)
+{
+	return StrParam(
+		d:ACSUTILS_VERSION_MAJOR, s:".",
+		d:ACSUTILS_VERSION_MINOR, s:".",
+		d:ACSUTILS_VERSION_PATCH
+	);
+}
+
+
+// Multiple return values.
+int r1, r2, r3, r4, r5, r6, r7, r8;
+
+#libdefine HUD_STAYTIME_FOREVER -1
+
+#libdefine HUD_BLENDSTYLE_NORMAL 0
+#libdefine HUD_BLENDSTYLE_ADDITIVE 1
+
+#libdefine HUD_TEXTORIGIN_CENTER 0
+#libdefine HUD_TEXTORIGIN_LEFT 1
+#libdefine HUD_TEXTORIGIN_RIGHT 2
+#libdefine HUD_TEXTORIGIN_TOP 1
+#libdefine HUD_TEXTORIGIN_BOTTOM 2
+
+#define HUD_PROJECTION_AUTO 0
+#define HUD_PROJECTION_3D 1
+#define HUD_PROJECTION_YSHEARING 2
+
+
+// ZDoom does not allow to use more than 128 map variables in a single library.
+// To reduce the amount of map variables ACSUtils use, all simple variables
+// have been put into an array.
+
+#define ACSUTILS_CachedPort 0
+
+#define ACSUTILS_R_Is3DPoint 1
+
+
+#define ACSUTILS_R3D_CameraX 2
+#define ACSUTILS_R3D_CameraY 3
+#define ACSUTILS_R3D_CameraZ 4
+#define ACSUTILS_R3D_CameraAngle 5
+#define ACSUTILS_R3D_CameraPitch 6
+
+#define ACSUTILS_R3D_X 7
+#define ACSUTILS_R3D_Y 8
+#define ACSUTILS_R3D_Z 9
+
+#define ACSUTILS_R3D_2DOffsetX 10
+#define ACSUTILS_R3D_2DOffsetY 11
+
+#define ACSUTILS_R3D_AutoDistanceScale 12
+
+#define ACSUTILS_R_BaseWidth 13
+#define ACSUTILS_R_BaseHeight 14
+#define ACSUTILS_R_ExcludeStatusBar 15
+
+#define ACSUTILS_R_X 16
+#define ACSUTILS_R_Y 17
+
+#define ACSUTILS_R_IScaleX 18
+#define ACSUTILS_R_IScaleY 19
+
+#define ACSUTILS_R_ShowToEveryone 20
+
+#define ACSUTILS_R_AppearTime 21
+#define ACSUTILS_R_StayTime 22
+#define ACSUTILS_R_DisappearTime 23
+
+#define ACSUTILS_R_BlendStyle 24
+#define ACSUTILS_R_Alpha 25
+
+#define ACSUTILS_R_ShowIn3DView 26
+#define ACSUTILS_R_ShowOnFullAutomap 27
+#define ACSUTILS_R_ShowOnOverlayAutomap 28
+
+#define ACSUTILS_R_Layer 29
+
+#define ACSUTILS_R_TextOriginX 30
+#define ACSUTILS_R_TextOriginY 31
+#define ACSUTILS_R_CenterText 32
+#define ACSUTILS_R_TextColorIsString 33
+#define ACSUTILS_R_TextColor 34
+#define ACSUTILS_R_TextTypeOn 35
+#define ACSUTILS_R_LogMessage 36
+#define ACSUTILS_R_TextWordWrap 37
+
+#define ACSUTILS_HudStateStackTop 38
+
+#define ACSUTILS_R_RotatedX 39
+#define ACSUTILS_R_RotatedY 40
+#define ACSUTILS_R_RotatedZ 41
+
+#define ACSUTILS_CursorX 42
+#define ACSUTILS_CursorY 43
+
+#define ACSUTILS_CursorMotionX 44
+#define ACSUTILS_CursorMotionY 45
+
+#define ACSUtils_CursorSpeedX 46
+#define ACSUtils_CursorSpeedY 47
+
+#define ACSUtils_CursorAreaWidth 48
+#define ACSUtils_CursorAreaHeight 49
+
+#define ACSUtils_CursorWrapX 50
+#define ACSUtils_CursorWrapY 51
+
+#define ACSUTILS_R3D_ProjectionMode 52
+
+#define ACSUtils_CursorPrevX 53
+#define ACSUtils_CursorPrevY 54
+
+#define ACSUTILS_NUM_GLOBALS 512
+
+int ACSUtils[ACSUTILS_NUM_GLOBALS] =
+{
+	-1, // ACSUTILS_CachedPort
+	
+	false, // R_Is3DPoint
+
+	0.0, // R3D_CameraX
+	0.0, // R3D_CameraY
+	0.0, // R3D_CameraZ
+	0.0, // R3D_CameraAngle
+	0.0, // R3D_CameraPitch
+
+	0.0, // R3D_X
+	0.0, // R3D_Y
+	0.0, // R3D_Z
+
+	0.0, // R3D_2DOffsetX
+	0.0, // R3D_2DOffsetY
+
+	true, // R3D_AutoDistanceScale
+
+	640.0, // R_BaseWidth
+	480.0, // R_BaseHeight
+	false, // R_ExcludeStatusBar
+
+	0.0, // R_X
+	0.0, // R_Y
+
+	1.0, // R_IScaleX
+	1.0, // R_IScaleY
+
+	false, // R_ShowToEveryone
+
+	0.0, // R_AppearTime
+	HUD_STAYTIME_FOREVER, // R_StayTime
+	0.0, // R_DisappearTime
+
+	HUD_BLENDSTYLE_NORMAL, // R_BlendStyle
+	1.0, // R_Alpha
+
+	true, // R_ShowIn3DView
+	true, // R_ShowOnFullAutomap
+	true, // R_ShowOnOverlayAutomap
+
+	HUDMSG_LAYER_OVERHUD, // R_Layer
+
+	HUD_TEXTORIGIN_CENTER, // R_TextOriginX
+	HUD_TEXTORIGIN_CENTER, // R_TextOriginY
+	false, // R_CenterText
+	false, // R_TextColorIsString
+	CR_UNTRANSLATED, // R_TextColor
+	false, // R_TextTypeOn
+	false, // R_LogMessage
+	false, // R_TextWordWrap
+	
+	0, // HudStateStackTop
+	
+	0, // R_RotatedX
+    0, // R_RotatedY
+    0, // R_RotatedZ
+	
+	320.0, // CursorX
+	240.0, // CursorY
+	
+	0, // CursorMotionX
+	0, // CursorMotionY
+
+	1.0, // CursorSpeedX
+	1.0, // CursorSpeedY
+
+	640.0, // CursorAreaWidth
+	480.0, // CursorAreaHeight
+
+	false, // CursorWrapX
+	false, // CursorWrapY
+	
+	HUD_PROJECTION_AUTO, // R3D_ProjectionMode
+	
+	320.0, // CursorPrevX
+	240.0 // CursorPrevY
+};
+
+
+#define ACSUTILSSTRING_R_TextFont 0
+#define ACSUTILS_NUM_GLOBAL_STRINGS 1
+
+str ACSUtilsStrings[ACSUTILS_NUM_GLOBAL_STRINGS] = 
+{
+	"SMALLFONT", // R_TextFont
+};
+
+
+#libdefine ACSERROR_PROGRAM 0
+#libdefine ACSERROR_MAPPING 1
+#libdefine ACSERROR_LIMIT 2
+
+function void ProgramError(str message)
+{
+	ACSUtilsErrorHandler(ACSERROR_PROGRAM, message);
+}
+
+function void LimitError(str message)
+{
+	ACSUtilsErrorHandler(ACSERROR_LIMIT, message);
+}
+
+function void MappingError(str message)
+{
+	ACSUtilsErrorHandler(ACSERROR_MAPPING, message);
+}
+
+#libdefine INT_MAX 0x7fffffff
+#libdefine INT_MIN 0x80000000
+#libdefine SHORT_MAX 32767
+#libdefine SHORT_MIN -32768
+
+#libdefine PI 3.1415926535897932384626433832795
+#libdefine SQRT_2 1.41421356237
+#libdefine MATH_E 2.7182818284590452353602874713526624977572470937
+#libdefine LOG2_E 1.44269504089
+#libdefine LOG2_10 3.32192809489
+
+// Generic functions.
+
+// num min(num a, num b)
+function int min(int a, int b)
+{
+	if (a < b)
+		return a;
+	return b;
+}
+
+// num max(num a, num b)
+function int max(int a, int b)
+{
+	if (a > b)
+		return a;
+	return b;
+}
+
+// num clamp(num x, num a, num b)
+function int clamp(int x, int a, int b)
+{
+	if (x > b)
+		return b;
+	if (x < a)
+		return a;
+	return x;
+}	
+
+// int sgn(num x)
+function int sgn(int x)
+{
+	if (x > 0)
+		return 1;
+	if (x < 0)
+		return -1;
+	return 0;
+}
+
+// num abs(num x)
+function int abs(int x)
+{
+	if (x > 0)
+		return x;
+	return -x;
+}
+
+// From commonFuncs.h by Ijon Tichy.
+// num middle(num a, num b, num c)
+function int middle(int x, int y, int z)
+{
+    if ((x < z) && (y < z)) { return max(x, y); }
+    return max(min(x, y), z);
+}
+
+// int cmp(num a, num b)
+function int cmp(int a, int b)
+{
+	if (a > b)
+		return 1;
+	if (a < b)
+		return -1;
+	return 0;
+}
+
+// num mod(num a, num b)
+function int mod(int a, int b)
+{
+	int result = a % b;
+	result += (result < 0) * (b - result);
+	return result;
+}
+
+// any cond(bool x, any whentrue, any shenfalse)
+function int cond(bool x, int whentrue, int whenfalse)
+{
+	if (x)
+		return whentrue;
+	return whenfalse;
+}
+
+
+// Rounding.
+
+// fixed trunc(fixed x)
+function int trunc(int x)
+{
+	return (x & 0xffff0000) + ((x < 0)<<16);
+}
+
+// fixed floor(fixed x)
+function int floor(int x)
+{
+	return x & 0xffff0000;
+}
+
+// fixed ceil(fixed x)
+function int ceil(int x)
+{
+	return ((x - 1) & 0xffff0000) + 1.0;
+}
+
+// fixed round(fixed x)
+function int round(int x)
+{
+	return (x + 0.5) & 0xffff0000;
+}
+
+// int itrunc(fixed x)
+function int itrunc(int x)
+{
+	return (x>>16) + (x < 0);
+}
+
+// int ifloor(fixed x)
+function int ifloor(int x)
+{
+	return x>>16;
+}
+
+// int iceil(fixed x)
+function int iceil(int x)
+{
+	return (x - 1 >> 16) + 1;
+}
+
+// int iround(fixed x)
+function int iround(int x)
+{
+	return x + 0.5 >> 16;
+}
+
+// By Monsterovich
+
+// fixed itof(int x)
+function int itof(int x)
+{
+	return x << 16;
+}
+
+
+// Numerical algorithms.
+
+// int ipow(int x, int y)
+function int ipow(int x, int y)
+{
+    int n = 1;
+    while (y-- > 0)
+		n *= x;
+    return n;
+}
+
+// fixed fpow(fixed x, int y)
+function int fpow(int x, int y)
+{
+	int n = 1.0;
+	if (y > 0)
+	{
+		while (y-- > 0)
+			n = FixedMul(n, x);
+		return n;
+	}
+	
+	while (y++ < 0)
+		n = FixedDiv(n, x);
+	return n;
+}
+
+// fixed lerp(fixed a, fixed b, fixed alpha)
+function int lerp(int a, int b, int alpha)
+{
+	return FixedMul(a, 1.0 - alpha) + FixedMul(b, alpha);
+}
+
+// From ZDoom wiki.
+// int zan_Sqrt(int number)
+function int zan_Sqrt(int number)
+{
+	if(number <= 3) { return number > 0; }
+
+	int oldAns = number >> 1,                     // initial guess
+	    newAns = (oldAns + number / oldAns) >> 1; // first iteration
+
+	// main iterative method
+	while(newAns < oldAns)
+	{
+		oldAns = newAns;
+		newAns = (oldAns + number / oldAns) >> 1;
+	}
+
+	return oldAns;
+}
+
+#libdefine FIXEDSQRT_EPS 0x1e6
+
+// By Monsterovich.
+// fixed zan_FixedSqrt(fixed number)
+function int zan_FixedSqrt(int a)
+{
+	int x = 0;
+	int y = a;
+	int val = 0;
+
+	// x & y shouldn't be zero
+	while ((x != 0 || y != 0) && y - x > FIXEDSQRT_EPS) 
+	{
+		val = FixedDiv(x + y, 2.0);
+
+        if (FixedMul(val, val) >= a)
+			y = val; 
+		else 
+			x = val;
+	}
+
+	return val;
+}
+
+// From commonFuncs.h by Ijon Tichy.
+// num gcf(num a, num b)
+function int gcf(int a, int b)
+{
+    int c;
+    while (1)
+    {
+        if (b == 0) { return a; }
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    
+    return -1;
+}
+
+// By TechnoDoomed1
+// fixed IntDiv(int a, int b)
+function int IntDiv (int a, int b) {
+    int quotient = 0, current_fraction = 1.0;
+
+    // Only works when the ratio is less than 32767 = 2^15 - 1.
+    // Otherwise return 0.
+
+    if ((abs(a) / abs(b)) > 32767) {
+        return 0;
+    }
+
+    // Performs the same algorithm as hand division, but working with powers of 2 instead of 10.
+    // This is done until we reach the maximum allowed precision, which is 1 (=2^-16 in fixed point).
+
+    while (current_fraction > 1) {
+        quotient += (a / b) * current_fraction;
+        a = (a % b) * 2;
+        current_fraction /= 2;
+    }
+
+    return quotient;
+}
+
+// num npo2(num x)
+function int npo2(int v)
+{
+	v--;
+	v |= v >> 1;
+	v |= v >> 2;
+	v |= v >> 4;
+	v |= v >> 8;
+	v |= v >> 16;
+	v++;
+	return v;
+}
+
+// any, any swap(any a, any b)
+function void swap(int a, int b)
+{
+	r1 = b;
+	r2 = a;
+}
+
+
+// By Monsterovich
+
+// angle AngleDistCCW(angle a, angle b)
+function int AngleDistCCW (int a, int b)
+{
+	return abs(a - b);
+}
+
+// angle AngleDistCW(angle a, angle b)
+function int AngleDistCW (int a, int b)
+{
+	return 1.0 - AngleDistCCW(a, b);
+}
+
+
+// Logarithms.
+
+// All logaritm functions written by TechnoDoomed1 unless stated otherwise
+
+// fixed log2(fixed x)
+function int log2 (int x) {
+    // We calculate the integral and decimal parts of the bit logarithm of x.
+    int integer_part = 0, decimal_part = 0;
+
+    // The integral part is how many times we can divide by 2 until we reach a number in the range [1, 2).
+    // If the number is on the range (0, 1) then we multiply by 2 until we reach a number in the range [1, 2).
+    while (x < 1.0) {
+        -- integer_part;
+        x *= 2;
+    }
+    while (x >= 2.0) {
+        ++ integer_part;
+        x /= 2;
+    }
+
+    // Then, we square the number each time to get the next relevant byte, until we reach max precision allowed.
+    // WHY? Because if 2^d = y, then (2^d)^2 = 2^(2d) = y^2, where d is the decimal part.
+    //-----------------------------------------------------------------------------------------------------------------
+    // Let's start with the fraction 1/2, and go downwards until we reach the max precision for a fixed-point number,
+    // which is 1 (since it occupies the right side of the byte, it really represents 2^-16).
+
+    int current_fraction = 0.5;
+
+    while (current_fraction > 1) {
+        x = FixedMul(x, x);
+        if (x >= 2.0) {
+            decimal_part += current_fraction;
+            x /= 2;
+        }
+
+        current_fraction /= 2;
+    }
+
+    // We can finally return the number as the integral part (shifted 16 bytes to the left, to be on the corresponding
+    // integral part of the fixed-point number) plus the decimal part, which is the sum of all the fractions of 2 that
+    // correspond to the solution of 2^d = y.
+
+    return ((integer_part << 16) + decimal_part);
+}
+
+// fixed ilog2(int x)
+function int ilog2 (int x) {
+    // We calculate the integral and decimal parts of the bit logarithm of x.
+    int integer_part = 0, decimal_part = 0;
+
+    // The integral part is how many times we can divide by 2 until we reach a number lower than 2.
+    // We lose precision by not keeping the fractional part until that part fits perfectly in a fixed number variable.
+    while (x >= 32768) {
+        ++ integer_part;
+        x /= 2;
+    }
+
+    x <<= 16;
+
+    while (x >= 2.0) {
+        ++ integer_part;
+        x /= 2;
+    }
+
+    // Then, we square the number each time to get the next relevant byte, until we reach max precision allowed.
+    // WHY? Because if 2^d = y, then (2^d)^2 = 2^(2d) = y^2, where d is the decimal part.
+    //-----------------------------------------------------------------------------------------------------------------
+    // Let's start with the fraction 1/2, and go downwards until we reach the max precision for a fixed-point number,
+    // which is 1 (since it occupies the right side of the byte, it really represents 2^-16).
+
+    int current_fraction = 0.5;
+
+    while (current_fraction > 1) {
+        x = FixedMul(x, x);
+        if (x >= 2.0) {
+            decimal_part += current_fraction;
+            x /= 2;
+        }
+
+        current_fraction /= 2;
+    }
+
+    // We can finally return the number as the integral part (shifted 16 bytes to the left, to be on the corresponding
+    // integral part of the fixed-point number) plus the decimal part, which is the sum of all the fractions of 2 that
+    // correspond to the solution of 2^d = y.
+
+    return ((integer_part << 16) + decimal_part);
+}
+
+
+// fixed ln(fixed x)
+function int ln (int x) {
+    // This calculates the natural logarithm of a number using the property that:   ln(x) = log_2(x) / log_2(e)
+    // This is done because calculating the log_2 of a number is far easier, specially with fixed-point arithmetics. 
+
+    return FixedDiv(log2(x), LOG2_E);
+}
+
+// By Korshun.
+// fixed iln(int x)
+function int iln (int x) {
+	return FixedDiv(ilog2(x), LOG2_E);
+}
+
+// By Korshun.
+// fixed log10(int x)
+function int log10 (int x) {
+	return FixedDiv(log2(x), LOG2_10);
+}
+
+// By Korshun.
+// fixed ilog10(int x)
+function int ilog10 (int x) {
+	return FixedDiv(ilog2(x), LOG2_10);
+}
+
+// fixed logb(fixed x, fixed base)
+function int logb (int x, int base) {
+    // This calculates the logarithm in any base > 1.0, by using the property that:   log_b(x) = log_2(x) / log_2(b)
+    // Otherwise, returns 0.
+
+    if (base > 1.0)
+        return FixedDiv(log2(x), log2(base));
+   
+    return 0;
+}
+
+// By Korshun.
+// fixed ilogb(int x, fixed base)
+function int ilogb (int x, int base) {
+    // This calculates the logarithm in any base > 1.0, by using the property that:   log_b(x) = log_2(x) / log_2(b)
+    // Otherwise, returns 0.
+
+    if (base > 1.0)
+        return FixedDiv(ilog2(x), log2(base));
+   
+    return 0;
+}
+
+// Trigonometry.
+
+// fixed tan(angle x)
+function int tan(int x)
+{
+	return FixedDiv(sin(x), cos(x));
+}
+
+// fixed cot(angle x)
+function int cot(int x)
+{
+	return FixedDiv(cos(x), sin(x));
+}
+
+// fixed sec(angle x)
+function int sec(int x)
+{
+	return FixedDiv(1.0, sin(x));
+}
+
+//fixed cosec(angle x)
+function int cosec(int x)
+{
+	return FixedDiv(1.0, cos(x));
+}
+
+// fixed atan(fixed x)
+function int atan(int x)
+{
+    return VectorAngle(1.0, x);
+}
+
+// fixed asin(fixed x)
+function int asin(int x)
+{
+	return atan(FixedDiv(x, zan_FixedSqrt(1.0 - FixedMul(x, x))));
+}
+
+// fixed acos(fixed x)
+function int acos(int x)
+{
+	return 2 * atan(zan_FixedSqrt(FixedDiv(1.0 - x, 1.0 + x)));
+}
+
+//angle acot(fixed x)
+function int acot(int x)
+{
+ 	return 0.25 - atan(x);
+}
+
+//angle asec(fixed x)
+function int asec(int x)
+{
+	return acos(FixedDiv(1, x));
+}
+
+//angle acosec(fixed x)
+function int acosec(int x)
+{
+	 return asin(FixedDiv(1, x));
+}
+
+// Vectors.
+
+// fixed, fixed RotateVector(fixed x, fixed y, angle angle);
+function void RotateVector(int x, int y, int angle)
+{
+	// Rotate around Z axis.
+	int s = sin(-angle);
+	int c = cos(-angle);
+	r1 = FixedMul(x, c) - FixedMul(y, s);
+	r2 = FixedMul(x, s) + FixedMul(y, c);
+}	
+
+// fixed, fixed RotatePoint(fixed x, fixed y, fixed originX, fixed originY, angle angle)
+function void RotatePoint(int x, int y, int originX, int originY, int angle)
+{
+	x -= originX;
+	y -= originY;
+	RotateVector(x, y, angle);
+	r1 += originX;
+	r2 += originY;
+}
+
+// angle, angle VectorToAngles(fixed x, fixed y, fixed z)
+function void VectorToAngles(int x, int y, int z)
+{
+	int xy = length2d(x, y);
+		
+	r1 = VectorAngle(x, y);
+	r2 = VectorAngle(xy, z);
+}
+
+// From ZDoom wiki. Modified to work on coordinates instead of actors.
+// fixed length3d(fixed x, fixed y, fixed z)
+function int length3d(int x, int y, int z)
+{
+	 int len;
+
+	 int ang = vectorangle(x,y);
+	 if(((ang+0.125)%0.5) > 0.25) len = fixeddiv(y, sin(ang));
+	 else len = fixeddiv(x, cos(ang));
+
+	 ang = vectorangle(len, z);
+	 if(((ang+0.125)%0.5) > 0.25) return fixeddiv(z, sin(ang));
+	 return fixeddiv(len, cos(ang));
+}
+
+// The function above simplified for 2D.
+// fixed length2d(fixed x, fixed y)
+function int length2d(int x, int y)
+{
+	 int ang = vectorangle(x,y);
+	 if(((ang+0.125)%0.5) > 0.25) return fixeddiv(y, sin(ang));
+	 return fixeddiv(x, cos(ang));
+}
+
+// fixed length2d2(int x, int y)
+function int length2d2(int x, int y)
+{
+	return FixedMul(x, x) + FixedMul(y, y);
+}
+
+// fixed length3d2(int x, int y, int z)
+function int length3d2(int x, int y, int z)
+{
+	return FixedMul(x, x) + FixedMul(y, y) + FixedMul(z, z);
+}
+
+// fixed dot2(fixed x1, fixed y1, fixed x2, fixed y2)
+function int dot2(int x1, int y1, int x2, int y2)
+{
+	return FixedMul(x1, x2) + FixedMul(y1, y2);
+}
+
+// fixed dot3(fixed x1, fixed y1, fixed z1, fixed x2, fixed y2, fixed z2)
+function int dot3(int x1, int y1, int z1, int x2, int y2, int z2)
+{
+	return FixedMul(x1, x2) + FixedMul(y1, y2) + FixedMul(z1, z2);
+}
+
+// fixed, fixed normalize2d(fixed x, fixed y)
+function void normalize2d(int x, int y)
+{
+	int l = length2d(x, y);
+	r1 = FixedDiv(x, l);
+	r2 = FixedDiv(y, l);
+}
+
+// fixed, fixed, fixed normalize3d(fixed x, fixed y, fixed z)
+function void normalize3d(int x, int y, int z)
+{
+	int l = length3d(x, y, z);
+	r1 = FixedDiv(x, l);
+	r2 = FixedDiv(y, l);
+	r3 = FixedDiv(z, l);
+}
+
+#define CHARFLAG_ISALNUM 1
+#define CHARFLAG_ISALPHA 2
+#define CHARFLAG_ISBLANK 4
+#define CHARFLAG_ISCNTRL 8
+#define CHARFLAG_ISDIGIT 16
+#define CHARFLAG_ISGRAPH 32
+#define CHARFLAG_ISLOWER 64
+#define CHARFLAG_ISPRINT 128
+#define CHARFLAG_ISPUNCT 256
+#define CHARFLAG_ISSPACE 512
+#define CHARFLAG_ISUPPER 1024
+#define CHARFLAG_ISXDIGIT 2048
+
+
+int AsciiTypes[128] =
+{
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	524,
+	520,
+	520,
+	520,
+	520,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	8,
+	644,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	2225,
+	2225,
+	2225,
+	2225,
+	2225,
+	2225,
+	2225,
+	2225,
+	2225,
+	2225,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	3235,
+	3235,
+	3235,
+	3235,
+	3235,
+	3235,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	1187,
+	416,
+	416,
+	416,
+	416,
+	416,
+	416,
+	2275,
+	2275,
+	2275,
+	2275,
+	2275,
+	2275,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	227,
+	416,
+	416,
+	416,
+	416,
+	8,
+};
+
+function bool isalnum(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISALNUM;
+}
+
+function bool isalpha(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISALPHA;
+}
+
+function bool isblank(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISBLANK;
+}
+
+function bool iscntrl(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISCNTRL;
+}
+
+function bool isdigit(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISDIGIT;
+}
+
+function bool isgraph(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISGRAPH;
+}
+
+function bool islower(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISLOWER;
+}
+
+function bool isprint(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISPRINT;
+}
+
+function bool ispunct(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISPUNCT;
+}
+
+function bool isspace(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISSPACE;
+}
+
+function bool isupper(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISUPPER;
+}
+
+function bool isxdigit(int c)
+{
+	return AsciiTypes[c] & CHARFLAG_ISXDIGIT;
+}
+
+#define ASCII_START 0
+#define ASCII_END 127
+#define ASCII_LETTERS_OFFSET 32
+
+function bool isascii(int c)
+{
+	return c >= ASCII_START && c <= ASCII_END;
+}
+
+function int toupper(int c)
+{
+	if (islower(c))
+		return c - ASCII_LETTERS_OFFSET;
+	return c;
+}
+
+function int tolower(int c)
+{
+	if (isupper(c))
+		return c + ASCII_LETTERS_OFFSET;
+	return c;
+}
+
+#define ASCII_LETTERS_BIG_START 	65 	// A
+#define ASCII_LETTERS_BIG_END		90 	// Z
+#define ASCII_LETTERS_SMALL_START	97 	// a
+#define ASCII_LETTERS_SMALL_END		122 	// z
+
+function str StrAdd(str a, str b)
+{
+	return StrParam(s:a, s:b);
+}
+
+function str StrAddInt(str a, int b)
+{
+	return StrParam(s:a, d:b);
+}
+
+function str StrAddChar(str a, int b)
+{
+	return StrParam(s:a, c:b);
+}
+
+function str StrAddFixed(str a, int b)
+{
+	return StrParam(s:a, f:b);
+}
+
+function str StrCut(str s, int start, int length)
+{
+	return StrParam(s:StrLeft(s, start), s:StrRightFrom(s, start + length));
+}
+
+function str StrCutRange(str s, int start, int end)
+{
+	return StrParam(s:StrLeft(s, start), s:StrRightFrom(s, end));
+}
+
+function bool StrEndsWith(str s, str what)
+{
+	int len1 = StrLen(s);
+	int len2 = StrLen(what);
+
+	if (len1 < len2)
+		return false;
+	return StrEqualsAt(s, len1 - len2, what);
+}
+
+function bool StrEquals(str a, str b)
+{
+    return StrCmp(a, b) == 0;
+}	
+
+function bool StrEqualsAt(str s, int where, str what)
+{
+	int len = StrLen(what);
+	if (where + len > StrLen(s))
+		return false;
+	
+	return StrEquals(StrMid(s, where, len), what);
+}
+
+function int StrFind(str s, str what)
+{
+	return StrFindFrom(s, what, 0);
+}
+
+function int StrFindFrom(str s, str what, int start)
+{
+	int len = StrLen(s) - StrLen(what);
+	for (int i = start; i <= len; i++)
+	{
+		if (StrEqualsAt(s, i, what))
+			return i;
+	}
+	
+	return -1;
+}
+
+function str StrInsert(str s, int where, str what)
+{
+	return StrParam(s:StrLeft(s, where), s:what, s:StrRightFrom(s, where));
+}
+
+function bool StrIsEmpty(str s)
+{
+	if (!GetChar(s, 0))
+		return true;
+	return false;
+}
+
+function str StrMidRange(str s, int start, int end)
+{
+	return StrMid(s, start, end - start);
+}
+
+function str StrRemoveFirst(str s, str what)
+{
+	return StrRemoveFirstFrom(s, what, 0);
+}
+
+function str StrRemoveFirstFrom(str s, str what, int start)
+{
+	int pos = StrFindFrom(s, what, start);
+	if (pos != -1)
+		return StrCut(s, pos, StrLen(what));
+	return s;
+}
+
+function str StrRemoveLast(str s, str what)
+{
+	return StrRemoveLastFrom(s, what, StrLen(s) - 1);
+}
+
+function str StrRemoveLastFrom(int s, str what, int start)
+{
+	int pos = StrRFindFrom(s, what, start);
+	if (pos != -1)
+		return StrCut(s, pos, StrLen(what));
+	return s;
+}
+
+function str StrRemove(str s, str what)
+{
+	return StrReplace(s, what, "");
+}
+
+function str StrReplaceFirstFrom(str s, str what, str with, int start)
+{
+	int pos = StrFind(s, what);
+	if (pos != -1)
+		return StrInsert(StrCut(s, pos, StrLen(what)), pos, with);
+	return s;
+}
+
+function str StrReplaceFirst(str s, str what, str with)
+{
+	return StrReplaceFirstFrom(s, what, with, 0);
+}
+
+function str StrReplaceLastFrom(str s, str what, str with, int start)
+{
+	int pos = StrRFind(s, what);
+	if (pos != -1)
+		return StrInsert(StrCut(s, pos, StrLen(what)), pos, with);
+	return s;
+}
+
+function str StrReplaceLast(str s, str what, str with)
+{
+	return StrReplaceLastFrom(s, what, with, StrLen(s) - 1);
+}
+
+function str StrReplace(str s, str what, str with)
+{
+	int len1 = StrLen(s);
+	int len2 = StrLen(what);
+	int start = 0;
+	int end = 0;
+	str result = "";
+
+	while (true)
+	{
+		end = StrFindFrom(s, what, start);
+		if (end == -1)
+		{
+			result = StrParam(s:result, s:StrMidRange(s, start, end));
+			break;
+		}
+
+		result = StrParam(s:result, s:StrMidRange(s, start, end), s:with);
+		start = end + len2;
+	}
+	
+	return result;
+}
+
+function int StrRFind(str s, str what)
+{
+	return StrRFindFrom(s, what, StrLen(s) - 1);
+}
+
+function int StrRFindFrom(str s, str what, int start)
+{
+	int len = StrLen(s) - StrLen(what);
+	for (int i = start; i >= 0; i--)
+	{
+		if (StrEqualsAt(s, i, what))
+			return i;
+	}
+	
+	return -1;
+}
+
+function str StrRightFrom(str s, int from)
+{
+	return StrRight(s, StrLen(s) - from);
+}
+
+function str StrReverse(str s)
+{
+	str tempstr = "";
+	for(int i = StrLen(s)-1; i >= 0; i--)
+		tempstr = StrParam(s:tempstr, c:GetChar(s, i));
+	return tempstr;
+}
+
+function void StrSplit(str s, str separator)
+{
+	int pos = StrFind(s, separator);
+	if (pos != -1)
+	{
+		r1 = StrLeft(s, pos);
+		r2 = StrRightFrom(s, pos + StrLen(separator));
+	}
+	else
+	{
+		r1 = s;
+		r2 = "";
+	}
+}
+
+function bool StrStartsWith(str s, str sub)
+{
+	return StrEqualsAt(s, 0, sub);
+}
+
+function str StrTimes(int s, int n)
+{
+	int result = "";
+	for (int i = 0; i < n; i++)
+		result = StrAdd(result, s);
+	return result;
+}
+
+
+// Color codes.
+
+function bool IsColorCodeChar(int c)
+{
+	return (c >= 'a' && c <= 'v')
+		|| c == '-'
+		|| c == '+'
+		|| c == '*'
+		|| c == '!';
+}
+
+function int SkipColorCodeAt(str s, int i)
+{
+	if (GetChar(s, i) == 28)
+	{
+		i++;
+	}
+	else if (StrEqualsAt(s, i, "\c"))
+	{
+		i += 2;
+	}
+	else
+	{
+		return i;
+	}
+	
+	if (GetChar(s, i) == '[')
+	{
+		int len = StrLen(s);
+		for (; i < len; i++)
+		{
+			if (GetChar(s, i) == ']')
+			{
+				i++;
+				break;
+			}
+		}
+	}
+	else if (IsColorCodeChar(GetChar(s, i)))
+	{
+		return i + 1;
+	}
+	
+	return i;
+}
+	
+function str GetColorCodeAt(str s, int i)
+{
+	return StrMidRange(s, i, SkipColorCodeAt(s, i));
+}
+	
+function bool HasColorCodes(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+	{
+		if (GetChar(s, i) == 28)
+			i += 1;
+		else if (StrEqualsAt(s, i, "\c"))
+			i += 2;
+		else
+			continue;
+			
+		int c = GetChar(s, i);
+		if (c == '[' || IsColorCodeChar(c))
+			return true;
+	}
+	return false;
+}
+
+function str StripColorCodes(str s)
+{
+	str result = "";
+	for (int i = 0; i < StrLen(s); i++)
+	{
+		i = SkipColorCodeAt(s, i);
+		result = StrParam(s:result, c:GetChar(s, i));
+	}
+
+	return result;
+}
+
+
+// acsctype wrappers. 
+
+function str StrIsAlNum(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isalnum(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsAlpha(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isalpha(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsBlank(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isblank(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsCntrl(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!iscntrl(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsDigit(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isdigit(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsGraph(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isgraph(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsLower(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!islower(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsPrint(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isprint(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsSpace(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isspace(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsUpper(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isupper(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function str StrIsXDigit(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		if (!isxdigit(GetChar(s, i)))
+			return false;
+			
+	return true;
+}
+
+function bool StrIsAscii(str s)
+{
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+	{
+		int char = GetChar(s, i);
+		if (char < ASCII_START || char > ASCII_END)
+			return false;
+	}
+	return true;
+}
+
+// Case conversion.
+
+function str StrToLower(str s)
+{
+	str result = "";
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		result = StrParam(s:result, c:tolower(GetChar(s, i)));
+		
+	return result;
+}
+
+function str StrToUpper(str s)
+{
+	str result = "";
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		result = StrParam(s:result, c:toupper(GetChar(s, i)));
+		
+	return result;
+}
+
+function str StrCapitalize(str s)
+{
+	if (StrLen(s) == 0)
+		return "";
+
+	str result = StrParam(c:toupper(GetChar(s, 0)));
+	int len = StrLen(s);
+	for (int i = 0; i < len; i++)
+		result = StrParam(s:result, c:tolower(GetChar(s, i)));
+
+	return result;
+}
+
+#libdefine MAX_PLAYERS 64
+
+// Inventory functions.
+
+function void GiveMaxInventory(str item)
+{
+	GiveInventory(item, INT_MAX);
+}
+
+function void GiveMaxActorInventory(int tid, str item)
+{
+	GiveActorInventory(tid, item, INT_MAX);
+}
+
+function void TakeAllInventory(str item)
+{
+	TakeInventory(item, INT_MAX);
+}
+
+function void TakeAllActorInventory(int tid, str item)
+{
+	TakeActorInventory(tid, item, INT_MAX);
+}
+
+function void SetInventory(str item, int amount)
+{
+	int diff = amount - CheckInventory(item);
+	if (diff > 0)
+		GiveInventory(item, diff);
+	else if (diff < 0)
+		TakeInventory(item, -diff);
+}
+
+function void SetActorInventory(int tid, str item, int amount)
+{
+	int diff = amount - CheckActorInventory(tid, item);
+	if (diff > 0)
+		GiveActorInventory(tid, item, diff);
+	else if (diff < 0)
+		TakeActorInventory(tid, item, -diff);
+}
+
+function void ToggleInventory(str item)
+{
+	if (CheckInventory(item) > 0)
+		SetInventory(item, 0);
+	else
+		SetInventory(item, 1);
+}
+
+
+// Internationalization.
+function str lang(str s)
+{
+	return StrParam(l:s);
+}
+
+// CVar functions.
+
+function int a_GetCVarFixed(str name)
+{
+	return atof(GetCVarString(name));
+}
+
+function int GetCVarPercentage(str name)
+{
+	return (GetCVar(name)<<16) / 100;
+}
+
+
+// Screen info functions.
+
+function int ScreenWidth(void)
+{
+	return GetCVar("vid_defwidth");
+}
+
+function int ScreenHeight(void)
+{
+	return GetCVar("vid_defheight");
+}
+
+function int AspectRatio(void)
+{
+	return FixedDiv(ScreenWidth() * 1.0, ScreenHeight() * 1.0);
+}
+
+function int StatusBarShown(void)
+{
+	return GetCVar("screenblocks") <= 10;
+}
+
+
+// HudMessage functions
+
+function void ClearHudMessage(int id)
+{
+	HudMessage(s:""; HUDMSG_PLAIN, id, 0, 0, 0, 0, 0);
+}
+
+function void ClearHudMessageBold(int id)
+{
+	HudMessageBold(s:""; HUDMSG_PLAIN, id, 0, 0, 0, 0, 0);
+}
+
+// Player functions
+
+function str PlayerName(int num)
+{
+	return StrParam(n:(num+1));
+}
+
+function bool PlayerIsConnected(int player)
+{
+	return PlayerInGame(player) || PlayerIsSpectator(player);
+}
+
+
+function int BotCount(void)
+{
+	int count = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerIsBot(i))
+			count++;
+	return count;
+}
+
+function int ClientCount(void)
+{
+	int count = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerIsConnected(i))
+			count++;
+	return count;
+}
+
+function int SpectatorCount(void)
+{
+	int count = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerIsSpectator(i))
+			count++;
+	return count;
+}
+
+
+int _Players[MAX_PLAYERS];
+
+function int PickRandomClient(void)
+{
+	int numPlayers = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerIsConnected(i))
+			_Players[numPlayers++] = i;
+	
+	if (numPlayers == 0)
+		return -1;
+	
+	return _Players[Random(0, numPlayers - 1)];
+}
+
+function int PickRandomPlayer(void)
+{
+	int numPlayers = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerInGame(i))
+			_Players[numPlayers++] = i;
+	
+	if (numPlayers == 0)
+		return -1;
+	
+	return _Players[Random(0, numPlayers - 1)];
+}
+
+function int PickRandomSpectator(void)
+{
+	int numPlayers = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerIsSpectator(i))
+			_Players[numPlayers++] = i;
+	
+	if (numPlayers == 0)
+		return -1;
+	
+	return _Players[Random(0, numPlayers - 1)];
+}
+
+function int PickRandomBot(void)
+{
+	int numPlayers = 0;
+	for (int i = 0; i < MAX_PLAYERS; i++)
+		if (PlayerIsBot(i))
+			_Players[numPlayers++] = i;
+	
+	if (numPlayers == 0)
+		return -1;
+	
+	return _Players[Random(0, numPlayers - 1)];
+}
+
+
+// Advanced activator functions
+
+function void SwapActivator(int tid)
+{
+	if (tid == 0 || ActivatorTid() == tid)
+	{
+		r1 = 0;
+		r2 = 0;
+		return;
+	}
+
+	int prevtid = ActivatorTid();
+	int temptid = NewTid();
+	Thing_ChangeTid(0, temptid);
+	setActivator(tid);
+	r1 = prevtid;
+	r2 = temptid;
+}
+
+function void RestoreActivator(int prevtid, int temptid)
+{
+	if (temptid != 0)
+	{
+		SetActivator(temptid);
+		Thing_ChangeTid(0, prevtid);
+	}
+}
+
+
+// Actor information functions
+
+function int ActorPlayerNumber(int tid)
+{
+	SwapActivator(tid);
+	int a = r1;
+	int b = r2;
+
+	int result = PlayerNumber();
+	
+	RestoreActivator(a, b);
+	return result;
+}
+
+function bool IsPlayer(void)
+{
+	return PlayerNumber() >= 0;
+}
+
+function bool ActorIsPlayer(int tid)
+{
+	return ActorPlayerNumber(tid) >= 0;
+}
+
+function str ActivatorName(void)
+{
+	return StrParam(n:0);
+}
+
+function str GetActorName(int tid)
+{
+	SwapActivator(tid);
+	int a = r1;
+	int b = r2;
+	
+	str result = StrParam(n:0);
+	
+	RestoreActivator(a, b);
+	return result;
+}
+
+function bool IsAlive(void)
+{
+	return GetActorProperty(0, APROP_HEALTH) > 0;
+}
+
+function bool ActorIsAlive(int tid)
+{
+	return GetActorProperty(tid, APROP_HEALTH) > 0;
+}
+
+
+// Actor math functions.
+
+function int ActorDistance(int tid1, int tid2)
+{
+	return length3d(GetActorX(tid2) - GetActorX(tid1),
+	                GetActorY(tid2) - GetActorY(tid1),
+	                GetActorZ(tid2) - GetActorZ(tid1));
+}
+
+function int ActorDistance2D(int tid1, int tid2)
+{
+	return length2d(GetActorX(tid2) - GetActorX(tid1),
+	                GetActorY(tid2) - GetActorY(tid1));
+}
+
+function int GetActorCurrentSpeed(int tid)
+{
+	return length3d(GetActorVelX(tid), GetActorVelY(tid), GetActorVelZ(tid));
+}
+
+function int GetActorCurrentSpeed2D(int tid)
+{
+	return length2d(GetActorVelX(tid), GetActorVelY(tid));
+}
+
+
+// Actor utility functions.
+
+function bool HasRoom(str classname, int x, int y, int z)
+{
+	int tid = NewTid();
+	if (!Spawn(classname, x, y, z, tid))
+		return false;
+	Thing_Remove(tid);
+	return true;
+}
+
+function void LookAtPoint(int tid, int x, int y, int z)
+{ 	
+	x -= GetActorX(tid);
+	y -= GetActorY(tid);
+	z -= GetActorZ(tid) + GetActorViewHeight(tid);
+
+	VectorToAngles(x, y, z);
+	int angle = r1;
+	int pitch = r2;
+
+	SetActorAngle(tid, angle);
+	SetActorPitch(tid, -pitch);
+}
+
+function void LookAt(int tid, int target)
+{
+	int x = GetActorX(target);
+	int y = GetActorY(target);
+	int z = GetActorZ(target) + GetActorViewHeight(target);
+	LookAtPoint(tid, x, y, z);
+}
+
+
+// Actor property shorthands with network optimization.
+// Idea from AOW.
+
+function int  GetActorHealth(int tid) { return GetActorProperty(tid, APROP_HEALTH); } 
+function void SetActorHealth(int tid, int hp)
+{ 
+	if (GetActorProperty(tid, APROP_HEALTH) != hp)
+		SetActorProperty(tid, APROP_HEALTH, hp);
+}
+
+function int  GetActorSpawnHealth(int tid) { return GetActorProperty(tid, APROP_SPAWNHEALTH); }
+function void SetActorSpawnHealth(int tid, int shp)
+{
+	if (GetActorProperty(tid, APROP_SPAWNHEALTH) != shp)
+		SetActorProperty(tid, APROP_SPAWNHEALTH, shp);
+}
+
+function int GetActorSpeed(int tid) { return GetActorProperty(tid, APROP_SPEED); }
+function void SetActorSpeed (int tid, int value)
+{
+	if (GetActorProperty(tid, APROP_SPEED) != value)
+		SetActorProperty(tid, APROP_SPEED, value);
+}
+
+// ChangeFlag
+
+// Implementation from ACS-X.
+
+function str _ChangeFlagName(str flag, bool value)
+{
+	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:!!value);
+}
+
+function void ChangeFlag(str flag, bool value)
+{
+	GiveInventory(_ChangeFlagName(flag, value), 1);
+}
+
+function void ChangeActorFlag(int tid, str flag, bool value)
+{
+	GiveActorInventory(tid, _ChangeFlagName(flag, value), 1);
+}
+
+
+// Mapping functions.
+
+// From ZDoom wiki.
+function int SyncSpeed(int newdistance, int syncdistance, int syncspd)
+{
+	int t = fixeddiv(syncdistance<<16, syncspd<<16);
+	int r = fixeddiv(newdistance<<16, t);
+	return r>>16;
+}
+//===========================
+// INTEGER PACKING
+//===========================
+
+// Pack a 32-bit signed integer into a special unusable 16-bit signed integer.
+function int PackSign16(int x)
+{
+	int negative = (x & 0x80000000);
+	if (negative)
+	{
+		return ((0xFFFFFFFF + x) & 0x00007FFF) | 0x00008000;
+	}
+	return x & 0x00007FFF;
+}
+// And unpack back to normal 32-bit signed integer.
+function int UnpackSign16(int x)
+{
+	int negative = (x & 0x00008000);
+	if (negative)
+	{
+		return -(0x00007FFF - (x & 0x00007FFF));
+	}
+	return x;
+}
+
+
+// Pack unsigned 8-bit values. ========================================
+function int PackBytes(int a, int b, int c, int d)
+{
+	return (a<<24) | (b<<16) | (c<<8) | d;
+}
+function int UnpackByte1(int x) { return (x>>24) & 0x000000FF; }
+function int UnpackByte2(int x) { return (x>>16) & 0x000000FF; }
+function int UnpackByte3(int x) { return (x>>8)  & 0x000000FF; }
+function int UnpackByte4(int x) { return (x>>0)  & 0x000000FF; }
+
+
+// Pack signed 16-bit values. =========================================
+function int PackShorts(int a, int b)
+{
+	a = PackSign16(a);
+	b = PackSign16(b);
+	return (a<<16) | b;
+}
+function int UnpackShort1(int x) { return UnpackSign16((x & 0xFFFF0000)>>16); }
+function int UnpackShort2(int x) { return UnpackSign16((x & 0x0000FFFF)); }
+// By Monsterovich.
+
+function bool KeyUp(int key)
+{
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	if ((~buttons & key) == key) { return true; }
+		return false;
+}
+
+function bool KeyUpAny(int key)
+{
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	if (~buttons & key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyUp(int player, int key)
+{
+	int buttons = GetPlayerInput(player, INPUT_BUTTONS);
+
+	if ((~buttons & key) == key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyUpAny(int player, int key)
+{
+	int buttons = GetPlayerInput(player, INPUT_BUTTONS);
+
+	if (~buttons & key) { return true; }
+		return false;
+}
+
+
+function bool KeyDown(int key)
+{
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	if ((buttons & key) == key) { return true; }
+		return false;
+}
+
+function bool KeyDownAny(int key)
+{
+	int buttons = GetPlayerInput(-1, INPUT_BUTTONS);
+
+	if (buttons & key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyDown(int player, int key)
+{
+	int buttons = GetPlayerInput(player, INPUT_BUTTONS);
+
+	if ((buttons & key) == key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyDownAny(int player, int key)
+{
+	int buttons = GetPlayerInput(player, INPUT_BUTTONS);
+
+	if (buttons & key) { return true; }
+		return false;
+}
+
+
+function bool KeyPressed(int key)
+{
+	int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & buttons;
+
+	if ((newbuttons & key) == key) { return true; }
+		return false;
+}
+
+function bool KeyPressedAny(int key)
+{
+	int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & buttons;
+
+	if (newbuttons & key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyPressed(int player, int key)
+{
+	int buttons     = GetPlayerInput(player, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(player, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & buttons;
+
+	if ((newbuttons & key) == key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyPressedAny(int player, int key)
+{
+	int buttons     = GetPlayerInput(player, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(player, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & buttons;
+
+	if (newbuttons & key) { return true; }
+		return false;
+}
+
+
+function bool KeyReleased(int key)
+{
+	int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & oldbuttons;
+
+	if ((newbuttons & key) == key) { return true; }
+		return false;
+}
+
+function bool KeyReleasedAny(int key)
+{
+	int buttons     = GetPlayerInput(-1, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(-1, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & oldbuttons;
+
+	if (newbuttons & key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyReleased(int player, int key)
+{
+	int buttons     = GetPlayerInput(player, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(player, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & oldbuttons;
+
+	if ((newbuttons & key) == key) { return true; }
+		return false;
+}
+
+function bool PlayerKeyReleasedAny(int player, int key)
+{
+	int buttons     = GetPlayerInput(player, INPUT_BUTTONS);
+	int oldbuttons  = GetPlayerInput(player, INPUT_OLDBUTTONS);
+	int newbuttons  = (buttons ^ oldbuttons) & oldbuttons;
+
+	if (newbuttons & key) { return true; }
+		return false;
+}
+
+// Angles
+
+function int deg2ang(int degrees)
+{
+	return FixedDiv(degrees, 360.0);
+}
+
+function int rad2ang(int radians)
+{
+	return FixedDiv(radians, PI * 2);
+}
+
+function int ang2deg(int angle)
+{
+	return FixedMul(angle, 360.0);
+}
+
+function int ang2rad(int angle)
+{
+	return FixedMul(angle, PI * 2);
+}
+
+function int deg2rad(int degrees)
+{
+	return ang2rad(deg2ang(degrees));
+}
+
+function int rad2deg(int radians)
+{
+	return ang2deg(rad2ang(radians));
+}
+
+function int byte2ang(int byteang)
+{
+	return byteang * 256;
+}
+
+function int ang2byte(int angle)
+{
+	return angle / 256;
+}
+
+
+// Gravity
+
+function int grav2accel(int grav)
+{
+	return FixedDiv(grav, 800.0);
+}
+
+function int accel2grav(int accel)
+{
+	return FixedMul(accel, 800.0);
+}
+
+#libdefine PARSENUMBER_SUCCESS 0
+#libdefine PARSENUMBER_OVERFLOW 1
+#libdefine PARSENUMBER_BADFORMAT 2
+
+function void ParseInt(str s, int base)
+{
+	int result = 0;
+	int sign = 1;
+	int i = 0;
+
+	if (GetChar(s, i) == '+')
+	{
+		i++;
+	}
+	else if (GetChar(s, i) == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	
+	if (base == 0)
+	{
+		if (StrEqualsAt(s, i, "0x"))
+		{
+			base = 16;
+			i += 2;
+		}
+		else if (StrEqualsAt(s, i, "0o"))
+		{
+			base = 8;
+			i += 2;
+		}
+		else if (StrEqualsAt(s, i, "0b"))
+		{
+			base = 2;
+			i += 2;
+		}
+		else
+		{
+			base = 10;
+		}
+	}
+	
+	// Empty number like "" or "-0x"
+	if (i == StrLen(s))
+	{
+		r1 = PARSENUMBER_BADFORMAT;
+		return;
+	}
+	
+	for (; i < StrLen(s); i++)
+	{
+		int c = GetChar(s, i);
+		if (c < '0' || c > '0' + base)
+		{
+			r1 = PARSENUMBER_BADFORMAT;
+			return;
+		}
+		
+		if (INT_MAX / 10 < result)
+		{	
+			r1 = PARSENUMBER_OVERFLOW;
+			r2 = sign * INT_MAX;
+			return;
+		}
+		
+		result *= 10;
+		result += c - '0';
+	}
+	
+	r1 = PARSENUMBER_SUCCESS;
+	r2 = sign * result;
+}
+
+function int atoi(str s)
+{
+	ParseInt(s, 0);
+	if (r1 == PARSENUMBER_SUCCESS || r1 == PARSENUMBER_OVERFLOW)
+		return r2;
+	return 0;
+}
+ 
+function void ParseFixed(str s, int base)
+{
+	int result;
+	int sign = 1;
+	int i = 0;
+	
+	if (GetChar(s, i) == '+')
+	{
+		i++;
+	}
+	else if (GetChar(s, i) == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	
+	if (base == 0)
+	{
+		if (StrEqualsAt(s, i, "0x"))
+		{
+			base = 16;
+			i += 2;
+		}
+		else if (StrEqualsAt(s, i, "0o"))
+		{
+			base = 8;
+			i += 2;
+		}
+		else if (StrEqualsAt(s, i, "0b"))
+		{
+			base = 2;
+			i += 2;
+		}
+		else
+		{
+			base = 10;
+		}
+	}
+	
+	// Empty number like "" or "-0x"
+	if (i == StrLen(s))
+	{
+		r1 = PARSENUMBER_BADFORMAT;
+		return;
+	}
+	
+	int c;
+	for (; i < StrLen(s); i++)
+	{
+		c = GetChar(s, i);
+		if (c == '.')
+			break;
+			
+		if (c < '0' || c > '9')
+		{
+			r1 = PARSENUMBER_BADFORMAT;
+			return;
+		}
+			
+		result *= 10;
+		result += c - '0';
+		
+		if (result > SHORT_MAX)
+		{
+			r1 = PARSENUMBER_OVERFLOW;
+			r2 = sign * 32767.0;
+			return;
+		}
+	}
+	
+	result <<= 16;
+		
+	if (i == StrLen(s))
+	{
+		r1 = PARSENUMBER_SUCCESS;
+		r2 = sign * result;
+		return;
+	}
+	
+	if (GetChar(s, i) != '.')
+	{
+		r1 = PARSENUMBER_BADFORMAT;
+		return;
+	}
+	
+	i++;
+	
+	if (i == StrLen(s))
+	{
+		r1 = PARSENUMBER_SUCCESS;
+		r2 = sign * result;
+	}
+	
+	int digit = base;
+	for (; i < StrLen(s); i++)
+	{
+		c = GetChar(s, i);
+		if (c < '0' || c > '9')
+		{
+			r1 = PARSENUMBER_BADFORMAT;
+			return;
+		}
+		
+		result += 65536 * (c - '0') / digit;
+		if (digit >= INT_MAX / base) // one billion
+			break;
+		digit *= base;
+	}
+	
+	r1 = PARSENUMBER_SUCCESS;
+	r2 = sign * result;
+}
+
+function int atof(str s)
+{
+	ParseFixed(s, 0);
+	if (r1 == PARSENUMBER_SUCCESS || r1 == PARSENUMBER_OVERFLOW)
+		return r2;
+	return 0;
+}
+
+// TIDALLOCSTART is defined by the user.
+
+function int NewTid(void)
+{
+	int tid = UniqueTid(TIDALLOCSTART, SHORT_MAX - TIDALLOCSTART);
+	if (tid != 0)
+		return tid;
+		
+	// No Zandronum-safe tid found, give up and use an unsafe tid.
+	return UniqueTid(TIDALLOCSTART);
+}
+function int CursorX(void)
+{
+	return ACSUtils[ACSUTILS_CursorX];
+}
+
+function int CursorY(void)
+{
+	return ACSUtils[ACSUTILS_CursorY];
+}
+
+function int CursorDeltaX(void)
+{
+	if (ACSUtils[ACSUTILS_CursorWrapX])
+		return CursorMotionX();
+	return ACSUtils[ACSUTILS_CursorX] - ACSUtils[ACSUTILS_CursorPrevX];
+}
+function int CursorDeltaY(void)
+{
+	if (ACSUtils[ACSUTILS_CursorWrapY])
+		return CursorMotionY();
+	return ACSUtils[ACSUTILS_CursorY] - ACSUtils[ACSUTILS_CursorPrevY];
+}
+
+function int CursorMotionX(void)
+{
+	return ACSUtils[ACSUTILS_CursorMotionX];
+}
+
+function int CursorMotionY(void)
+{
+	return ACSUtils[ACSUTILS_CursorMotionY];
+}
+
+function void SetCursorSpeed(int speed)
+{
+	ACSUtils[ACSUTILS_CursorSpeedX] = speed;
+	ACSUtils[ACSUTILS_CursorSpeedY] = speed;
+}
+
+function void SetCursorSpeedX(int speed)
+{
+	ACSUtils[ACSUTILS_CursorSpeedX] = speed;
+}
+
+function void SetCursorSpeedY(int speed)
+{
+	ACSUtils[ACSUTILS_CursorSpeedY] = speed;
+}
+
+function void SetCursorPosition(int x, int y)
+{
+	ACSUtils[ACSUTILS_CursorX] = x;
+	ACSUtils[ACSUTILS_CursorY] = y;
+}
+
+function void CenterCursor(void)
+{
+	SetCursorPosition(ACSUtils[ACSUTILS_CursorAreaWidth] / 2, ACSUtils[ACSUTILS_CursorAreaHeight] / 2);
+}
+
+function void EnableCursorWrap(bool enable)
+{
+	ACSUtils[ACSUTILS_CursorWrapX] = enable;
+	ACSUtils[ACSUTILS_CursorWrapY] = enable;
+}
+
+function void EnableCursorWrapX(bool enable)
+{
+	ACSUtils[ACSUTILS_CursorWrapX] = enable;
+}
+
+function void EnableCursorWrapY(bool enable)
+{
+	ACSUtils[ACSUTILS_CursorWrapY] = enable;
+}
+
+function void _ClampCursor(void)
+{
+	if (ACSUtils[ACSUTILS_CursorWrapX])
+		ACSUtils[ACSUTILS_CursorX] = mod(ACSUtils[ACSUTILS_CursorX], ACSUtils[ACSUTILS_CursorAreaWidth]);
+	else
+		ACSUtils[ACSUTILS_CursorX] = clamp(ACSUtils[ACSUTILS_CursorX], 0, ACSUtils[ACSUTILS_CursorAreaWidth]);
+	
+	if (ACSUtils[ACSUTILS_CursorWrapY])
+		ACSUtils[ACSUTILS_CursorY] = mod(ACSUtils[ACSUTILS_CursorY], ACSUtils[ACSUTILS_CursorAreaHeight]);
+	else
+		ACSUtils[ACSUTILS_CursorY] = clamp(ACSUtils[ACSUTILS_CursorY], 0, ACSUtils[ACSUTILS_CursorAreaHeight]);
+}
+
+function void SetCursorArea(int width, int height)
+{
+	if (width <= 0)
+		ProgramError(StrParam(s:"Cursor area width set to ", d:width));
+	if (height <= 0)
+		ProgramError(StrParam(s:"Cursor area height set to ", d:height));
+	
+	ACSUtils[ACSUTILS_CursorX] = FixedMul(ACSUtils[ACSUTILS_CursorX], FixedDiv(width, ACSUtils[ACSUTILS_CursorAreaWidth]));
+	ACSUtils[ACSUTILS_CursorY] = FixedMul(ACSUtils[ACSUTILS_CursorY], FixedDiv(height, ACSUtils[ACSUTILS_CursorAreaHeight]));
+	ACSUtils[ACSUTILS_CursorPrevX] = FixedMul(ACSUtils[ACSUTILS_CursorPrevX], FixedDiv(width, ACSUtils[ACSUTILS_CursorAreaWidth]));
+	ACSUtils[ACSUTILS_CursorPrevY] = FixedMul(ACSUtils[ACSUTILS_CursorPrevY], FixedDiv(height, ACSUtils[ACSUTILS_CursorAreaHeight]));
+	ACSUtils[ACSUTILS_CursorMotionX] = FixedMul(ACSUtils[ACSUTILS_CursorMotionX], FixedDiv(width, ACSUtils[ACSUTILS_CursorAreaWidth]));
+	ACSUtils[ACSUTILS_CursorMotionY] = FixedMul(ACSUtils[ACSUTILS_CursorMotionY], FixedDiv(height, ACSUtils[ACSUTILS_CursorAreaHeight]));
+
+	ACSUtils[ACSUTILS_CursorAreaWidth] = width;
+	ACSUtils[ACSUTILS_CursorAreaHeight] = height;
+}
+
+function void UpdateCursor(void)
+{
+	ACSUtils[ACSUTILS_CursorPrevX] = ACSUtils[ACSUTILS_CursorX];
+	ACSUtils[ACSUTILS_CursorPrevY] = ACSUtils[ACSUTILS_CursorY];
+
+	int sensitivity = a_GetCVarFixed("mouse_sensitivity");
+	int speedX = FixedDiv(ACSUtils[ACSUTILS_CursorSpeedX], FixedMul(a_GetCVarFixed("m_yaw"), sensitivity));
+	int speedY = FixedDiv(ACSUtils[ACSUTILS_CursorSpeedY], FixedMul(a_GetCVarFixed("m_pitch"), sensitivity));
+	
+	speedX = FixedMul(speedX * 2, ACSUtils[ACSUTILS_CursorAreaWidth]) / 64000;
+	speedY = FixedMul(speedY * 2, ACSUtils[ACSUTILS_CursorAreaHeight]) / 32000;
+
+	int dx = -GetPlayerInput(ConsolePlayerNumber(), INPUT_YAW)   * speedX;
+    int dy = -GetPlayerInput(ConsolePlayerNumber(), INPUT_PITCH) * speedY;
+
+	if (GetCVar("invertmouse"))
+        dy = -dy;
+		
+	ACSUtils[ACSUTILS_CursorMotionX] = dx;
+	ACSUtils[ACSUTILS_CursorMotionY] = dy;
+	ACSUtils[ACSUTILS_CursorX] += dx;
+	ACSUtils[ACSUTILS_CursorY] += dy;
+	_ClampCursor();
+}
+
+#libdefine PORT_ZDOOM 1
+#libdefine PORT_GZDOOM 2
+#libdefine PORT_ZANDRONUM 3
+
+// Port identification methods copied from ACS-X
+function int IdentifySourcePort(void)
+{
+	if (ACSUtils[ACSUTILS_CachedPort] != -1)
+		return ACSUtils[ACSUTILS_CachedPort];
+
+	if (GetPlayerAccountName(0) != 0)
+	{
+		// GetPlayerAccountName returns a string (possibly empty) in Zandronum
+		// but 0 in GZDoom.
+		ACSUtils[ACSUTILS_CachedPort] = PORT_ZANDRONUM;
+		return ACSUtils[ACSUTILS_CachedPort];
+	}
+	
+	int tid = NewTid();
+	if (SpawnForced("DynamicLight", 0, 0, 0, tid))
+	{
+		// DynamicLight is a built-in actor in GZDoom.
+		Thing_Remove(tid);
+		ACSUtils[ACSUTILS_CachedPort] = PORT_GZDOOM;
+		return ACSUtils[ACSUTILS_CachedPort];
+	}
+	
+	ACSUtils[ACSUTILS_CachedPort] = PORT_ZDOOM;
+	return ACSUtils[ACSUTILS_CachedPort];
+}
+
+function str GetPortName(void)
+{
+	int port = IdentifySourcePort();
+	switch (port)
+	{
+	case PORT_ZDOOM:
+		return "ZDoom";
+	case PORT_GZDOOM:
+		return "GZDoom";
+	case PORT_ZANDRONUM:
+		return "Zandronum";
+	}
+
+	return StrParam(s:"IdentifySourcePort() returned ", d:port);
+}
+
+function bool IsZandronum(void)
+{
+	return IdentifySourcePort() == PORT_ZANDRONUM;
+}
+
+function bool IsGZDoom(void)
+{
+	int port = IdentifySourcePort();
+	return port == PORT_GZDOOM || port == PORT_ZANDRONUM;
+}
+
+function bool IsServer(void)
+{
+	if (ConsolePlayerNumber() < 0)
+		return true;
+		
+	// Needs to be done like this to avoid crashing the script in ZDoom.
+	if (IsZandronum())
+		return !IsMultiplayer();
+	
+	return true;
+}
+
+function bool IsClient(void)
+{
+	return ConsolePlayerNumber() >= 0;
+}
+
+function bool IsOpenGL(void)
+{
+	if (!IsClient())
+	{
+		ProgramError("IsOpenGL() used serverside. Assuming OpenGL renderer.");
+		return true; // OpenGL generally has less limitations.
+	}
+	
+	// Correctly identifies ZDoom with a config file from GZDoom with vid_renderer = 1.
+	if (IsGZDoom())
+		return GetCVar("vid_renderer") == 1 && GetCVar("gl_nogl") == 0;
+	
+	return false;
+}
+
+// When editing default values, also edit them in acsglobal.acs
+// When adding new properties, don't forget to edit ACSUTILS_HUDSTATE_SIZE.
+#define ACSUTILS_HUDSTATE_SIZE 39
+#define ACSUTILS_HUDLIB_STACKSIZE ACSUTILS_HUDSTATE_SIZE * ACSUTILS_HUDLIB_SAVEDSTATES
+
+function void HudResetState(void)
+{
+	ACSUtils[ACSUTILS_R_Is3DPoint] = false;
+
+
+	ACSUtils[ACSUTILS_R3D_CameraX] = 0.0;
+	ACSUtils[ACSUTILS_R3D_CameraY] = 0.0;
+	ACSUtils[ACSUTILS_R3D_CameraZ] = 0.0;
+	ACSUtils[ACSUTILS_R3D_CameraAngle] = 0.0;
+	ACSUtils[ACSUTILS_R3D_CameraPitch] = 0.0;
+
+	ACSUtils[ACSUTILS_R3D_X] = 0.0;
+	ACSUtils[ACSUTILS_R3D_Y] = 0.0;
+	ACSUtils[ACSUTILS_R3D_Z] = 0.0;
+
+	ACSUtils[ACSUTILS_R3D_2DOffsetX] = 0.0;
+	ACSUtils[ACSUTILS_R3D_2DOffsetY] = 0.0;
+
+	ACSUtils[ACSUTILS_R3D_AutoDistanceScale] = true;
+	ACSUtils[ACSUTILS_R3D_ProjectionMode] = HUD_PROJECTION_AUTO;
+
+	ACSUtils[ACSUTILS_R_BaseWidth] = 640.0;
+	ACSUtils[ACSUTILS_R_BaseHeight] = 480.0;
+	ACSUtils[ACSUTILS_R_ExcludeStatusBar] = false;
+
+	ACSUtils[ACSUTILS_R_X] = 0.0;
+	ACSUtils[ACSUTILS_R_Y] = 0.0;
+
+	ACSUtils[ACSUTILS_R_IScaleX] = 1.0;
+	ACSUtils[ACSUTILS_R_IScaleY] = 1.0;
+
+	ACSUtils[ACSUTILS_R_ShowToEveryone] = false;
+
+	ACSUtils[ACSUTILS_R_AppearTime] = 0.0;
+	ACSUtils[ACSUTILS_R_StayTime] = HUD_STAYTIME_FOREVER;
+	ACSUtils[ACSUTILS_R_DisappearTime] = 0.0;
+
+	ACSUtils[ACSUTILS_R_BlendStyle] = HUD_BLENDSTYLE_NORMAL;
+	ACSUtils[ACSUTILS_R_Alpha] = 1.0;
+
+	ACSUtils[ACSUTILS_R_ShowIn3DView] = true;
+	ACSUtils[ACSUTILS_R_ShowOnFullAutomap] = true;
+	ACSUtils[ACSUTILS_R_ShowOnOverlayAutomap] = true;
+
+	ACSUtils[ACSUTILS_R_Layer] = HUDMSG_LAYER_OVERHUD;
+
+	ACSUtils[ACSUTILS_R_TextOriginX] = HUD_TEXTORIGIN_CENTER;
+	ACSUtils[ACSUTILS_R_TextOriginY] = HUD_TEXTORIGIN_CENTER;
+	ACSUtils[ACSUTILS_R_CenterText] = false;
+	ACSUtilsStrings[ACSUTILSSTRING_R_TextFont] = "SMALLFONT";
+	ACSUtils[ACSUTILS_R_TextColorIsString] = false;
+	ACSUtils[ACSUTILS_R_TextColor] = CR_UNTRANSLATED;
+	ACSUtils[ACSUTILS_R_TextTypeOn] = false;
+	ACSUtils[ACSUTILS_R_LogMessage] = false;
+	ACSUtils[ACSUTILS_R_TextWordWrap] = false;
+}
+
+int HudStateStack[ACSUTILS_HUDLIB_STACKSIZE];
+//int ACSUtils[ACSUTILS_HudStateStackTop];
+
+function void HudClearStateStack(void)
+{
+	ACSUtils[ACSUTILS_HudStateStackTop] = 0;
+}
+
+function void HudPushState(void)
+{
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_Is3DPoint];
+
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_CameraX];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_CameraY];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_CameraZ];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_CameraAngle];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_CameraPitch];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_X];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_Y];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_Z];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_2DOffsetX];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_2DOffsetY];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_AutoDistanceScale];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R3D_ProjectionMode];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_BaseWidth];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_BaseHeight];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_ExcludeStatusBar];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_X];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_Y];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_IScaleX];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_IScaleY];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_ShowToEveryone];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_AppearTime];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_StayTime];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_DisappearTime];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_BlendStyle];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_Alpha];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_ShowIn3DView];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_ShowOnFullAutomap];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_ShowOnOverlayAutomap];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_Layer];
+
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_TextOriginX];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_TextOriginY];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_CenterText];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtilsStrings[ACSUTILSSTRING_R_TextFont];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_TextColorIsString];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_TextColor];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_TextTypeOn];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_LogMessage];
+	HudStateStack[ACSUtils[ACSUTILS_HudStateStackTop]++] = ACSUtils[ACSUTILS_R_TextWordWrap];
+	
+	if (ACSUtils[ACSUTILS_HudStateStackTop] > ACSUTILS_HUDLIB_STACKSIZE)
+		LimitError("HudPushState(): state stack overflow.");
+}
+
+function void HudPopState(void)
+{
+	if (ACSUtils[ACSUTILS_HudStateStackTop] == 0)
+	{
+		ProgramError("HudPopState() called with no saved state.");
+		return;
+	}
+
+	ACSUtils[ACSUTILS_R_TextWordWrap] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_LogMessage] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_TextTypeOn] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_TextColor] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_TextColorIsString] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtilsStrings[ACSUTILSSTRING_R_TextFont] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_CenterText] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_TextOriginY] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_TextOriginX] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_Layer] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_ShowOnOverlayAutomap] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_ShowOnFullAutomap] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_ShowIn3DView] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_Alpha] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_BlendStyle] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_DisappearTime] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_StayTime] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_AppearTime] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_ShowToEveryone] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_IScaleY] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_IScaleX] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_Y] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_X] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R_ExcludeStatusBar] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_BaseHeight] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R_BaseWidth] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R3D_ProjectionMode] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_AutoDistanceScale] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R3D_2DOffsetY] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_2DOffsetX] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R3D_Z] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_Y] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_X] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+	ACSUtils[ACSUTILS_R3D_CameraPitch] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_CameraAngle] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_CameraZ] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_CameraY] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	ACSUtils[ACSUTILS_R3D_CameraX] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+
+
+	ACSUtils[ACSUTILS_R_Is3DPoint] = HudStateStack[--ACSUtils[ACSUTILS_HudStateStackTop]];
+	
+	if (ACSUtils[ACSUTILS_HudStateStackTop] < 0)
+		ProgramError("HudPushState/HudPopState are bugged. Report this bug to the acsutils project.");
+}
+
+function void HudSetCameraPosition(int x, int y, int z)
+{
+	ACSUtils[ACSUTILS_R3D_CameraX] = x;
+	ACSUtils[ACSUTILS_R3D_CameraY] = y;
+	ACSUtils[ACSUTILS_R3D_CameraZ] = z;
+}
+
+function void HudSetCameraAngles(int angle, int pitch)
+{
+	ACSUtils[ACSUTILS_R3D_CameraAngle] = angle;
+	ACSUtils[ACSUTILS_R3D_CameraPitch] = pitch;
+}
+
+#libdefine HUD_CAMERAACTOR_NOPOSITION 1
+#libdefine HUD_CAMERAACTOR_NOPREDICTION 2
+#libdefine HUD_CAMERAACTOR_NODIRECTION 4
+#libdefine HUD_CAMERAACTOR_NOVIEWHEIGHT 8
+
+function void HudSetCameraActorAdvanced(int tid, int flags)
+{
+	if (!(flags & HUD_CAMERAACTOR_NOPOSITION))
+	{
+		int x = GetActorX(tid);
+		int y = GetActorY(tid);
+		int z = GetActorZ(tid);
+		
+		if (!(flags & HUD_CAMERAACTOR_NOVIEWHEIGHT))
+			z += GetActorViewHeight(tid);
+		
+		if (!(flags & HUD_CAMERAACTOR_NOPREDICTION))
+		{
+			x -= GetActorVelX(tid);
+			y -= GetActorVelY(tid);
+			z -= GetActorVelZ(tid);
+		}	
+		
+		HudSetCameraPosition(x, y, z);
+	}
+	
+	if (!(flags & HUD_CAMERAACTOR_NODIRECTION))
+		HudSetCameraAngles(GetActorAngle(tid), -GetActorPitch(tid));
+}
+
+function void HudSetCameraActor(int tid)
+{
+	HudSetCameraActorAdvanced(tid, 0);
+}
+
+function void HudSetPoint3D(int x, int y, int z)
+{
+	ACSUtils[ACSUTILS_R_Is3DPoint] = true;
+	ACSUtils[ACSUTILS_R3D_X] = x;
+	ACSUtils[ACSUTILS_R3D_Y] = y;
+	ACSUtils[ACSUTILS_R3D_Z] = z;
+}
+
+function void HudSet2DOffset(int x, int y)
+{
+	ACSUtils[ACSUTILS_R3D_2DOffsetX] = x;
+	ACSUtils[ACSUTILS_R3D_2DOffsetY] = y;
+}
+
+function void HudSetAutoDistanceScale(bool autoDistanceScale)
+{
+	ACSUtils[ACSUTILS_R3D_AutoDistanceScale] = autoDistanceScale;
+}
+
+function void HudSetProjectionMode(int mode)
+{
+	ACSUtils[ACSUTILS_R3D_ProjectionMode] = mode;
+}
+
+function void HudSetVirtualSize(int width, int height)
+{
+	ACSUtils[ACSUTILS_R_BaseWidth] = width;
+	ACSUtils[ACSUTILS_R_BaseHeight] = height;
+}
+
+function void HudUseDefaultSize(void)
+{
+	ACSUtils[ACSUTILS_R_BaseWidth] = 640.0;
+	ACSUtils[ACSUTILS_R_BaseHeight] = 480.0;
+}
+
+function void HudUseRealSize(void)
+{
+	ACSUtils[ACSUTILS_R_BaseWidth] = ScreenWidth()<<16;
+	ACSUtils[ACSUTILS_R_BaseHeight] = ScreenHeight()<<16;
+}
+
+function void HudSetExcludeStatusBar(bool exclude)
+{
+	ACSUtils[ACSUTILS_R_ExcludeStatusBar] = exclude;
+}
+
+function void HudSetPoint(int x, int y)
+{
+	ACSUtils[ACSUTILS_R_Is3DPoint] = false;
+	ACSUtils[ACSUTILS_R_X] = x;
+	ACSUtils[ACSUTILS_R_Y] = y;
+}
+
+function void HudSetScaleXY(int scaleX, int scaleY)
+{
+	if (scaleX != 0)
+		ACSUtils[ACSUTILS_R_IScaleX] = FixedDiv(1.0, scaleX);
+	else
+		ACSUtils[ACSUTILS_R_IScaleX] = 0;
+	
+	if (scaleY != 0)
+		ACSUtils[ACSUTILS_R_IScaleY] = FixedDiv(1.0, scaleY);
+	else
+		ACSUtils[ACSUTILS_R_IScaleY] = 0;
+}
+
+function void HudSetScale(int scale)
+{
+	HudSetScaleXY(scale, scale);
+}
+
+function void HudSetInvScale(int invScale)
+{
+	ACSUtils[ACSUTILS_R_IScaleX] = invScale;
+	ACSUtils[ACSUTILS_R_IScaleY] = invScale;
+}
+
+function void HudSetInvScaleXY(int invScaleX, int invScaleY)
+{
+	ACSUtils[ACSUTILS_R_IScaleX] = invScaleX;
+	ACSUtils[ACSUTILS_R_IScaleY] = invScaleY;
+}
+
+function void HudSetShowToEveryone(bool showToEveryone)
+{
+	ACSUtils[ACSUTILS_R_ShowToEveryone] = showToEveryone;
+}
+
+function void HudSetAppearTime(int appearTime)
+{
+	ACSUtils[ACSUTILS_R_AppearTime] = appearTime;
+}
+
+function void HudSetStayTime(int stayTime)
+{
+	ACSUtils[ACSUTILS_R_StayTime] = stayTime;
+}
+
+function void HudSetDisappearTime(int disappearTime)
+{
+	ACSUtils[ACSUTILS_R_DisappearTime] = disappearTime;
+}
+
+function void HudSetBlendStyle(int style)
+{
+	ACSUtils[ACSUTILS_R_BlendStyle] = style;
+}
+
+function void HudSetAlpha(int alpha)
+{
+	ACSUtils[ACSUTILS_R_Alpha] = alpha;
+}
+
+function void HudSetShowIn3DView(bool show)
+{
+	ACSUtils[ACSUTILS_R_ShowIn3DView] = show;
+}
+
+function void HudSetShowOnFullAutomap(bool show)
+{
+	ACSUtils[ACSUTILS_R_ShowOnFullAutomap] = show;
+}
+
+function void HudSetShowOnOverlayAutomap(bool show)
+{
+	ACSUtils[ACSUTILS_R_ShowOnOverlayAutomap] = show;
+}
+
+function void HudSetLayer(int layer)
+{
+	ACSUtils[ACSUTILS_R_Layer] = layer;
+}
+
+function void HudSetFont(str font)
+{
+	ACSUtilsStrings[ACSUTILSSTRING_R_TextFont] = font;
+}
+
+function void HudSetTextColor(int textColor)
+{
+	ACSUtils[ACSUTILS_R_TextColorIsString] = false;
+	ACSUtils[ACSUTILS_R_TextColor] = textColor;
+}
+
+function void HudSetTextColorString(str textColor)
+{
+	ACSUtils[ACSUTILS_R_TextColorIsString] = true;
+	ACSUtils[ACSUTILS_R_TextColor] = textColor;
+}
+
+function void HudSetCenterText(bool centerText)
+{
+	ACSUtils[ACSUTILS_R_CenterText] = centerText;
+}
+
+function void HudSetTextOrigin(int originX, int originY)
+{
+	ACSUtils[ACSUTILS_R_TextOriginX] = originX;
+	ACSUtils[ACSUTILS_R_TextOriginY] = originY;
+}
+
+function void HudSetTextOriginX(int originX)
+{
+	ACSUtils[ACSUTILS_R_TextOriginX] = originX;
+}
+
+function void HudSetTextOriginY(int originY)
+{
+	ACSUtils[ACSUTILS_R_TextOriginY] = originY;
+}
+
+function void HudSetTextTypeOn(bool textTypeOn)
+{
+	ACSUtils[ACSUTILS_R_TextTypeOn] = textTypeOn;
+}
+
+function void HudSetLogMessage(bool logMessage)
+{
+	ACSUtils[ACSUTILS_R_LogMessage] = logMessage;
+}
+
+function void HudSetWordWrap(bool wordWrap)
+{
+	ACSUtils[ACSUTILS_R_TextWordWrap] = wordWrap;
+}
+
+//int ACSUtils[ACSUTILS_R_RotatedX];
+//int ACSUtils[ACSUTILS_R_RotatedY];
+//int ACSUtils[ACSUTILS_R_RotatedZ];
+
+function bool _HudUseYShearingProjection(void)
+{
+	if (ACSUtils[ACSUTILS_R3D_ProjectionMode] == HUD_PROJECTION_AUTO)
+		return !IsOpenGL();
+	
+	return ACSUtils[ACSUTILS_R3D_ProjectionMode] == HUD_PROJECTION_YSHEARING;
+}
+
+// Rotate 3D point to view coordinate system.
+function void HudRotate3DPoint(void)
+{
+	// Translated point coordinates.
+	int x = ACSUtils[ACSUTILS_R3D_X] - ACSUtils[ACSUTILS_R3D_CameraX];
+	int y = ACSUtils[ACSUTILS_R3D_Y] - ACSUtils[ACSUTILS_R3D_CameraY];
+	int z = ACSUtils[ACSUTILS_R3D_Z] - ACSUtils[ACSUTILS_R3D_CameraZ];
+
+	int rx, ry, rz;
+	int s, c;
+
+	// Rotate around Z axis.
+	s = sin(-ACSUtils[ACSUTILS_R3D_CameraAngle]);
+	c = cos(-ACSUtils[ACSUTILS_R3D_CameraAngle]);
+	rx = FixedMul(x, c) - FixedMul(y, s);
+	ry = FixedMul(x, s) + FixedMul(y, c);
+	x = rx; y = ry;
+
+	// Rotate around Y axis.
+	if (!_HudUseYShearingProjection())
+	{
+		s = sin(-ACSUtils[ACSUTILS_R3D_CameraPitch]);
+		c = cos(-ACSUtils[ACSUTILS_R3D_CameraPitch]);
+		rx = FixedMul(x, c) - FixedMul(z, s);
+		rz = FixedMul(x, s) + FixedMul(z, c);
+		x = rx; z = rz;
+	}
+
+	ACSUtils[ACSUTILS_R_RotatedX] = x;
+	ACSUtils[ACSUTILS_R_RotatedY] = y;
+	ACSUtils[ACSUTILS_R_RotatedZ] = z;
+}
+
+function int HudGetDistance(void)
+{
+	HudRotate3DPoint();
+	return ACSUtils[ACSUTILS_R_RotatedX];
+}
+
+
+#libdefine CAMERA_BASE_DISTANCE 128
+
+function void HudDrawHudMessage(int id, int type, str text, bool isText)
+{
+	if (ACSUtils[ACSUTILS_R_IScaleX] == 0 || ACSUtils[ACSUTILS_R_IScaleY] == 0)
+		return;
+
+	type |= ACSUtils[ACSUTILS_R_Layer];
+	if (!ACSUtils[ACSUTILS_R_ShowIn3DView])
+		type |= HUDMSG_NOTWITH3DVIEW;
+	if (!ACSUtils[ACSUTILS_R_ShowOnFullAutomap])
+		type |= HUDMSG_NOTWITHFULLMAP;
+	if (!ACSUtils[ACSUTILS_R_ShowOnOverlayAutomap])
+		type |= HUDMSG_NOTWITHOVERLAYMAP;
+		
+	if (ACSUtils[ACSUTILS_R_Alpha] != 1.0)
+	{
+		if (ACSUtils[ACSUTILS_R_BlendStyle] == HUD_BLENDSTYLE_ADDITIVE)
+			type |= HUDMSG_ADDBLEND;
+		else
+			type |= HUDMSG_ALPHA;
+	}
+	
+	int x = ACSUtils[ACSUTILS_R_X];
+	int y = ACSUtils[ACSUTILS_R_Y];
+	int iScaleX = ACSUtils[ACSUTILS_R_IScaleX];
+	int iScaleY = ACSUtils[ACSUTILS_R_IScaleY];
+	
+	if (ACSUtils[ACSUTILS_R_Is3DPoint])
+	{
+		HudRotate3DPoint();
+
+		// Check if point is behind the camera.
+		if (ACSUtils[ACSUTILS_R_RotatedX] <= 0)
+		{
+			ClearHudMessage(id);
+			return;
+		}
+			
+		// I don't know what this factor means, but it fixes positioning bugs.
+		int yFactor = 1.6;
+		if (StatusBarShown())
+			yFactor = 1.9;
+
+		// Half heights.
+		int hw = ACSUtils[ACSUTILS_R_BaseWidth]>>1;
+		int hh = ACSUtils[ACSUTILS_R_BaseHeight]>>1;		
+
+		// Project point.
+		x = tan(-VectorAngle(ACSUtils[ACSUTILS_R_RotatedX], ACSUtils[ACSUTILS_R_RotatedY]));
+		y = tan(-VectorAngle(ACSUtils[ACSUTILS_R_RotatedX], ACSUtils[ACSUTILS_R_RotatedZ]));
+		
+		if (_HudUseYShearingProjection())
+			y += tan(ACSUtils[ACSUTILS_R3D_CameraPitch]);
+		
+		// Postprocess projected point.
+		x += ACSUtils[ACSUTILS_R3D_2DOffsetX] + hw + FixedMul(hw, x);
+		y += ACSUtils[ACSUTILS_R3D_2DOffsetY] + hh + FixedMul(FixedMul(hh, yFactor), y);
+		
+		if (ACSUtils[ACSUTILS_R3D_AutoDistanceScale])
+		{
+			iScaleX = FixedMul(iScaleX, ACSUtils[ACSUTILS_R_RotatedX] / CAMERA_BASE_DISTANCE);
+			iScaleY = FixedMul(iScaleY, ACSUtils[ACSUTILS_R_RotatedX] / CAMERA_BASE_DISTANCE);
+		}
+	}
+	
+	int w = FixedMul(ACSUtils[ACSUTILS_R_BaseWidth], iScaleX);
+	int h = FixedMul(ACSUtils[ACSUTILS_R_BaseHeight], iScaleY);
+	SetHudSize(itrunc(w), itrunc(h), !(ACSUtils[ACSUTILS_R_Is3DPoint] || ACSUtils[ACSUTILS_R_ExcludeStatusBar]));
+	
+	x = trunc(FixedMul(x, iScaleX));
+	y = trunc(FixedMul(y, iScaleY));
+	
+	if (ACSUtils[ACSUTILS_R_TextOriginX] == HUD_TEXTORIGIN_LEFT)
+		x += 0.1;
+	else if (ACSUtils[ACSUTILS_R_TextOriginX] == HUD_TEXTORIGIN_RIGHT)
+		x += 0.2;
+		
+	if (ACSUtils[ACSUTILS_R_TextOriginY] == HUD_TEXTORIGIN_TOP)
+		y += 0.1;
+	else if (ACSUtils[ACSUTILS_R_TextOriginY] == HUD_TEXTORIGIN_BOTTOM)
+		y += 0.2;
+		
+	if (ACSUtils[ACSUTILS_R_CenterText])
+		x += 0.4;
+	
+	// BUG: this really simplifies the code, but the messages will only stay
+	// for 9 hours.
+	int stayTime = ACSUtils[ACSUTILS_R_StayTime];
+	if (stayTime < 0)
+		stayTime = 32767.0;
+	
+	if (ACSUtils[ACSUTILS_R_ShowToEveryone])
+	{
+		HudMessageBold(s:text;
+			type,
+			id,
+			ACSUtils[ACSUTILS_R_TextColor],
+			x, y,
+			stayTime, ACSUtils[ACSUTILS_R_AppearTime], ACSUtils[ACSUTILS_R_DisappearTime],
+			ACSUtils[ACSUTILS_R_Alpha]
+		);
+	}
+	else
+	{
+		HudMessage(s:text;
+			type,
+			id,
+			ACSUtils[ACSUTILS_R_TextColor],
+			x, y,
+			stayTime, ACSUtils[ACSUTILS_R_AppearTime], ACSUtils[ACSUTILS_R_DisappearTime],
+			ACSUtils[ACSUTILS_R_Alpha]
+		);
+	}
+}
+
+function void HudDrawText(int id, str text)
+{
+	int type = HUDMSG_FADEINOUT;
+	if (ACSUtils[ACSUTILS_R_AppearTime] > 0 && ACSUtils[ACSUTILS_R_TextTypeOn])
+		type = HUDMSG_TYPEON;
+	
+	if (ACSUtils[ACSUTILS_R_LogMessage])
+		type |= HUDMSG_LOG;
+	if (ACSUtils[ACSUTILS_R_TextColorIsString])
+		type |= HUDMSG_COLORSTRING;
+	if (!ACSUtils[ACSUTILS_R_TextWordWrap])
+		type |= HUDMSG_NOWRAP;
+
+	SetFont(ACSUtilsStrings[ACSUTILSSTRING_R_TextFont]);
+	HudDrawHudMessage(id, type, text, true);
+}
+
+function void HudDrawImage(int id, str image)
+{
+	SetFont(image);
+	HudDrawHudMessage(id, HUDMSG_FADEINOUT, "A", false);
+}

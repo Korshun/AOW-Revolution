@@ -1,0 +1,116 @@
+/////////////////////////////////////////NEW DOOM MARINES
+{
+name = "MarineKnife"
+sprite = PKNI
+}
+
+{
+name = "MarineChainsaw"
+sprite = PLA0
+}
+
+{
+name = "MarineAdmin"
+sprite = ADMN
+}
+
+/////////////////////////////////////////DOOM MARINES
+{
+name = "MarineMedic"
+sprite = PMED
+}
+
+{
+name = "MarineFist"
+sprite = PLA1
+}
+
+{
+name = "MarinePistol"
+sprite = PLA2
+}
+
+{
+name = "MarineShotgun"
+sprite = PLA3
+}
+
+{
+name = "MarineSSG"
+sprite = PLA9
+}
+
+{
+name = "MarineChaingun"
+sprite = PLA4
+}
+
+{
+name = "MarineRockets"
+sprite = PLA5
+}
+
+{
+name = "MarinePlasma"
+sprite = PLA6
+}
+
+{
+name = "MarineBFG"
+sprite = PLA7
+}
+
+{
+name = "MarineMinigun"
+sprite = PL42
+}
+
+{
+name = "MarineGrenade"
+sprite = PGRN
+}
+
+{
+name = "MarineRailgun"
+sprite = PRAI
+}
+
+{
+name = "MarineBFG10k"
+sprite = PB10
+}
+
+{
+name = "MarineBackpack"
+sprite = PBAK
+}
+
+{
+name = "MarineSMG"
+sprite = PSMG
+}
+
+{
+name = "MarineMachineGun"
+sprite = MGMR
+}
+
+{
+name = "MarineRevenant"
+sprite = PREV
+}
+
+{
+name = "MarineSRockets"
+sprite = PL5S
+}
+
+{
+name = "MarineFlamer"
+sprite = PFLM
+}
+
+{
+name = "MarineSniper"
+sprite = PSNP
+}

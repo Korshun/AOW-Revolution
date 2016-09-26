@@ -1,0 +1,47 @@
+Actor FistSwitch : Boolean {}
+
+Actor Unarmed : AOWWeapon
+{
+	//$Category Weapons
+	Tag "Unarmed"
+	Inventory.PickupMessage "Unarmed"
+	Obituary "%k knocked %o out hard."
+	Weapon.PreferredSkin "MarineFist"
+
+	+WEAPON.WIMPY_WEAPON
+	+WEAPON.MELEEWEAPON
+	
+	Weapon.Kickback 165
+
+	States
+	{
+	Ready:
+		PUNG A 1 A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_Lower
+		PUNG A 1 A_Lower
+		Loop
+	Select:
+		NULL A 0 A_Raise
+		PUNG A 1 A_Raise
+		Loop
+	Fire:
+		PUNG B 2 A_JumpIfInventory("FistSwitch", 1, "Swing2")
+	Swing1:
+		PUNG C 2
+		NULL A 0 A_GiveInventory("FistSwitch", 1)
+		PUNG D 5 A_CustomPunch(35, 1, 1, "BulletPuff", 64)
+		PUNG C 2
+		PUNG B 5 A_ReFire
+		Goto Ready
+	Swing2:
+		PUNG E 2
+		PUNG F 2
+		NULL A 0 A_TakeInventory("FistSwitch", 1)
+		PUNG G 5 A_CustomPunch(35, 1, 1, "BulletPuff", 64)
+		PUNG F 2
+		PUNG E 5 A_ReFire
+		Goto Ready
+	}
+}

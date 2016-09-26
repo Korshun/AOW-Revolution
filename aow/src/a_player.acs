@@ -1,0 +1,5 @@
+function int PlayerTid(int player)
+{
+	return 1000 + player;
+}
+

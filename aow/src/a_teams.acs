@@ -1,0 +1,21 @@
+#define NUM_TEAMS 2
+
+function str TeamName(int team)
+{
+	switch (team)
+	{
+	case TEAM_RED: return "Red";
+	case TEAM_BLUE: return "Blue";
+	}
+	return "Unknown Team";
+}
+
+function str TeamNameColored(int team)
+{
+	switch (team)
+	{
+	case TEAM_RED: return "\cgRed";
+	case TEAM_BLUE: return "\chBlue";
+	}
+	return "\cuUnknown Team";
+}

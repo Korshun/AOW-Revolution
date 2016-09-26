@@ -1,3 +1,10 @@
+aow/acs
+aow/src/aowmap.acs
+sndinfo.sux
+
+*.pk3
+*.tmp
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

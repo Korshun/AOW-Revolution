@@ -1,0 +1,18 @@
+Actor AOWBulletPuff replaces BulletPuff
+{	
+	+PUFFGETSOWNER
+	
+	DamageType "Bullet"
+	Decal "BulletChip"
+	
+	+NOGRAVITY
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 ACS_ExecuteWithResult(aow_spawntracer)
+		NULL A 0 A_SpawnItemEx("BulletPuffEffect")
+		Stop
+	}
+}

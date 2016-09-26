@@ -1,0 +1,23 @@
+#define FX_TRACERS 0
+#define FX_PUFFS 1
+#define FX_CVAR_COUNT 2
+
+str EffectNames[FX_CVAR_COUNT] = 
+{
+	"tracers",
+	"puffs"
+};
+
+#define FX_CVAR_PREFIX "aow_fx_"
+
+script aow_checkfx (int effect)
+{
+	if (!IsClient() && effect != FX_TRACERS)
+		ProgramError("aow_checkfx called serverside");
+
+	str name = EffectNames[effect];
+	if (StrIsEmpty(name))
+		ProgramError(StrParam(s:"aow_checkfx: unknown effect ", d:effect));
+		
+	SetResultValue(GetCVar(StrParam(s:FX_CVAR_PREFIX, s:name)));
+}

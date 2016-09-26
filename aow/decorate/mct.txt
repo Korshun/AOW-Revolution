@@ -1,0 +1,31 @@
+Actor MasterControlTerminal 21100
+{
+	//$Category Buildings
+	
+	Radius 16
+	Height 120
+	Mass 0x7FFFFFFF
+	
+	+SHOOTABLE
+	+NOBLOOD
+	
+	States
+	{
+	Spawn:
+		TNT1 A -1
+		Loop
+	Death:
+		TNT1 A -1
+		Stop
+	}
+}
+
+Actor MasterControlTerminalBlue : MasterControlTerminal
+{
+	DesignatedTeam 0
+}
+
+Actor MasterControlTerminalRed : MasterControlTerminal
+{
+	DesignatedTeam 1
+}

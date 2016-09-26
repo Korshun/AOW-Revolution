@@ -1,0 +1,16 @@
+Actor Integer : Inventory { Inventory.MaxAmount 0x7fffffff }
+Actor Boolean : Inventory { Inventory.MaxAmount 1 }
+
+#include "decorate/acsdefines.txt"
+
+#include "decorate/effects/base.txt"
+#include "decorate/effects/bulletpuffs.txt"
+#include "decorate/effects/tracers.txt"
+
+#include "decorate/bulletpuffs.txt"
+#include "decorate/mct.txt"
+#include "decorate/player.txt"
+
+#include "decorate/weapons/base.txt"
+#include "decorate/weapons/fists.txt"
+#include "decorate/weapons/pistol.txt"

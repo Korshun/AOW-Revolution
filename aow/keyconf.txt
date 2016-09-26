@@ -1,0 +1,7 @@
+ClearPlayerClasses
+AddPlayerClass AOWPlayer
+
+
+WeaponSection AOW
+SetSlot 1 Unarmed
+SetSlot 2 Handgun

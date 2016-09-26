@@ -1,0 +1,19 @@
+Actor Tracer : CollidingEffect
+{
+	RenderStyle Add
+	Alpha 0.85
+	
+	// For tests.
+	PROJECTILE
+	Speed 10
+	
+	States
+	{
+	Spawn:
+		NULL A 0		
+		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_TRACERS) == 0, "Unseen")
+	Fly:
+		RIC1 A 1 BRIGHT
+		Loop
+	}
+}

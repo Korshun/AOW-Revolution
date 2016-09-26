@@ -1,0 +1,87 @@
+Green
+{
+	#001700  #00FF00
+Console:
+	#000000  #007F00    0 127
+	#00FF00  #FFFFFF  128 256
+Flat:
+	#00CC00
+}
+
+Blue
+{
+	#000F27  #0060FF
+Console:
+	#000000  #00307F    0 127
+	#0060FF  #DE60FF  128 256
+Flat:
+	#0060FF
+}
+
+LightBlue "Light Blue"
+{
+	#002B73  #B4D5FF
+Console:
+	#000000  #0060FF    0 127
+	#00B8FF  #FFFFFF  128 256
+Flat:
+	#00B8FF
+}
+
+Olive
+{
+	#003700  #007F00
+Console:
+	#003F00  #007F00    0 127
+	#006B00  #00D800  128 256
+Flat:
+	#00D800
+}
+
+DarkGreen "Dark Green"
+{
+	#001700  #009300
+Console:
+	#000000  #005800    0 127
+	#008C00  #00FF00  128 256
+Flat:
+	#008C00
+}
+
+Cyan
+{
+	#001F1F #00F0F0
+Console:
+	#000000 #007F7F     0 127
+	#00FFFF #FEFFFF   128 256
+Flat:
+	#00DDDD
+}
+
+NewLightBlue
+{
+     #8F8FFF  #8F8FFF
+   Console:
+     #000000  #8F8FFF    0 255
+}
+
+NewGreen
+{
+     #6FEF67  #6FEF67
+   Console:
+     #000000  #6FEF67    0 255
+}
+
+NewRed
+{
+     #FF5F5F  #FF5F5F
+   Console:
+     #000000  #FF5F5F    0 255
+}
+
+NewYellow
+{
+     #FFFF73  #FFFF73
+   Console:
+     #000000  #FFFF73    0 255
+}

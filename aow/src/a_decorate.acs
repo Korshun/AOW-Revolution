@@ -1,0 +1,7 @@
+#define PLAYER_VIEWHEIGHT 41
+
+// Returns casing spawn height adjusted for crouching.
+script aow_casingheight (int height)
+{
+	SetResultValue(FixedMul(FixedDiv(GetActorViewHeight(0), PLAYEr_VIEWHEIGHT), height));
+}

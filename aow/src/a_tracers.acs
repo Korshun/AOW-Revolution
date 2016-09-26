@@ -1,0 +1,70 @@
+#define TRACER_SPAWNDISTANCE 96
+#define TRACER_MINVELOCITY 100
+#define TRACER_OFFSET 8
+
+int TracerOffsetX = 0;
+int TracerOffsetY = 0;
+
+script aow_traceroffset (int x, int y)
+{
+	TracerOffsetX = x;
+	TracerOffsetY = y;
+}
+
+script aow_spawntracer (void)
+{
+	if (!GetCVar("aowr_tracers"))
+		terminate;
+
+	// target
+	int tx = GetActorX(0);
+	int ty = GetActorY(0);
+	int tz = GetActorZ(0);
+
+	// shooter
+	SetActivatorToTarget(0);
+	int angle = GetActorAngle(0) - 0.25;
+	int sx = GetActorX(0) + cos(angle) * TracerOffsetX;
+	int sy = GetActorY(0) + sin(angle) * TracerOffsetX;
+	int sz = GetActorZ(0) + GetActorViewHeight(0) - (TRACER_OFFSET + TracerOffsetY<<16);
+	
+	// vector
+	int x = tx - sx;
+	int y = ty - sy;
+	int z = tz - sz;
+	int distance = length3d(x, y, z);
+ 
+	// do not spawn tracers at close quarters
+	if (distance < TRACER_SPAWNDISTANCE * 1.0)
+		terminate;
+ 
+	// normalized vector
+	int nx = FixedDiv(x, distance);
+	int ny = FixedDiv(y, distance);
+	int nz = FixedDiv(z, distance);
+
+	// tracer spawn point
+	int spawnx = sx + nx * TRACER_SPAWNDISTANCE;
+	int spawny = sy + ny * TRACER_SPAWNDISTANCE;
+	int spawnz = sz + nz * TRACER_SPAWNDISTANCE;
+ 
+	// velocity
+	int vx = lerp(sx, tx, 0.1) - sx;
+	int vy = lerp(sy, ty, 0.1) - sy;
+	int vz = lerp(sz, tz, 0.1) - sz;
+ 
+	// minimum velocity
+	if (length3d(vx, vy, vz) < TRACER_MINVELOCITY * 1.0)
+	{
+		vx = nx * TRACER_MINVELOCITY;
+		vy = ny * TRACER_MINVELOCITY;
+		vz = nz * TRACER_MINVELOCITY;
+	}
+ 
+	// spawn tracer
+	int tracertid = UniqueTid();
+	SpawnForced("Tracer", spawnx, spawny, spawnz, tracertid, 0);
+	SetActorVelocity(tracertid, vx, vy, vz, false, false);
+	SetActorAngle(tracertid, VectorAngle(vx, vy));
+	Thing_ChangeTid(tracertid, 0);
+}
