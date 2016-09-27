@@ -10,12 +10,17 @@ function str TeamName(int team)
 	return "Unknown Team";
 }
 
-function str TeamNameColored(int team)
+function str TeamColorCode(int team)
 {
 	switch (team)
 	{
-	case TEAM_RED: return "\cgRed";
-	case TEAM_BLUE: return "\chBlue";
+	case TEAM_RED: return "\cg";
+	case TEAM_BLUE: return "\ch";
 	}
-	return "\cuUnknown Team";
+	return "\cu";
+}
+
+function str TeamNameColored(int team)
+{
+	return StrParam(s:TeamColorCode(team), s:TeamName(team));
 }
