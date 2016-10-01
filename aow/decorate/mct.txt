@@ -12,8 +12,9 @@ Actor MasterControlTerminal 21100
 	States
 	{
 	Spawn:
-		TNT1 A -1
-		Loop
+		NULL A 0
+		NULL A 0 ACS_ExecuteWithResult(aow_init_mct)
+		Stop
 	Death:
 		TNT1 A -1
 		Stop
@@ -23,9 +24,23 @@ Actor MasterControlTerminal 21100
 Actor MasterControlTerminalBlue : MasterControlTerminal
 {
 	DesignatedTeam 0
+	
+	States
+	{
+	Spawn:
+		NULL A -1
+		Stop
+	}
 }
 
 Actor MasterControlTerminalRed : MasterControlTerminal
 {
 	DesignatedTeam 1
+		
+	States
+	{
+	Spawn:
+		NULL A -1
+		Stop
+	}
 }

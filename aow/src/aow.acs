@@ -16,6 +16,8 @@ function void ACSUtilsErrorHandler(int type, int message)
 #define aow_traceroffset 302
 #define aow_spawntracer 303
 #define aow_checkfx 304
+#define aow_init_mct 305
+#define aow_syncbuildinghp 306
 
 
 #include "a_buildingtypes.acs"
