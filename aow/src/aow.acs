@@ -58,5 +58,6 @@ script aow_init OPEN
 
 script aow_init_clientside OPEN CLIENTSIDE
 {
-	AOWInit();
+	if (!IsServer())
+		AOWInit();
 }
