@@ -18,6 +18,8 @@ function void ACSUtilsErrorHandler(int type, int message)
 #define aow_checkfx 304
 #define aow_init_mct 305
 #define aow_syncbuildinghp 306
+#define aow_enter 307
+#define aow_respawn 308
 
 
 #include "a_buildingtypes.acs"

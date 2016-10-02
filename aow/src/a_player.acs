@@ -3,3 +3,18 @@ function int PlayerTid(int player)
 	return 1000 + player;
 }
 
+script aow_enter ENTER
+{
+	InitPlayer();
+}
+
+script aow_respawn RESPAWN
+{
+	InitPlayer();
+}
+
+function void InitPlayer()
+{
+	SetInventory("IsBlue", PlayerTeam() == TEAM_BLUE);
+	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
+}	

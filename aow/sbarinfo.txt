@@ -1,0 +1,25 @@
+Height 32;
+
+statusbar fullscreen, forcescaled, fullscreenoffsets {
+	// Blue HUD
+	InInventory IsBlue {
+		drawimage "HUDBAMMO", -110, -20;
+		drawimage "HUDBHP",  5, -17;
+		drawimage "HUDBRANK", -115, -46;
+		drawimage "HUDBINTL", 100, 0;
+	}
+	
+	// Red HUD
+	InInventory IsRed {
+		drawimage "HUDRAMMO", -110, -20;
+		drawimage "HUDRHP",  5, -17;
+		drawimage "HUDRRANK", -115, -46;
+		drawimage "HUDRINTL", 100, 0;
+	}
+	
+	drawnumber 4, INDEXFONT, White, health, 52, -13, 0;
+	drawnumber 3, INDEXFONT, White, ammo2, -17, -13, 0;
+	drawnumber 3, INDEXFONT, White, ammo1, -45, -13, 0;
+
+	DrawSelectedInventory alwaysshowcounter, INDEXFONT, -85, -25, -87, -13, White, 0;
+}
