@@ -10,6 +10,18 @@ enum
 	NUM_BUILDING_TYPES
 };
 
+function str BuildingTypeCodeName(int type)
+{
+	switch (type)
+	{
+	case BUILDING_BARRACKS: return "barracks";
+	case BUILDING_REFINERY: return "refinery";
+	case BUILDING_RESCENTER: return "rescenter";
+	case BUILDING_FACTORY: return "factory";
+	case BUILDING_REPAIR: return "repair";
+	}
+}
+
 function str BuildingTypeName(int type)
 {
 	switch (type)
