@@ -1,5 +1,6 @@
 int BuildingPrevHealth[NUM_TEAMS][NUM_BUILDING_TYPES];
 int BuildingHids[NUM_TEAMS][NUM_BUILDING_TYPES][4];
+int FirstBaseHudTic = true;
 
 script aow_basehud OPEN CLIENTSIDE
 {
@@ -17,6 +18,7 @@ script aow_basehud OPEN CLIENTSIDE
 		DrawBaseHudSide(TEAM_BLUE, true);
 		DrawBaseHudSide(TEAM_RED, false);
 	
+		FirstBaseHudTic = false;
 		Delay(1);
 	}
 }
@@ -72,7 +74,7 @@ function int DrawBaseHudSide(int team, int left)
 			
 		int hp1 = BuildingPrevHealth[team][type];
 		int hp2 = BuildingHealth(team, type);
-		int flash = hp1 != hp2;
+		int flash = hp1 != hp2 && !FirstBaseHudTic;
 		int flashcolor;
 		if (flash)
 		{
