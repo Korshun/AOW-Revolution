@@ -35,7 +35,7 @@ function str PercentageColorCode(int percentage)
 
 function int DrawBaseHudleft(int hid, int team, int left)
 {
-	int x = cond(left, 0, 640.0 - 35.0);
+	int x = cond(left, 3.0, 638.0 - 35.0);
 	int y = 320.0;
 	
 	HudSetTextOriginY(HUD_TEXTORIGIN_TOP);
