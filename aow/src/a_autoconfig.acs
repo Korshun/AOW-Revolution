@@ -1,7 +1,7 @@
-function void ForceServerFlag(str flagvar, int flag, int value)
+function void ForceServerFlag(str flagvar, int flag, bool value)
 {
 	int flags = GetCVar(flagvar);
-	if (!!(flags & flag) == value)
+	if (!!(flags & flag) == !!value)
 		return;
 		
 	int newflags = flags;
