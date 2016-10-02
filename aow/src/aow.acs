@@ -34,6 +34,7 @@ function void ACSUtilsErrorHandler(int type, int message)
 #define aow_init_clientside 309
 #define aow_basehud	310
 
+#include "a_autoconfig.acs"
 #include "a_buildingtypes.acs"
 #include "a_teams.acs"
 #include "a_buildings.acs"
@@ -44,12 +45,18 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_basehud.acs"
 #include "a_newhid.acs"
 
+function void AOWInit()
+{
+	AutoconfigureServer();
+	InitBuildings();
+}
+
 script aow_init OPEN
 {
-	InitBuildings();
+	AOWInit();
 }
 
 script aow_init_clientside OPEN CLIENTSIDE
 {
-	InitBuildings();
+	AOWInit();
 }
