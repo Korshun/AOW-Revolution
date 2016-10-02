@@ -1,4 +1,4 @@
-#define PLAYER_VIEWHEIGHT 41
+#define PLAYER_VIEWHEIGHT 41.0
 
 // Returns casing spawn height adjusted for crouching.
 script aow_casingheight (int height)
