@@ -4,6 +4,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/acsdefines.txt"
 
 #include "decorate/effects/base.txt"
+#include "decorate/effects/casings.txt"
 #include "decorate/effects/bulletpuffs.txt"
 #include "decorate/effects/tracers.txt"
 
