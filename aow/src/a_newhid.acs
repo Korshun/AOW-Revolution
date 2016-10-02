@@ -1,0 +1,6 @@
+int LastHid = -1;
+
+function int NewHid(void)
+{
+	return LastHid--;
+}
