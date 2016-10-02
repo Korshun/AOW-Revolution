@@ -15,5 +15,6 @@ script aow_respawn RESPAWN
 
 function void InitPlayer()
 {
+	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
 }	

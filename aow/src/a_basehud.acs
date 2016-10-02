@@ -42,6 +42,10 @@ int LastAttackAnnouncementTime = INT_MIN;
 
 function void AnnounceAttack(int team, int type)
 {
+	SetActivator(PlayerTid(ConsolePlayerNumber()));
+	if (PlayerTeam() != team && PlayerTeam() != TEAM_NONE)
+		return;
+
 	if (Timer() < LastAttackAnnouncementTime + 35 * 15)
 		return;
 		
