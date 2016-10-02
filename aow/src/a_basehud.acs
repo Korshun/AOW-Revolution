@@ -37,6 +37,7 @@ function int DrawBaseHudleft(int hid, int team, int left)
 {
 	int x = cond(left, 3.0, 638.0 - 35.0);
 	int y = 320.0;
+	int flashhid = HID_BASEHUD_FLASH;
 	
 	HudSetTextOriginY(HUD_TEXTORIGIN_TOP);
 
@@ -44,6 +45,19 @@ function int DrawBaseHudleft(int hid, int team, int left)
 	{
 		if (!BuildingEnabled(team, type))
 			continue;
+			
+		int hp1 = BuildingPrevHealth[team][type];
+		int hp2 = BuildingHealth(team, type);
+		int flash = hp1 != hp2;
+		int flashcolor;
+		if (hp2 > hp1)
+			flashcolor = CR_GREEN;
+		else if (hp2 <= 0)
+			flashcolor = CR_RED;
+		else
+			flashcolor = CR_GOLD;
+		
+		BuildingPrevHealth[team][type] = hp2;
 			
 		HudSetPoint(x, y);
 		HudSetTextOriginX(cond(left, HUD_TEXTORIGIN_LEFT, HUD_TEXTORIGIN_RIGHT));
@@ -53,12 +67,29 @@ function int DrawBaseHudleft(int hid, int team, int left)
 			HudSetTextColor(CR_BLACK);
 			
 		HudDrawText(hid++, BuildingTypeName(type));
+		if (flash)
+		{
+			HudPushState();
+			HudSetDisappearTime(1.0);
+			HudSetTextColor(flashcolor);
+			HudDrawText(flashhid++, BuildingTypeName(type));
+			HudPopState();
+		}
 		
 		HudSetPoint(x + cond(left, 150.0, 35.0), y);
 		HudSetTextOriginX(HUD_TEXTORIGIN_RIGHT);
 		HudSetTextColor(CR_WHITE);
 		int percent = BuildingHealthPercentage(team, type);
-		HudDrawText(hid++, StrParam(s:PercentageColorCode(percent), d:percent, s:"\c-%"));
+		str percenttext = StrParam(s:PercentageColorCode(percent), d:percent, s:"\c-%");
+		HudDrawText(hid++, percenttext);
+		if (flash)
+		{
+			HudPushState();
+			HudSetDisappearTime(1.0);
+			HudSetTextColor(flashcolor);
+			HudDrawText(flashhid++, StripColorCodes(percenttext));
+			HudPopState();
+		}
 		
 		y += 10.0;
 	}

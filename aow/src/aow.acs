@@ -35,7 +35,8 @@ function void ACSUtilsErrorHandler(int type, int message)
 #define aow_basehud	310
 
 
-#define HID_BASEHUD 100
+#define HID_BASEHUD_FLASH 100
+#define HID_BASEHUD 200
 
 #include "a_buildingtypes.acs"
 #include "a_teams.acs"
