@@ -16,6 +16,23 @@ script aow_basehud OPEN CLIENTSIDE
 	}
 }
 
+function str PercentageColorCode(int percentage)
+{
+	if (percentage > 100)
+		return "\ch";
+	else if (percentage == 100) // 100%
+		return "\cq";
+	else if (Percentage > 75) // healthy
+		return "\cd";
+	else if (Percentage > 50) // moderate
+		return "\cf";
+	else if (Percentage > 25) // low
+		return "\ci";
+	else if (Percentage > 0) // critical
+		return "\cr";
+	return "\cm"; // destroyed
+}
+
 function int DrawBaseHudleft(int hid, int team, int left)
 {
 	int x = cond(left, 0, 640.0 - 35.0);
@@ -40,7 +57,8 @@ function int DrawBaseHudleft(int hid, int team, int left)
 		HudSetPoint(x + cond(left, 150.0, 35.0), y);
 		HudSetTextOriginX(HUD_TEXTORIGIN_RIGHT);
 		HudSetTextColor(CR_WHITE);
-		HudDrawText(hid++, StrParam(d:BuildingHealthPercentage(team, type), s:"%"));
+		int percent = BuildingHealthPercentage(team, type);
+		HudDrawText(hid++, StrParam(s:PercentageColorCode(percent), d:percent, s:"\c-%"));
 		
 		y += 10.0;
 	}
