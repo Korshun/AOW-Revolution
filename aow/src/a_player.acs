@@ -15,6 +15,5 @@ script aow_respawn RESPAWN
 
 function void InitPlayer()
 {
-	SetInventory("IsBlue", PlayerTeam() == TEAM_BLUE);
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
 }	

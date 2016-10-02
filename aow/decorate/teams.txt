@@ -1,2 +1,1 @@
 Actor IsRed : Boolean {}
-Actor IsBlue : Boolean {}

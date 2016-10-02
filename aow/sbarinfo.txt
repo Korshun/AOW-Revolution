@@ -2,7 +2,7 @@ Height 32;
 
 statusbar fullscreen, forcescaled, fullscreenoffsets {
 	// Blue HUD
-	InInventory IsBlue {
+	InInventory Not IsRed {
 		drawimage "HUDBAMMO", -110, -20;
 		drawimage "HUDBHP",  5, -17;
 		drawimage "HUDBRANK", -115, -46;
