@@ -1,19 +1,10 @@
-function void ForceServerFlag(str flagvar, int flag, bool value)
+function void ForceServerSetting(str name, int value)
 {
-	int flags = GetCVar(flagvar);
-	if (!!(flags & flag) == !!value)
-		return;
-		
-	int newflags = flags;
-	if (value)
-		newflags |= flag;
-	else
-		newflags &= ~flag;
-	
-	ConsoleCommand(StrParam(s:"set ", s:flagvar, s:" ", d:newflags));
+	if (GetCVar(name) != value)
+		ConsoleCommand(StrParam(s:name, s:" ", d:value));
 }
 
 function void AutoconfigureServer(void)
 {
-	ForceServerFlag("zacompatflags", 32, true); // Compat_Dont_Stop_Player_Scripts_On_Disconnect 
+	ForceServerSetting("Compat_Dont_Stop_Player_Scripts_On_Disconnect", true);
 }
