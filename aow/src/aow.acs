@@ -33,6 +33,8 @@ function void ACSUtilsErrorHandler(int type, int message)
 #define aow_respawn 308
 #define aow_init_clientside 309
 #define aow_basehud	310
+#define aow_givemoney 311
+#define aow_syncmoney 312
 
 #include "a_autoconfig.acs"
 #include "a_buildingtypes.acs"
@@ -44,6 +46,7 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_tracers.acs"
 #include "a_basehud.acs"
 #include "a_newhid.acs"
+#include "a_money.acs"
 
 function void AOWInit()
 {

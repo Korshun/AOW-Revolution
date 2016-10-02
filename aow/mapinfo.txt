@@ -11,7 +11,7 @@ skill Normal {
 	name = "Normal"
 	damagefactor = 1.0
 	aggressiveness = 1.0
-	spawnfilter = 1
+	spawnfilter = hard
 	mustconfirm = "Start an offline game? (y/n)"
 }
 

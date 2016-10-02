@@ -1,3 +1,10 @@
+struct Player
+{
+	int money;
+};
+
+struct Player Players[MAX_PLAYERS];
+
 function int PlayerTid(int player)
 {
 	return 1000 + player;
@@ -17,4 +24,5 @@ function void InitPlayer()
 {
 	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
+	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
 }	

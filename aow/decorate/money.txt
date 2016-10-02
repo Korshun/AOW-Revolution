@@ -1,0 +1,5 @@
+Actor Money : Integer {}
+
+// Zandronum doesn't transmit item counts over 32767 over the network
+Actor MoneyClientside1 : Integer {}
+Actor MoneyClientside2 : Integer {}

@@ -1,0 +1,38 @@
+function int PlayerMoney(int player)
+{
+	return Players[player].money;
+}
+
+function void SetPlayerMoney(int player, int money)
+{
+	Players[player].money = money;
+}
+
+function int GiveMoney(int player, int money)
+{
+	SetPlayerMoney(player, PlayerMoney(player) + money);
+}
+
+script aow_syncmoney OPEN
+{
+	while (true)
+	{
+		for (int player = 0; player < MAX_PLAYERS; player++)
+		{
+			if (!PlayerInGame(player))
+				continue;
+		
+			int money = PlayerMoney(player);
+			SetActorInventory(PlayerTid(player), "Money", money);
+			SetActorInventory(PlayerTid(player), "MoneyClientside1", money & 0x7fff);
+			SetActorInventory(Playertid(player), "MoneyClientside2", money & ~0x7fff);
+		}
+		
+		Delay(1);
+	}
+}
+
+script aow_givemoney (int money)
+{
+	GiveMoney(PlayerNumber(), money);
+}
