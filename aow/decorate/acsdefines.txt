@@ -7,3 +7,4 @@ const int aow_traceroffset = 302;
 const int aow_spawntracer = 303;
 const int aow_checkfx = 304;
 const int aow_syncbuildinghp = 306;
+const int aow_givemoney = 311;
