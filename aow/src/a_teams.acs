@@ -10,6 +10,16 @@ function str TeamName(int team)
 	return "Unknown Team";
 }
 
+function int TeamColor(int team)
+{
+	switch (team)
+	{
+	case TEAM_RED: return CR_RED;
+	case TEAM_BLUE: return CR_BLUE;
+	}
+	return CR_GRAY;
+}
+
 function str TeamColorCode(int team)
 {
 	switch (team)

@@ -1,55 +1,69 @@
-#define NUM_BUILDINGS NUM_TEAMS * NUM_BUILDING_TYPES
-
-struct Building
+function bool BuildingEnabled(int team, int type)
 {
-	bool enabled;
-};
-
-struct Building Buildings[NUM_BUILDINGS];
-function int FindBuilding(int team, int type) { return team * NUM_TEAMS + type; }
-function int BuildingTeam(int b) { return b / NUM_TEAMS; }
-function int BuildingType(int b) { return b % NUM_TEAMS; }
-
-function bool BuildingEnabled(int b) { return Buildings[b].enabled; }
-function int BuildingTid(int b) { return (BuildingTeam(b) + 1) * 1000 + (BuildingType(b) + 1) * 100; }
-function int BuildingHealth(int b) { return GetActorHealth(BuildingTid(b)); }
-function int BuildingSpawnHealth(int b) { return BuildingTypeHealth(BuildingType(b)); }
-function int BuildingOperational(int b) { return BuildingHealth(b) > 0; }
-
-script aow_init_mct (void)
-{
-    int tid = ActivatorTid();
-	int team = (tid - 1000) / 1000;
-	int type = (tid % 1000 - 100) / 100;
-	
-	int b = FindBuilding(team, type);
-	Buildings[b].enabled = true;
-	
-	int x = GetActorX(0);
-	int y = GetActorY(0);
-	int z = GetActorZ(0);
-	Thing_Remove(0);
-	SpawnForced(StrAdd("MasterControlTerminal", TeamName(team)), x, y, z, tid);
-	SetActorHealth(tid, BuildingTypeHealth(type));
+	return ClassifyActor(BuildingTid(team, type)) != 0;
 }
 
-function int BuildingHealthPercentage(int b)
+function int BuildingTid(int team, int type)
+{
+	return (team + 1) * 1000 + (type + 1) * 100;
+}
+
+function int BuildingHealth(int team, int type)
 {
 	if (IsServer())
-		return ifloor(IntDiv(BuildingHealth(b), BuildingSpawnHealth(b)) * 100);
-	
-	return GetActorSpeed(BuildingTid(b));
+		return GetActorHealth(BuildingTid(team, type));
+		
+	return GetActorSpeed(BuildingTid(team, type));
 }
 
-script aow_syncbuildinghp OPEN
+function int BuildingHealthPercentage(int team, int type)
 {
-	Delay(1);
+	return iceil(IntDiv(BuildingHealth(team, type), BuildingTypeHealth(type)) * 100);
+}
+
+function int BuildingOperational(int team, int type)
+{
+	return BuildingHealth(team, type) > 0;
+}
+
+
+function void InitBuildings()
+{
+	for (int team = 0; team < NUM_TEAMS; team++)
+	for (int type = 0; type < NUM_BUILDING_TYPES; type++)
+	{
+		if (!BuildingEnabled(team, type))
+			continue;
+		
+		ProgramError(StrParam(s:"Building enabled", d:team, d:type));
+		if (IsServer())
+		{
+			int tid = BuildingTid(team, type);
+			int x = GetActorX(tid);
+			int y = GetActorY(tid);
+			int z = GetActorZ(tid);
+			Thing_Remove(tid);
+			SpawnForced(StrAdd("MasterControlTerminal", TeamName(team)), x, y, z, tid);
+			SetActorHealth(tid, BuildingTypeHealth(type));
+		}
+	}
+	
+	if (IsServer())
+		ACS_ExecuteAlways(aow_syncbuildinghp, 0);
+	if (IsClient())
+		ACS_ExecuteAlways(aow_basehud, 0);
+}
+
+
+script aow_syncbuildinghp (void)
+{
 	while (true)
 	{
-		for (int b = 0; b < NUM_BUILDINGS; b++)
+		for (int team = 0; team < NUM_TEAMS; team++)
+		for (int type = 0; type < NUM_BUILDING_TYPES; type++)
 		{
-			if (BuildingEnabled(b))
-				SetActorSpeed(BuildingTid(b), BuildingHealthPercentage(b));
+			if (BuildingEnabled(team, type))
+				SetActorSpeed(BuildingTid(team, type), BuildingHealth(team, type));
 		}
 		Delay(1);
 	}

@@ -8,19 +8,34 @@
 
 function void ACSUtilsErrorHandler(int type, int message)
 {
-	Log(s:"error: ", s:message);
-	printbold(s:"error: ", s:message);
+	str prefix = "";
+	if (IsServer() != IsClient())
+	{
+		if (IsServer())
+			prefix = "[\cgserver\c-] ";
+		else
+			prefix = "[\cdclient\c-] ";
+	}
+	
+	if (!IsClient())
+		Log(s:prefix, d:Timer(), s:" error: ", s:message);
+
+	printbold(s:prefix, d:Timer(), s:" error: ", s:message);
 }
 
 #define aow_casingheight 301
 #define aow_traceroffset 302
 #define aow_spawntracer 303
 #define aow_checkfx 304
-#define aow_init_mct 305
+#define aow_init 305
 #define aow_syncbuildinghp 306
 #define aow_enter 307
 #define aow_respawn 308
+#define aow_init_clientside 309
+#define aow_basehud	310
 
+
+#define HID_BASEHUD 100
 
 #include "a_buildingtypes.acs"
 #include "a_teams.acs"
@@ -29,3 +44,14 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_effects.acs"
 #include "a_player.acs"
 #include "a_tracers.acs"
+#include "a_basehud.acs"
+
+script aow_init OPEN
+{
+	InitBuildings();
+}
+
+script aow_init_clientside OPEN CLIENTSIDE
+{
+	InitBuildings();
+}

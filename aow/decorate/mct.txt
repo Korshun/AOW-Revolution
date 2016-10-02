@@ -12,8 +12,7 @@ Actor MasterControlTerminal 21100
 	States
 	{
 	Spawn:
-		NULL A 0
-		NULL A 0 ACS_ExecuteWithResult(aow_init_mct)
+		TNT1 A -1
 		Stop
 	Death:
 		TNT1 A -1

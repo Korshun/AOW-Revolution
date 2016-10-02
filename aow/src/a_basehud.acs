@@ -1,0 +1,47 @@
+int BuildingPrevHealth[NUM_TEAMS][NUM_BUILDING_TYPES];
+
+script aow_basehud OPEN CLIENTSIDE
+{
+	while (true)
+	{
+		HudResetState();
+		HudSetShowToEveryone(true);
+		HudSetStayTime(0.03);
+		
+		int hid = HID_BASEHUD;
+		hid = DrawBaseHudleft(hid, TEAM_BLUE, true);
+		hid = DrawBaseHudleft(hid, TEAM_RED, false);
+	
+		Delay(1);
+	}
+}
+
+function int DrawBaseHudleft(int hid, int team, int left)
+{
+	int x = cond(left, 0, 640.0 - 35.0);
+	int y = 320.0;
+	
+	HudSetTextOriginY(HUD_TEXTORIGIN_TOP);
+
+	for (int type = 0; type < NUM_BUILDING_TYPES; type++)
+	{
+		if (!BuildingEnabled(team, type))
+			continue;
+			
+		HudSetPoint(x, y);
+		HudSetTextOriginX(cond(left, HUD_TEXTORIGIN_LEFT, HUD_TEXTORIGIN_RIGHT));
+		if (BuildingOperational(team, type))
+			HudSetTextColor(TeamColor(team));
+		else
+			HudSetTextColor(CR_GRAY);
+			
+		HudDrawText(hid++, BuildingTypeName(type));
+		
+		HudSetPoint(x + cond(left, 150.0, 35.0), y);
+		HudSetTextOriginX(HUD_TEXTORIGIN_RIGHT);
+		HudSetTextColor(CR_WHITE);
+		HudDrawText(hid++, StrParam(d:BuildingHealthPercentage(team, type), s:"%"));
+		
+		y += 10.0;
+	}
+}

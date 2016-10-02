@@ -6,5 +6,4 @@ const int aow_casingheight = 301;
 const int aow_traceroffset = 302;
 const int aow_spawntracer = 303;
 const int aow_checkfx = 304;
-const int aow_init_mct = 305;
 const int aow_syncbuildinghp = 306;
