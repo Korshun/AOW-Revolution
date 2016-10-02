@@ -1,11 +1,13 @@
 #define FX_TRACERS 0
 #define FX_PUFFS 1
-#define FX_CVAR_COUNT 2
+#define FX_CASINGS 2
+#define FX_CVAR_COUNT 3
 
 str EffectNames[FX_CVAR_COUNT] = 
 {
 	"tracers",
-	"puffs"
+	"puffs",
+	"casings"
 };
 
 #define FX_CVAR_PREFIX "aow_fx_"

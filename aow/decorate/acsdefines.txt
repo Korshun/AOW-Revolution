@@ -1,5 +1,6 @@
 const int FX_TRACERS = 0;
 const int FX_PUFFS = 1;
+const int FX_CASINGS = 2;
 
 const int aow_casingheight = 301;
 const int aow_traceroffset = 302;

@@ -2,3 +2,4 @@ server bool aowr_tracers = true;
 
 user bool aow_fx_tracers = true;
 user bool aow_fx_puffs = true;
+user bool aow_fx_casings = true;
