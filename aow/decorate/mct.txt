@@ -16,7 +16,7 @@ Actor MasterControlTerminal 21100
 		Stop
 	Death:
 		TNT1 A -1
-		Stop
+		Loop
 	}
 }
 

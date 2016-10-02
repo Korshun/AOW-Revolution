@@ -33,7 +33,7 @@ function int DrawBaseHudleft(int hid, int team, int left)
 		if (BuildingOperational(team, type))
 			HudSetTextColor(TeamColor(team));
 		else
-			HudSetTextColor(CR_GRAY);
+			HudSetTextColor(CR_BLACK);
 			
 		HudDrawText(hid++, BuildingTypeName(type));
 		

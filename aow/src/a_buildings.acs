@@ -18,7 +18,8 @@ function int BuildingHealth(int team, int type)
 
 function int BuildingHealthPercentage(int team, int type)
 {
-	return iceil(IntDiv(BuildingHealth(team, type), BuildingTypeHealth(type)) * 100);
+	int percentage = iceil(IntDiv(BuildingHealth(team, type), BuildingTypeHealth(type)) * 100);
+	return max(0, percentage);
 }
 
 function int BuildingOperational(int team, int type)
