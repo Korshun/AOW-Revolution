@@ -1,6 +1,11 @@
 function int PlayerMoney(int player)
 {
-	return Players[player].money;
+	if (IsServer())
+		return Players[player].money;
+		
+	int money1 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside1");
+	int money2 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside2");
+	return (money2<<15) | money1;
 }
 
 function void SetPlayerMoney(int player, int money)
@@ -29,7 +34,7 @@ script aow_syncmoney OPEN
 			int money = PlayerMoney(player);
 			SetActorInventory(PlayerTid(player), "Money", money);
 			SetActorInventory(PlayerTid(player), "MoneyClientside1", money & 0x7fff);
-			SetActorInventory(Playertid(player), "MoneyClientside2", money & ~0x7fff);
+			SetActorInventory(Playertid(player), "MoneyClientside2", money>>15);
 		}
 		
 		Delay(1);
