@@ -30,7 +30,7 @@ Actor EagerBeaver : AOWWeapon replaces Chainsaw
 		NULL A 0 A_PlayWeaponSound("weapons/sawfull")
 		SAWG AAAA 1 A_CustomPunch(5, true, 0, "FistPuff", 96)
 		NULL A 0 A_PlayWeaponSound("weapons/sawfull")
-		SAWG AAAA 1 A_CustomPunch(5, true, 0, "FistPuff", 96)
+		SAWG BBBB 1 A_CustomPunch(5, true, 0, "FistPuff", 96)
 		NULL A 0 A_ReFire
 		Goto Ready
 	Spawn:
