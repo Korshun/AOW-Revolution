@@ -11,7 +11,7 @@ Actor DoubleShotgun : AOWWeapon replaces SuperShotgun 21086
 	Weapon.Kickback 30
 	
 	Weapon.AmmoUse 2
-	Weapon.AmmoGive 8
+	Weapon.AmmoGive 16
 	Weapon.AmmoType "ShotgunAmmo"
 	DropItem "Boomstick"
 	

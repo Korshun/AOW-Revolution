@@ -10,7 +10,7 @@ Actor Handgun : AOWWeapon replaces Pistol 21041
 	+WEAPON.NOAUTOFIRE
 	
 	Weapon.AmmoUse 1
-	Weapon.AmmoGive 20
+	Weapon.AmmoGive 40
 	Weapon.AmmoType "NewClipAmmo"
 	
 	AttackSound "PISTFIRE"
