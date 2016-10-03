@@ -31,7 +31,7 @@ Actor Unarmed : AOWWeapon
 	Swing1:
 		PUNG C 2
 		NULL A 0 A_GiveInventory("FistSwitch", 1)
-		PUNG D 5 A_CustomPunch(35, 1, 1, "BulletPuff", 64)
+		PUNG D 5 A_CustomPunch(35, true, 0, "FistPuff", 64)
 		PUNG C 2
 		PUNG B 5 A_ReFire
 		Goto Ready
@@ -39,7 +39,7 @@ Actor Unarmed : AOWWeapon
 		PUNG E 2
 		PUNG F 2
 		NULL A 0 A_TakeInventory("FistSwitch", 1)
-		PUNG G 5 A_CustomPunch(35, 1, 1, "BulletPuff", 64)
+		PUNG G 5 A_CustomPunch(35, true, 0, "FistPuff", 64)
 		PUNG F 2
 		PUNG E 5 A_ReFire
 		Goto Ready

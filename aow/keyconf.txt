@@ -3,6 +3,6 @@ AddPlayerClass AOWPlayer
 
 
 WeaponSection AOW
-SetSlot 1 Unarmed
+SetSlot 1 Unarmed EagerBeaver
 SetSlot 2 Handgun
 SetSlot 3 Boomstick DoubleShotgun
