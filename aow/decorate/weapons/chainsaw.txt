@@ -15,8 +15,7 @@ Actor EagerBeaver : AOWWeapon replaces Chainsaw
 	States
 	{
 	Ready:
-		SAWG A 0
-		SAWG A 0 A_PlayWeaponSound("weapons/sawidle")
+		NULL A 0 A_PlayWeaponSound("weapons/sawidle")
 	ReadyLoop:
 		SAWG CD 4 A_WeaponReady
 		Loop
