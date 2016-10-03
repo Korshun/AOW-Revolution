@@ -10,6 +10,20 @@ function int PlayerTid(int player)
 	return 1000 + player;
 }
 
+function int GetPlayerTeam(int player)
+{
+	if (!PlayerInGame(player))
+		return TEAM_NONE;
+	if (CheckActorInventory(PlayerTid(player), "IsRed"))
+		return TEAM_RED;
+	return TEAM_BLUE;
+}
+
+function int ConsolePlayerTeam()
+{
+	return GetPlayerTeam(ConsolePlayerNumber());
+}
+
 script aow_enter ENTER
 {
 	InitPlayer();

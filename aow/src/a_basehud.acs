@@ -15,8 +15,7 @@ script aow_basehud OPEN CLIENTSIDE
 		HudSetShowToEveryone(true);
 		HudSetStayTime(0.03);
 		
-		SetActivator(PlayerTid(ConsolePlayerNumber()));
-		int redOnLeft = PlayerTeam() == TEAM_RED;
+		int redOnLeft = ConsolePlayerTeam() == TEAM_RED;
 		DrawBaseHudSide(TEAM_BLUE, !redOnLeft);
 		DrawBaseHudSide(TEAM_RED, redOnLeft);
 	
@@ -46,7 +45,7 @@ int LastAttackAnnouncementTime = INT_MIN;
 
 function void AnnounceAttack(int team, int type)
 {
-	if (PlayerTeam() != team && PlayerTeam() != TEAM_NONE)
+	if (ConsolePlayerTeam() != team)
 		return;
 
 	if (Timer() < LastAttackAnnouncementTime + 35 * 15)
