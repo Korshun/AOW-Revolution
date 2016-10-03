@@ -1,5 +1,6 @@
 server bool aowr_tracers = true;
 server int aowr_startcredits = 300;
+server int aowr_credflow = 4;
 
 user bool aow_fx_tracers = true;
 user bool aow_fx_puffs = true;

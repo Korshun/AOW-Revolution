@@ -21,6 +21,10 @@ script aow_syncmoney OPEN
 		{
 			if (!PlayerInGame(player))
 				continue;
+				
+			// Credit flow
+			if (Timer() % 35 == 0)
+				GiveMoney(player, GetCVar("aowr_credflow"));
 		
 			int money = PlayerMoney(player);
 			SetActorInventory(PlayerTid(player), "Money", money);
