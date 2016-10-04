@@ -6,6 +6,13 @@ bcc aow/src/aow.acs aow/acs/aow.o
 	EXIT
 )
 
+py tools/aowbuild.py
+@if ERRORLEVEL 1 (
+	echo AOWBUILD FAILED
+	PAUSE
+	EXIT
+)
+
 py tools/acsinclude.py aow/src/aow.acs aow/src/aowmap.acs
 @if ERRORLEVEL 1 (
 	echo ACSINCLUDE FAILED

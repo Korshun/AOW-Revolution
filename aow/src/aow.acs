@@ -23,19 +23,7 @@ function void ACSUtilsErrorHandler(int type, int message)
 	printbold(s:prefix, d:Timer(), s:" error: ", s:message);
 }
 
-#define aow_casingheight 301
-#define aow_traceroffset 302
-#define aow_spawntracer 303
-#define aow_checkfx 304
-#define aow_init 305
-#define aow_syncbuildinghp 306
-#define aow_enter 307
-#define aow_respawn 308
-#define aow_init_clientside 309
-#define aow_basehud	310
-#define aow_givemoney 311
-#define aow_syncmoney 312
-
+#include "scriptnumbers.acs"
 #include "a_autoconfig.acs"
 #include "a_buildingtypes.acs"
 #include "a_teams.acs"

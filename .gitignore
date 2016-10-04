@@ -1,6 +1,8 @@
 aow/acs
 aow/src/aowmap.acs
-sndinfo.sux
+aow/src/scriptnumbers.acs
+aow/decorate/acsdefines.txt
+aow/sndinfo.sux
 
 *.pk3
 *.tmp
