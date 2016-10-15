@@ -3,6 +3,8 @@ aow/src/aowmap.acs
 aow/src/scriptnumbers.acs
 aow/decorate/acsdefines.txt
 aow/sndinfo.sux
+bcc/*
+!bcc/README.txt
 
 *.pk3
 *.tmp
