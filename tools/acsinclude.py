@@ -8,11 +8,11 @@ ignored = { 'zcommon.acs' }
 included = set()
 includepath = []
  
-def main(input, output, include_path):
+def main(input, output, include_path=[]):
     global out
     global includepath
     
-    includepath = [os.path.dirname(input)] +include_path
+    includepath = [os.path.dirname(input)] + include_path
  
     with open(output, 'w') as o:
         out = o
