@@ -4,13 +4,7 @@
 import sys
 import os
  
-def main():
-    if len(sys.argv) != 2:
-        print('Usage: sndinfogen <pk3 root>')
-        sys.exit(2)
- 
-    pk3root = sys.argv[1]
- 
+def main(pk3root):
     sounds = {}
     randomized = {}
     warning = False
@@ -54,4 +48,7 @@ def raise_error(x):
     raise x
  
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) != 2:
+        print('Usage: sndinfogen <pk3 root>')
+        sys.exit(2)
+    main(sys.argv[1])
