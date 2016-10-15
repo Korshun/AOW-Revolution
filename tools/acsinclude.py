@@ -8,17 +8,15 @@ ignored = { 'zcommon.acs' }
 included = set()
 includepath = []
  
-def main():
+def main(input, output, include_path):
     global out
     global includepath
-    if len(sys.argv) < 3:
-        print('Usage: acsinclude <input> <output> [include directories]')
-        sys.exit(2)
+    
+    includepath = include_path
  
-    with open(sys.argv[2], 'w') as o:
+    with open(output, 'w') as o:
         out = o
-        includepath = [os.path.dirname(sys.argv[1])] + sys.argv[3:]
-        include_file(os.path.basename(sys.argv[1]))
+        include_file(os.path.basename(input))
  
 def include_file(filename):
     if filename in ignored:
@@ -52,4 +50,8 @@ def readfile(filename, mode='r'):
         return f.read()
  
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) < 3:
+        print('Usage: acsinclude <input> <output> [include directories]')
+        sys.exit(2)
+        
+    main(sys.argv[1], sys.argv[2], [os.path.dirname(sys.argv[1])] + sys.argv[3:])
