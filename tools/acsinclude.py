@@ -12,7 +12,7 @@ def main(input, output, include_path):
     global out
     global includepath
     
-    includepath = include_path
+    includepath = [os.path.dirname(input)] +include_path
  
     with open(output, 'w') as o:
         out = o
@@ -54,4 +54,4 @@ if __name__ == '__main__':
         print('Usage: acsinclude <input> <output> [include directories]')
         sys.exit(2)
         
-    main(sys.argv[1], sys.argv[2], [os.path.dirname(sys.argv[1])] + sys.argv[3:])
+    main(sys.argv[1], sys.argv[2], sys.argv[3:])
