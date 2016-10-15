@@ -1,14 +1,15 @@
 mkdir aow\acs
-bcc aow/src/aow.acs aow/acs/aow.o
-@if ERRORLEVEL 1 (
-	echo BCC FAILED
-	PAUSE
-	EXIT
-)
 
 py tools/aowbuild.py
 @if ERRORLEVEL 1 (
 	echo AOWBUILD FAILED
+	PAUSE
+	EXIT
+)
+
+bcc aow/src/aow.acs aow/acs/aow.o -
+@if ERRORLEVEL 1 (
+	echo BCC FAILED
 	PAUSE
 	EXIT
 )
