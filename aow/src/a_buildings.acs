@@ -50,8 +50,6 @@ function void InitBuildings()
 	
 	if (IsServer())
 		ACS_ExecuteAlways(aow_syncbuildinghp, 0);
-	if (IsClient())
-		ACS_ExecuteAlways(aow_basehud, 0);
 }
 
 
