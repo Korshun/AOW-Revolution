@@ -24,5 +24,6 @@ episode AOW01
 
 gameinfo
 {	
-	
+	// ZDOOMVER: Remove definition from keyconf
+	// ZDOOMVER playerclasses = "AOWPlayer"
 }
