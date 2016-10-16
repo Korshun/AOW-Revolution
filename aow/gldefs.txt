@@ -14,3 +14,12 @@ flickerlight2 BlueCore
     interval 0.01
     offset 0 32 0
 }
+
+flickerlight2 RedCore
+{
+    color 0.7 0.5 0.5
+    size 40
+    secondarySize 56
+    interval 0.01
+    offset 0 32 0
+}
