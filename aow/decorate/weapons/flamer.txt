@@ -1,0 +1,129 @@
+Actor Flamer : AOWWeapon 21047 
+{
+	Tag "Flamethrower"
+	Inventory.PickupMessage "Flamethrower"
+	Obituary "%o was reduced to ashes by %k's flamethrower."
+	Weapon.PreferredSkin "MarineFlamer"
+
+	Weapon.Kickback 1
+	
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 100
+	Weapon.AmmoType "FlamerAmmo"
+	//Weapon.AmmoUse2 1
+	//Weapon.AmmoGive2 0
+	//Weapon.AmmoType2 "PhosphorusGrenadeAmmo"
+	
+	States
+	{
+	Ready:
+		NULL A 0
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "ReadyRed")
+	ReadyBlue:
+		FL_B ABC 2 A_WeaponReady
+		Loop
+	ReadyRed:
+		FL_R ABC 2 A_WeaponReady
+		Loop
+	Deselect:
+	    FL_R E 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
+	DeselectBlue:
+		FL_B E 1 A_Lower
+		Wait
+	DeselectRed:
+		FL_R E 1 A_Lower
+		Wait
+	Select:
+	    FL_R E 0 A_JumpIfInventory("IsRed", 1, "SelectRed")
+	SelectRed:
+		FL_R E 1 A_Raise
+		Wait
+	SelectBlue:
+	    FL_B E 1 A_Raise
+		Wait
+		
+	Fire:
+		FL_R E 0 A_JumpIfInventory("IsRed", 1, "FireRed")
+	FireBlue:
+		FL_B E 2 A_PlaySound("FLMRSTRT", CHAN_WEAPON)
+		FL_B E 2
+		NULL E 0 A_GunFlash
+		NULL E 0 A_PlaySound("FLMRFIRE", CHAN_WEAPON, 1.0, true)
+		FL_B E 2 BRIGHT offset(1, 32) A_FireCustomMissile("FlamerFire", frandom(-2, 2), 1, 5, frandom(2, 6))
+		FL_B E 2 BRIGHT offset(2, 33) A_FireCustomMissile("FlamerFire", frandom(-2, 2), 0, 5, frandom(2, 6))
+		FL_B E 1 A_ReFire
+		FL_B E 1 offset(2, 33)
+		FL_B E 1 offset(1, 32)
+		FL_B E 2 A_PlaySound("FLMREND", CHAN_WEAPON)
+		Goto Ready
+	FireRed:
+		FL_R E 2 A_PlaySound("FLMRSTRT", CHAN_WEAPON)
+		FL_R E 2
+		NULL E 0 A_GunFlash
+		NULL E 0 A_PlaySound("FLMRFIRE", CHAN_WEAPON, 1.0, true)
+		FL_R E 2 BRIGHT offset(1, 32) A_FireCustomMissile("FlamerFire", frandom(-2, 2), 1, 5, frandom(2, 6))
+		FL_R E 2 BRIGHT offset(2, 33) A_FireCustomMissile("FlamerFire", frandom(-2, 2), 0, 5, frandom(2, 6))
+		FL_R E 1 A_ReFire
+		FL_R E 1 offset(2, 33)
+		FL_R E 1 offset(1, 32)
+		FL_R E 2 A_PlaySound("FLMREND", CHAN_WEAPON)
+		Goto Ready
+	Hold:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "HoldRed")
+	HoldBlue:
+		FL_B E 2 BRIGHT offset(4, 35) A_FireCustomMissile("FlamerFire", random(-2,2), 1, 5, random(2, 6))
+		FL_B E 2 BRIGHT offset(5, 36) A_FireCustomMissile("FlamerFire", random(-2,2), 0, 5, random(2, 6))
+		FL_B E 1 A_ReFire
+		FL_B E 1 offset(4, 35)
+		FL_B E 1 offset(2, 33)
+		FL_B E 2 A_PlaySound("FLMREND", CHAN_WEAPON)
+		Goto Ready
+	HoldRed:
+		FL_R E 2 BRIGHT offset(4, 35) A_FireCustomMissile("FlamerFire", random(-2,2), 1, 5, random(2, 6))
+		FL_R E 2 BRIGHT offset(5, 36) A_FireCustomMissile("FlamerFire", random(-2,2), 0, 5, random(2, 6))
+		FL_R E 1 A_ReFire
+		FL_R E 1 offset(4, 35)
+		FL_R E 1 offset(2, 33)
+		FL_R E 2 A_PlaySound("FLMREND", CHAN_WEAPON)
+		Goto Ready
+		
+	Spawn:
+		FLMR X -1
+		Stop
+	}
+}
+
+Actor FlamerAmmo : Ammo
+{
+	Inventory.Amount 100
+	Inventory.MaxAmount 400
+}
+
+Actor FlamerFire 
+{
+	Radius 4
+	Height 4
+	Speed 25
+	
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.41
+	
+	PROJECTILE
+	+FORCEXYBILLBOARD
+	
+	Damage (random(1,2))
+	DamageType "Fire"
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		FLMX BCDEFGHIJK 2 BRIGHT A_Explode(2, 128, 0)
+		FLMX LMNO 2 bright A_FadeOut(0.16)
+		Stop
+	Death:
+		NULL A 0 A_Explode(8, 128)
+		Stop
+	}
+}
