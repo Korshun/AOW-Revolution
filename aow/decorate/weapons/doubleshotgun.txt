@@ -25,6 +25,7 @@ Actor DoubleShotgun : AOWWeapon 21086
 	Weapon.AmmoType "ShotgunAmmo"
 	DropItem "Boomstick"
 	
+	Weapon.UpSound "SSGUP"
 	AttackSound "weapons/sshotf"
 	
 	States

@@ -23,6 +23,7 @@ Actor Handgun : AOWWeapon 21041
 	Weapon.AmmoGive 40
 	Weapon.AmmoType "NewClipAmmo"
 	
+	Weapon.UpSound "PISTUP"
 	AttackSound "PISTFIRE"
 	
 	States

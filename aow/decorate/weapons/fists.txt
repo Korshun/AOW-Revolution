@@ -11,6 +11,8 @@ Actor Unarmed : AOWWeapon
 	+WEAPON.MELEEWEAPON
 	
 	Weapon.Kickback 165
+	
+	Weapon.UpSound "FISTUP"
 
 	States
 	{

@@ -13,6 +13,8 @@ Actor Rifle : AOWWeapon 21042
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 20
 	Weapon.AmmoType "RifleAmmo"
+	
+	Weapon.UpSound "RIFLUP"
 
 	States
 	{

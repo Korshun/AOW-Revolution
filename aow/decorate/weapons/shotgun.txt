@@ -24,6 +24,7 @@ Actor Boomstick : AOWWeapon 21080
 	Weapon.AmmoGive 10
 	Weapon.AmmoType "ShotgunAmmo"
 	
+	Weapon.UpSound "SHTGUP"
 	AttackSound "weapons/shotgf"
 	
 	States

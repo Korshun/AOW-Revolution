@@ -14,6 +14,8 @@ Actor Flamer : AOWWeapon 21047
 	//Weapon.AmmoGive2 0
 	//Weapon.AmmoType2 "PhosphorusGrenadeAmmo"
 	
+	Weapon.UpSound "FLMRUP"
+	
 	States
 	{
 	Ready:
