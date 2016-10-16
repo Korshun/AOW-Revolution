@@ -5,3 +5,12 @@ flickerlight FlamerFire
 	secondarySize 45
 	chance 0.30
 }
+
+flickerlight2 BlueCore
+{
+    color 0.5 0.5 0.7
+    size 40
+    secondarySize 56
+    interval 0.01
+    offset 0 32 0
+}

@@ -1,0 +1,201 @@
+Actor ObeliskEye
+{
+	//$Category Buildings
+	
+	Health 1000
+	Radius 32
+	Height 64
+	
+	+LOOKALLAROUND
+	+NOGRAVITY
+	+FORCEXYBILLBOARD
+	
+	RenderStyle Add
+	Alpha 0.8
+	XScale 0.3
+	YScale 0.25
+}
+
+Actor BlueObeliskEye : ObeliskEye 21213
+{
+	States
+	{
+	Spawn:
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		Loop
+	Death:
+		NULL A 0 A_PlaySound("COREFADE")
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.8, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.7, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.6, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.5, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.4, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.3, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.2, 1)
+		ORBB ABCDCB 1 BRIGHT Light(BlueCore) A_SpawnItem("CoreMistSpawner", 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSpawner", 0, 0, 32, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SetTranslucent(0.1, 1)
+		NULL AAA 7 A_SpawnItemEx("BlueCoreLightningSpawner",0,0,32,0,0,0,0,0,144)
+		stop
+	}
+}
+
+Actor CoreMist : Effect
+{
+	RenderStyle Add
+	Alpha 0.25
+	Scale 0.225
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10)
+	Loopy:
+		MIST ABCDEFGHIJKLMOOPQR 1 BRIGHT A_FadeOut(0.01)
+		Loop
+	}
+}
+
+Actor CoreMistSpawner : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL AA 0 A_SpawnItemEx("CoreMist", frandom(-14, 14), frandom(-14, 14), frandom(-14, 14), frandom(-0.6, 0.6), frandom(-0.6, 0.6), frandom(-0.6, 0.6), 0, 0, 24)
+		Stop
+	}
+}
+
+
+Actor BlueCoreLightning : Effect
+{
+	RenderStyle Add
+	Alpha 0.7
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72)
+	Select:
+		BLL1 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+		BLL2 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+		BLL3 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+		BLL4 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+	Fade:
+		"----" A 1 BRIGHT A_FadeOut(0.15)
+		loop
+	}
+}
+
+Actor RedCoreLightning : Effect
+{
+	RenderStyle Add
+	Alpha 0.7
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_Jump(256,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72)
+	Select:
+		RLL1 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+		RLL2 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+		RLL3 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+		RLL4 ABCDEFGHIJKLMNOPQR 0 A_Jump(256,"Fade")
+	Fade:
+		"----" A 1 BRIGHT A_FadeOut(0.15)
+		loop
+	}
+}
+
+Actor BlueCoreLightningSmall : BlueCoreLightning { Scale 0.2 }
+Actor BlueCoreLightningMedium : BlueCoreLightning { Scale 0.3 }
+Actor BlueCoreLightningLarge : BlueCoreLightning { Scale 0.4 }
+Actor BlueCoreLightningHuge : BlueCoreLightning { Scale 0.5 }
+
+Actor RedCoreLightningSmall : RedCoreLightning { Scale 0.2 }
+Actor RedCoreLightningMedium : RedCoreLightning { Scale 0.3 }
+Actor RedCoreLightningLarge : RedCoreLightning { Scale 0.4 }
+Actor RedCoreLightningHuge : RedCoreLightning { Scale 0.5 }
+
+Actor BlueCoreLightningWave : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningSmall",  frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), 0, 0, 0, 0, 0, 32)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningMedium", frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), 0, 0, 0, 0, 0, 56)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningLarge",  frandom(-4, 4), frandom(-4, 4), frandom(-3, 3), 0, 0, 0, 0, 0, 96)
+		NULL A 0 A_SpawnItemEx("BlueCoreLightningHuge",   frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), 0, 0, 0, 0, 0, 144)
+		stop
+	}
+}
+
+Actor RedCoreLightningWave : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx("RedCoreLightningSmall",  frandom(-2, 2), frandom(-2, 2), frandom(-2, 2), 0, 0, 0, 0, 0, 32)
+		NULL A 0 A_SpawnItemEx("RedCoreLightningMedium", frandom(-3, 3), frandom(-3, 3), frandom(-3, 3), 0, 0, 0, 0, 0, 56)
+		NULL A 0 A_SpawnItemEx("RedCoreLightningLarge",  frandom(-4, 4), frandom(-4, 4), frandom(-3, 3), 0, 0, 0, 0, 0, 96)
+		NULL A 0 A_SpawnItemEx("RedCoreLightningHuge",   frandom(-5, 5), frandom(-5, 5), frandom(-5, 5), 0, 0, 0, 0, 0, 144)
+		stop
+	}
+}
+
+Actor BlueCoreLightningSpawner : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_PlaySound("COREZAP")
+		TNT1 A 2 A_SpawnItem("BlueCoreLightningWave")
+		TNT1 A 1 A_SpawnItem("BlueCoreLightningWave")
+		TNT1 A 3 A_SpawnItem("BlueCoreLightningWave")
+		TNT1 A 5 A_SpawnItem("BlueCoreLightningWave")
+		TNT1 A 1 A_SpawnItem("BlueCoreLightningWave")
+		TNT1 A 2 A_SpawnItem("BlueCoreLightningWave")
+		TNT1 A 4 A_SpawnItem("BlueCoreLightningWave")
+		stop
+	}
+}
+
+Actor RedCoreLightningSpawner : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_PlaySound("COREZAP")
+		TNT1 A 2 A_SpawnItem("RedCoreLightningWave")
+		TNT1 A 1 A_SpawnItem("RedCoreLightningWave")
+		TNT1 A 3 A_SpawnItem("RedCoreLightningWave")
+		TNT1 A 5 A_SpawnItem("RedCoreLightningWave")
+		TNT1 A 1 A_SpawnItem("RedCoreLightningWave")
+		TNT1 A 2 A_SpawnItem("RedCoreLightningWave")
+		TNT1 A 4 A_SpawnItem("RedCoreLightningWave")
+		stop
+	}
+}
