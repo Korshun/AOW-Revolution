@@ -1,0 +1,7 @@
+flickerlight FlamerFire
+{
+	color 1.0 0.6 0.0
+	size 35
+	secondarySize 45
+	chance 0.30
+}
