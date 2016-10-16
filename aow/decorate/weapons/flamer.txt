@@ -28,7 +28,8 @@ Actor Flamer : AOWWeapon 21047
 		FL_R ABC 2 A_WeaponReady
 		Loop
 	Deselect:
-	    FL_R E 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
+		NULL A 0 A_StopSound(CHAN_WEAPON)
+	    NULL A 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
 	DeselectBlue:
 		FL_B E 1 A_Lower
 		Wait
@@ -36,7 +37,7 @@ Actor Flamer : AOWWeapon 21047
 		FL_R E 1 A_Lower
 		Wait
 	Select:
-	    FL_R E 0 A_JumpIfInventory("IsRed", 1, "SelectRed")
+	    NULL A 0 A_JumpIfInventory("IsRed", 1, "SelectRed")
 	SelectRed:
 		FL_R E 1 A_Raise
 		Wait
