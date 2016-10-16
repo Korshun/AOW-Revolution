@@ -1,8 +1,3 @@
+// Move this to gameinfo when Zandronum 3.0 comes out
 ClearPlayerClasses
 AddPlayerClass AOWPlayer
-
-
-WeaponSection AOW
-SetSlot 1 Unarmed EagerBeaver
-SetSlot 2 Handgun Rifle
-SetSlot 3 Boomstick DoubleShotgun

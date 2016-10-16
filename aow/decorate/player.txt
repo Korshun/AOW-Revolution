@@ -1,6 +1,10 @@
 Actor AOWPlayer : DoomPlayer
 {
 	Player.StartItem "Unarmed"
+	
+	Player.WeaponSlot 1, "Unarmed", "EagerBeaver"
+	Player.WeaponSlot 2, "Handgun", "Rifle"
+	Player.WeaponSlot 3, "Shotgun", "DoubleShotgun"
 
 	Player.ForwardMove 0.875
 	Player.SideMove 0.875

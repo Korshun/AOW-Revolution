@@ -3,6 +3,7 @@ graphic HUDBAMMO, 211, 36
 	XScale 2.0 YScale 2.2
 	patch HUDBAMMO, 0, 0
 }
+
 graphic HUDRAMMO, 211, 36
 {
 	XScale 2.0 YScale 2.2
@@ -14,6 +15,7 @@ graphic HUDBHP, 202, 24
 	XScale 2.0 YScale 2.2
 	patch HUDBHP, 0, 0
 }
+
 graphic HUDRHP, 202, 24
 {
 	XScale 2.0 YScale 2.2
@@ -25,17 +27,21 @@ graphic HUDBRANK, 220, 38
 	XScale 2.0 YScale 2.2
 	patch HUDBRANK, 0, 0
 }
+
 graphic HUDRRANK, 220, 38
 {
 	XScale 2.0 YScale 2.2
 	patch HUDRRANK, 0, 0
 }
 
-graphic HUDBINTL, 235, 45 {
+graphic HUDBINTL, 235, 45
+{
 	XScale 2.0 YScale 2.2
 	patch HUDBINTL, 0, 0
 }
-graphic HUDRINTL, 235, 45 {
+
+graphic HUDRINTL, 235, 45
+{
 	XScale 2.0 YScale 2.2
 	patch HUDRINTL, 0, 0
 }

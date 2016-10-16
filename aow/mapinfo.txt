@@ -1,13 +1,15 @@
 clearepisodes
 clearskills
 
-defaultmap {
+defaultmap
+{
 	allowrespawn
 	smoothlighting
 	clipmidtextures
 }
 
-skill Normal {
+skill Normal
+{
 	name = "Normal"
 	damagefactor = 1.0
 	aggressiveness = 1.0
@@ -15,6 +17,12 @@ skill Normal {
 	mustconfirm = "Start an offline game? (y/n)"
 }
 
-episode MAP01 {
+episode AOW01
+{
 	name = "All Out War"
+}
+
+gameinfo
+{	
+	
 }

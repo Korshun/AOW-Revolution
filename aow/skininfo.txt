@@ -1,4 +1,3 @@
-/////////////////////////////////////////NEW DOOM MARINES
 {
 name = "MarineKnife"
 sprite = PKNI
@@ -14,7 +13,6 @@ name = "MarineAdmin"
 sprite = ADMN
 }
 
-/////////////////////////////////////////DOOM MARINES
 {
 name = "MarineMedic"
 sprite = PMED
