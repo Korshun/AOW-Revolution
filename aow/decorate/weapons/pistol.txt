@@ -1,6 +1,16 @@
-Actor Handgun : AOWWeapon replaces Pistol 21041
+Actor HandgunSpawner replaces Pistol
 {
-	//$Category Weapons
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItem("Handgun")
+		stop
+	}
+}
+
+Actor Handgun : AOWWeapon 21041
+{
 	Tag "Handgun"
 	Inventory.PickupMessage "Handgun"
 	Obituary "%o was capped by %k's handgun."

@@ -1,6 +1,16 @@
-Actor Boomstick : AOWWeapon replaces Shotgun 21080
+Actor BoomstickSpawner replaces Shotgun
 {
-	//$Category Weapons
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItem("Boomstick")
+		stop
+	}
+}
+
+Actor Boomstick : AOWWeapon 21080
+{
 	Tag "Shotgun"
 	Inventory.PickupMessage "Shotgun"
 	Obituary "%o was smacked down by %k's shotgun."

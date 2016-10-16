@@ -1,7 +1,8 @@
 Actor AOWWeapon : Weapon
 {
-	Weapon.Kickback 50
-	
+	//$Category "AOW Weapons"
+	Weapon.Kickback 50	
+
 	States
 	{
 	Spawn:

@@ -1,6 +1,16 @@
-Actor DoubleShotgun : AOWWeapon replaces SuperShotgun 21086
+Actor DoubleShotgunSpawner replaces SuperShotgun
 {
-	//$Category Weapons
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItem("DoubleShotgun")
+		stop
+	}
+}
+
+Actor DoubleShotgun : AOWWeapon 21086
+{
 	Tag "Double Shotgun"
 	Inventory.PickupMessage "Double Shotgun"
 	Obituary "%o was splattered by %k's double shotgun."

@@ -2,7 +2,6 @@ Actor FistSwitch : Boolean {}
 
 Actor Unarmed : AOWWeapon
 {
-	//$Category Weapons
 	Tag "Unarmed"
 	Inventory.PickupMessage "Unarmed"
 	Obituary "%k knocked %o out hard."

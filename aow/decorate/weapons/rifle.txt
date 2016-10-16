@@ -1,6 +1,5 @@
 Actor Rifle : AOWWeapon 21042
 {
-	//$Category Weapons
 	Tag "Rifle"
 	Inventory.PickupMessage "Rifle"
 	Obituary "%o was crippled by %k's rifle."
