@@ -31,11 +31,13 @@ graphic HUDRRANK, 220, 38
 	patch HUDRRANK, 0, 0
 }
 
-graphic HUDBINTL, 235, 45 {
+graphic HUDBINTL, 235, 45 
+{
 	XScale 2.0 YScale 2.2
 	patch HUDBINTL, 0, 0
 }
-graphic HUDRINTL, 235, 45 {
+graphic HUDRINTL, 235, 45 
+{
 	XScale 2.0 YScale 2.2
 	patch HUDRINTL, 0, 0
 }
