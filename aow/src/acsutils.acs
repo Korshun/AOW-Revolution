@@ -1,7 +1,7 @@
 #nocompact
 
 #libdefine ACSUTILS_VERSION_MAJOR 1
-#libdefine ACSUTILS_VERSION_MINOR 4
+#libdefine ACSUTILS_VERSION_MINOR 5
 #libdefine ACSUTILS_VERSION_PATCH 0
 
 function str ACSUtilsVersion(void)
@@ -117,6 +117,16 @@ int r1, r2, r3, r4, r5, r6, r7, r8;
 #define ACSUtils_CursorPrevX 53
 #define ACSUtils_CursorPrevY 54
 
+#define ACSUtils_CachedIsZandronum212 55
+
+#define ACSUtils_SendStringSingleplayer 56
+#define ACSUtils_ReceivedString 57
+#define ACSUtils_SendStringFinished 58
+
+#define ACSUtils_SendStringIsServer 59
+#define ACSUtils_SendStringReceiver 60
+#define ACSUtils_SendStringIsNamed 61
+
 #define ACSUTILS_NUM_GLOBALS 512
 
 int ACSUtils[ACSUTILS_NUM_GLOBALS] =
@@ -198,7 +208,18 @@ int ACSUtils[ACSUTILS_NUM_GLOBALS] =
 	HUD_PROJECTION_AUTO, // R3D_ProjectionMode
 	
 	320.0, // CursorPrevX
-	240.0 // CursorPrevY
+	240.0, // CursorPrevY
+	
+	-1, // CachedIsZandronum212
+	
+	false, // SendStringSingleplayer
+	0, // ReceivedString
+	true, // SendStringFinished
+
+	false, // SendStringIsServer
+	0, // SendStringReceiver
+	false, // SendStringIsNamed
+
 };
 
 
@@ -1606,21 +1627,6 @@ function int GetCVarPercentage(str name)
 
 // Screen info functions.
 
-function int ScreenWidth(void)
-{
-	return GetCVar("vid_defwidth");
-}
-
-function int ScreenHeight(void)
-{
-	return GetCVar("vid_defheight");
-}
-
-function int AspectRatio(void)
-{
-	return FixedDiv(ScreenWidth() * 1.0, ScreenHeight() * 1.0);
-}
-
 function int StatusBarShown(void)
 {
 	return GetCVar("screenblocks") <= 10;
@@ -1904,19 +1910,19 @@ function void SetActorSpeed (int tid, int value)
 
 // Implementation from ACS-X.
 
-function str _ChangeFlagName(str flag, bool value)
+function str ACSUtils_ChangeFlagName(str flag, bool value)
 {
 	return StrParam(s:"ACSUtils_CF_", s:flag, s:"_", d:!!value);
 }
 
 function void ChangeFlag(str flag, bool value)
 {
-	GiveInventory(_ChangeFlagName(flag, value), 1);
+	GiveInventory(ACSUtils_ChangeFlagName(flag, value), 1);
 }
 
 function void ChangeActorFlag(int tid, str flag, bool value)
 {
-	GiveActorInventory(tid, _ChangeFlagName(flag, value), 1);
+	GiveActorInventory(tid, ACSUtils_ChangeFlagName(flag, value), 1);
 }
 
 
@@ -2598,6 +2604,20 @@ function bool IsGZDoom(void)
 	return port == PORT_GZDOOM || port == PORT_ZANDRONUM;
 }
 
+script "ACSUtils_SupportsNamedScripts" (void)
+{
+	SetResultValue(true);
+}
+
+function bool IsZandronum212(void)
+{
+	if (ACSUtils[ACSUtils_CachedIsZandronum212] != -1)
+		return ACSUtils[ACSUtils_CachedIsZandronum212];
+		
+	ACSUtils[ACSUtils_CachedIsZandronum212] = IsZandronum() && !ACS_NamedExecuteWithResult("ACSUtils_SupportsNamedScripts");
+	return ACSUtils[ACSUtils_CachedIsZandronum212];
+}
+
 function bool IsServer(void)
 {
 	if (ConsolePlayerNumber() < 0)
@@ -2642,6 +2662,12 @@ function bool IsOpenGL(void)
 
 function int GetAspectRatio(void)
 {
+	if (!IsClient())
+	{
+		ProgramError("GetAspectRatio() called serverside. Assuming 4:3.");
+		return ASPECT_4_3;
+	}
+	
 	int noWideScreen = GetCVar("vid_nowidescreen");
 	int tft = GetCVar("vid_tft");
 
@@ -3014,8 +3040,8 @@ function void HudUseDefaultSize(void)
 
 function void HudUseRealSize(void)
 {
-	ACSUtils[ACSUTILS_R_BaseWidth] = ScreenWidth()<<16;
-	ACSUtils[ACSUTILS_R_BaseHeight] = ScreenHeight()<<16;
+	ACSUtils[ACSUTILS_R_BaseWidth] = GetScreenWidth()<<16;
+	ACSUtils[ACSUTILS_R_BaseHeight] = GetScreenHeight()<<16;
 }
 
 function int HudBorderX(void)
@@ -3197,7 +3223,7 @@ function void HudSetWordWrap(bool wordWrap)
 //int ACSUtils[ACSUTILS_R_RotatedY];
 //int ACSUtils[ACSUTILS_R_RotatedZ];
 
-function bool _HudUseYShearingProjection(void)
+function bool ACSUtils_IsYShearing(void)
 {
 	if (ACSUtils[ACSUTILS_R3D_ProjectionMode] == HUD_PROJECTION_AUTO)
 		return !IsOpenGL();
@@ -3206,7 +3232,7 @@ function bool _HudUseYShearingProjection(void)
 }
 
 // Rotate 3D point to view coordinate system.
-function void HudRotate3DPoint(void)
+function void ACSUtils_HudRotate3DPoint(void)
 {
 	// Translated point coordinates.
 	int x = ACSUtils[ACSUTILS_R3D_X] - ACSUtils[ACSUTILS_R3D_CameraX];
@@ -3224,7 +3250,7 @@ function void HudRotate3DPoint(void)
 	x = rx; y = ry;
 
 	// Rotate around Y axis.
-	if (!_HudUseYShearingProjection())
+	if (!ACSUtils_IsYShearing())
 	{
 		s = sin(-ACSUtils[ACSUTILS_R3D_CameraPitch]);
 		c = cos(-ACSUtils[ACSUTILS_R3D_CameraPitch]);
@@ -3240,14 +3266,14 @@ function void HudRotate3DPoint(void)
 
 function int HudGetDistance(void)
 {
-	HudRotate3DPoint();
+	ACSUtils_HudRotate3DPoint();
 	return ACSUtils[ACSUTILS_R_RotatedX];
 }
 
 
 #libdefine CAMERA_BASE_DISTANCE 128
 
-function void HudDrawHudMessage(int id, int type, str text, bool isText)
+function void ACSUtils_HudDrawHudMessage(int id, int type, str text, bool isText)
 {
 	if (ACSUtils[ACSUTILS_R_IScaleX] == 0 || ACSUtils[ACSUTILS_R_IScaleY] == 0)
 		return;
@@ -3275,7 +3301,7 @@ function void HudDrawHudMessage(int id, int type, str text, bool isText)
 	
 	if (ACSUtils[ACSUTILS_R_Is3DPoint])
 	{
-		HudRotate3DPoint();
+		ACSUtils_HudRotate3DPoint();
 
 		// Check if point is behind the camera.
 		if (ACSUtils[ACSUTILS_R_RotatedX] <= 0)
@@ -3294,10 +3320,10 @@ function void HudDrawHudMessage(int id, int type, str text, bool isText)
 		int hh = ACSUtils[ACSUTILS_R_BaseHeight]>>1;		
 
 		// Project point.
-		x = tan(-VectorAngle(ACSUtils[ACSUTILS_R_RotatedX], ACSUtils[ACSUTILS_R_RotatedY]));
-		y = tan(-VectorAngle(ACSUtils[ACSUTILS_R_RotatedX], ACSUtils[ACSUTILS_R_RotatedZ]));
+		x = -FixedDiv(ACSUtils[ACSUTILS_R_RotatedY], ACSUtils[ACSUTILS_R_RotatedX]);
+		y = -FixedDiv(ACSUtils[ACSUTILS_R_RotatedZ], ACSUtils[ACSUTILS_R_RotatedX]);
 		
-		if (_HudUseYShearingProjection())
+		if (ACSUtils_IsYShearing())
 			y += tan(ACSUtils[ACSUTILS_R3D_CameraPitch]);
 		
 		// Postprocess projected point.
@@ -3375,11 +3401,206 @@ function void HudDrawText(int id, str text)
 		type |= HUDMSG_NOWRAP;
 
 	SetFont(ACSUtilsStrings[ACSUTILSSTRING_R_TextFont]);
-	HudDrawHudMessage(id, type, text, true);
+	ACSUtils_HudDrawHudMessage(id, type, text, true);
 }
 
 function void HudDrawImage(int id, str image)
 {
 	SetFont(image);
-	HudDrawHudMessage(id, HUDMSG_FADEINOUT, "A", false);
+	ACSUtils_HudDrawHudMessage(id, HUDMSG_FADEINOUT, "A", false);
 }
+
+function void ACSUtils_SendString(bool named, int scriptid, str s)
+{
+	if (named && IsZandronum212())
+	{
+		ProgramError("ACS_NamedSendString(): Zandronum 2.1.2 doesn't support named scripts");
+		return;
+	}
+
+	int i;
+	int index;
+	int a, b, c, d;
+	
+	// For singleplayer, just pass the whole string.
+	if (IsClient())
+	{
+		ACSUtils[ACSUTILS_SendStringSingleplayer] = true;
+		ACSUtils[ACSUTILS_ReceivedString] = s;
+		if (named)
+			ACS_NamedExecuteWithResult(scriptid, 0);
+		else
+			ACS_ExecuteWithResult(scriptid, 0);
+		return;
+	}
+	
+	ACSUtils[ACSUTILS_SendStringIsServer] = true;
+	ACSUtils[ACSUTILS_SendStringReceiver] = scriptid;
+	ACSUtils[ACSUTILS_SendStringIsNamed] = named;
+
+	if (IsZandronum212())
+	{
+		// Send chunks in reverse order because clientside scripts are executed in reverse order.
+		// Use >= instead of > to send 0 even if the string size is a multiple of 12.
+		for (i = StrLen(s) / 12; i >= 0; i--)
+		{
+			index = i * 12;
+			a = PackBytes
+			(
+				GetChar(s, index), 
+				GetChar(s, index + 1), 
+				GetChar(s, index + 2), 
+				GetChar(s, index + 3)
+			);
+			
+			b = PackBytes
+			(
+				GetChar(s, index + 4),
+				GetChar(s, index + 5),
+				GetChar(s, index + 6),
+				GetChar(s, index + 7)
+			);
+			
+			c = PackBytes
+			(
+				GetChar(s, index + 8),
+				GetChar(s, index + 9),
+				GetChar(s, index + 10),
+				GetChar(s, index + 11)
+			);
+		
+			// Zandronum 2.1.2 loses ExecuteWithResult arguments.
+			ACS_ExecuteAlways(scriptid, 0, a, b, c);
+		}
+	}
+	else
+	{
+		// Send chunks in reverse order because clientside scripts are executed in reverse order.
+		// Use <= instead of < to send 0 even if the string size is a multiple of 16.
+		for (i = StrLen(s) / 16; i >= 0; i--)
+		{	
+			index = i * 16;
+			a = PackBytes
+			(
+				GetChar(s, index), 
+				GetChar(s, index + 1), 
+				GetChar(s, index + 2), 
+				GetChar(s, index + 3)
+			);
+			
+			b = PackBytes
+			(
+				GetChar(s, index + 4),
+				GetChar(s, index + 5),
+				GetChar(s, index + 6),
+				GetChar(s, index + 7)
+			);
+			
+			c = PackBytes
+			(
+				GetChar(s, index + 8),
+				GetChar(s, index + 9),
+				GetChar(s, index + 10),
+				GetChar(s, index + 11)
+			);
+
+			d = PackBytes
+			(
+				GetChar(s, index + 12),
+				GetChar(s, index + 13),
+				GetChar(s, index + 14),
+				GetChar(s, index + 15)
+			);
+			
+			if (named)
+				ACS_NamedExecuteWithResult(scriptid, a, b, c, d);
+			else
+				ACS_ExecuteWithResult(scriptid, a, b, c, d);
+				
+			if (!ACSUtils[ACSUTILS_SendStringIsServer])
+				break;
+		}
+	}
+	
+	ACSUtils[ACSUTILS_SendStringIsServer] = false;
+}
+
+function void ACS_SendString(int scriptnum, str s)
+{
+	ACSUtils_SendString(false, scriptnum, s);
+}
+
+function void ACS_NamedSendString(str scriptname, str s)
+{
+	ACSUtils_SendString(true, scriptname, s);
+}
+
+function str GetReceivedString(void)
+{
+	return ACSUtils[ACSUTILS_ReceivedString];
+}
+
+function bool ReceiveString(int a, int b, int c, int d)
+{
+	if (ACSUtils[ACSUTILS_SendStringSingleplayer])
+	{
+		ACSUtils[ACSUTILS_SendStringSingleplayer] = false;
+		ACSUtils[ACSUTILS_SendStringFinished] = true;
+		return true;
+	}
+	
+	if (ACSUtils[ACSUTILS_SendStringIsServer])
+	{
+		ACSUtils[ACSUTILS_SendStringIsServer] = false;
+	
+		str receiver;
+		if (ACSUtils[ACSUTILS_SendStringIsNamed])
+			receiver = StrParam(s:"\"", s:ACSUtils[ACSUTILS_SendStringReceiver], s:"\"");
+		else
+			receiver = StrParam(d:ACSUtils[ACSUTILS_SendStringReceiver]);
+			
+		ProgramError(StrParam(s:"A serverside script attemped to send a string to *serverside* script ", s:receiver, s:".")); 
+		return false;
+	}
+
+	if (ACSUtils[ACSUTILS_SendStringFinished])
+	{
+		ACSUtils[ACSUTILS_ReceivedString] = "";
+		ACSUtils[ACSUTILS_SendStringFinished] = false;
+	}
+	
+	str chunk;
+	if (IsZandronum212())
+	{
+		chunk = StrParam
+		(
+			c:UnpackByte1(a), c:UnpackByte2(a), c:UnpackByte3(a), c:UnpackByte4(a),
+			c:UnpackByte1(b), c:UnpackByte2(b), c:UnpackByte3(b), c:UnpackByte4(b),
+			c:UnpackByte1(c), c:UnpackByte2(c), c:UnpackByte3(c), c:UnpackByte4(c)
+		);
+		
+		ACSUtils[ACSUTILS_ReceivedString] = StrParam(s:ACSUtils[ACSUTILS_ReceivedString], s:chunk);
+		
+		if (StrLen(chunk) == 12)
+			return false;
+	}
+	else
+	{
+		chunk = StrParam
+		(
+			c:UnpackByte1(a), c:UnpackByte2(a), c:UnpackByte3(a), c:UnpackByte4(a),
+			c:UnpackByte1(b), c:UnpackByte2(b), c:UnpackByte3(b), c:UnpackByte4(b),
+			c:UnpackByte1(c), c:UnpackByte2(c), c:UnpackByte3(c), c:UnpackByte4(c),
+			c:UnpackByte1(d), c:UnpackByte2(d), c:UnpackByte3(d), c:UnpackByte4(d)
+		);
+		
+		ACSUtils[ACSUTILS_ReceivedString] = StrParam(s:ACSUtils[ACSUTILS_ReceivedString], s:chunk);
+		
+		if (StrLen(chunk) == 16)
+			return false;
+	}
+
+	ACSUtils[ACSUTILS_SendStringFinished] = true;
+	return true;
+}
+
