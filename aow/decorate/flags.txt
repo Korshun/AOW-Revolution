@@ -1,0 +1,4 @@
+// Flags for A_RadiusThrust
+const int RTF_AFFECTSOURCE = 1;
+const int RTF_NOIMPACTDAMAGE = 2;
+const int RTF_NOTMISSILE = 4;

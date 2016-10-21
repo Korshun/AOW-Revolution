@@ -2,6 +2,7 @@ Actor Integer : Inventory { Inventory.MaxAmount 0x7fffffff }
 Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 
 #include "decorate/acsdefines.txt"
+#include "decorate/flags.txt"
 
 #include "decorate/effects/base.txt"
 #include "decorate/effects/casings.txt"
