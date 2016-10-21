@@ -11,7 +11,6 @@ Actor EagerBeaverSpawner replaces Chainsaw
 
 Actor EagerBeaver : AOWWeapon 21085
 {
-	//$Category "AOW Weapons"
 	Tag "Chainsaw"
 	Inventory.PickupMessage "Chainsaw"
 	Obituary "%o was shredded by %k's chainsaw."
