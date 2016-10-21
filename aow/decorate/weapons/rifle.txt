@@ -109,7 +109,7 @@ Actor RifleGrenade
 	}
 }
 
-Actor RifleGrenadeSmoke : PuffSmoke
+Actor RifleGrenadeSmoke : BaseSmoke
 {
 	Scale 0.5
 }

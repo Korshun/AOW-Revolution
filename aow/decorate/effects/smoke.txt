@@ -1,4 +1,4 @@
-Actor PuffSmoke : Effect
+Actor BaseSmoke : Effect
 {
 	+WINDTHRUST
 	
