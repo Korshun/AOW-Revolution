@@ -6,13 +6,15 @@ Actor Rifle : AOWWeapon 21042
 	Weapon.PreferredSkin "MarineBase"
 
 	+NOEXTREMEDEATH
-	+WEAPON.ALT_AMMO_OPTIONAL
 
 	Weapon.Kickback 150
 	
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 20
 	Weapon.AmmoType "RifleAmmo"
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive2 4
+	Weapon.AmmoType2 "RifleGrenadeAmmo"
 	
 	Weapon.UpSound "RIFLUP"
 
@@ -42,6 +44,20 @@ Actor Rifle : AOWWeapon 21042
 		RIFL A 1 offset(0, 40)
 		RIFL A 1 offset(0, 36)
 		RIFL A 8 offset(0, 32)
+		RIFL A 4 A_ReFire
+		Goto Ready
+	AltFire:
+		RIFL A 4
+		RIFL A 2 A_PlaySound("GRENFIR", CHAN_WEAPON)
+		RIFL A 1 offset(0, 33) BRIGHT A_FireCustomMissile("RifleGrenade")
+		RIFL A 1 offset(0, 34) 
+		RIFL A 1 offset(0, 36) A_Light1
+		RIFL A 1 offset(0, 37)
+		RIFL A 1 offset(0, 38) A_Light0
+		RIFL A 1 offset(0, 36)
+		RIFL A 1 offset(0, 34)
+		RIFL A 10 offset(0, 32)
+		RIFL A 20 A_PlaySound("RIFLRELO", CHAN_WEAPON)
 		RIFL A 4 A_ReFire
 		Goto Ready
 	Spawn:
