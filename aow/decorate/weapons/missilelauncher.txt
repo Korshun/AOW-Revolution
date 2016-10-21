@@ -34,7 +34,7 @@ Actor MissileLauncher : AOWWeapon
 	DeselectBlue:
 		MSLB A 1 A_Lower
 		Loop
-	DeelectRed:
+	DeselectRed:
 		MSLR A 1 A_Lower
 		Loop
 	Fire:
