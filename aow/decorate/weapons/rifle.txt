@@ -97,7 +97,7 @@ Actor RifleGrenade
 	States
 	{
 	Spawn:
-		SGRN A 2 BRIGHT //A_SpawnItemEx("PulseBallSmokePuff", -25)
+		SGRN A 2 BRIGHT A_SpawnItemEx("RifleGrenadeSmoke", -25)
 		Loop
 	Death:
 		NULL A 0 A_NoGravity
@@ -107,4 +107,9 @@ Actor RifleGrenade
 		TNT1 A 1 // For sound
 		Stop
 	}
+}
+
+Actor RifleGrenadeSmoke : PuffSmoke
+{
+	Scale 0.5
 }
