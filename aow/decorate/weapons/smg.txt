@@ -1,6 +1,5 @@
 Actor SMG : AOWWeapon 21043
 {
-	//$Category Weapons
 	Tag "SMG"
 	Inventory.PickupMessage "SMG"
 	Obituary "%o was whittled down by %k's SMG."
