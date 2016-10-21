@@ -5,3 +5,8 @@ script aow_casingheight (int height)
 {
 	SetResultValue(FixedMul(FixedDiv(GetActorViewHeight(0), PLAYER_VIEWHEIGHT), height));
 }
+
+script aow_isopengl (void)
+{
+	SetResultValue(IsOpenGL());
+}
