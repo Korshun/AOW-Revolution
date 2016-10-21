@@ -1,0 +1,248 @@
+Actor MissileLauncher : AOWWeapon
+{
+	Tag "Missile Launcher"
+	Inventory.PickupMessage "Missile Launcher"
+	Obituary "%o was blown out of %p boots by %k's missile."
+	Weapon.PreferredSkin "MarineRockets"
+
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 2
+	Weapon.AmmoType "MissileAmmo"
+	
+	Weapon.UpSound "MISLUP"
+	
+	States
+	{
+	Ready:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "ReadyRed")
+	ReadyBlue:
+		MSLB A 1 A_WeaponReady
+		Loop
+	ReadyRed:
+		MSLR A 1 A_WeaponReady
+		Loop
+	Select:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "SelectRed")
+	SelectBlue:
+		MSLB A 1 A_Raise
+		Loop
+	SelectRed:
+		MSLR A 1 A_Raise
+		Loop
+	Deselect:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
+	DeselectBlue:
+		MSLB A 1 A_Lower
+		Loop
+	DeelectRed:
+		MSLR A 1 A_Lower
+		Loop
+	Fire:
+		NULL A 0 A_GunFlash
+		NULL A 0 A_PlaySound("MISLFIRE", CHAN_WEAPON)
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "FireRed")
+	FireBlue:
+		NULL A 0 A_JumpIfTargetInLOS(2)
+		NULL A 0 A_FireCustomMissile("HeavyMissileBlue")
+		Goto AnimationBlue
+		NULL A 0 A_FireCustomMissile("HeavyHomingMissileBlue")
+		Goto AnimationBlue
+	FireRed:
+		NULL A 0 A_JumpIfTargetInLOS(2)
+		NULL A 0 A_FireCustomMissile("HeavyMissileRed")
+		Goto AnimationRed
+		NULL A 0 A_FireCustomMissile("HeavyHomingMissileRed")
+		Goto AnimationRed
+	AnimationBlue:
+		MSLB A 1 offset(1, 35)
+		MSLB A 1 offset(2, 38)
+		MSLB A 1 offset(3, 41) A_Recoil(18)
+		MSLB A 1 offset(4, 44)
+		MSLB A 1 offset(5, 47)
+		MSLB A 1 offset(6, 50)
+		MSLB A 1 offset(5, 47)
+		MSLB A 1 offset(4, 44)
+		MSLB A 1 offset(3, 41)
+		MSLB A 1 offset(2, 38)
+		MSLB A 1 offset(1, 35)
+		MSLB A 1 offset(0, 32)
+		MSLB A 44
+		NULL A 0 A_CheckReload
+		NULL A 0 A_PlayWeaponSound("MISLLOAD")
+		MSLB BC 2
+		MSLB D 4
+		MSLB E 4
+		Goto Ready
+	AnimationRed:
+		MSLR A 1 offset(1, 35)
+		MSLR A 1 offset(2, 38)
+		MSLR A 1 offset(3, 41) A_Recoil(18)
+		MSLR A 1 offset(4, 44)
+		MSLR A 1 offset(5, 47)
+		MSLR A 1 offset(6, 50)
+		MSLR A 1 offset(5, 47)
+		MSLR A 1 offset(4, 44)
+		MSLR A 1 offset(3, 41)
+		MSLR A 1 offset(2, 38)
+		MSLR A 1 offset(1, 35)
+		MSLR A 1 offset(0, 32)
+		MSLR A 44
+		NULL A 0 A_CheckReload
+		NULL A 0 A_PlayWeaponSound("MISLLOAD")
+		MSLR BC 2
+		MSLR D 4
+		MSLR E 4
+		Goto Ready
+	Flash:
+		MSFR A 2 BRIGHT A_Light1
+		MSFR B 2 BRIGHT 
+		MSFR C 2 BRIGHT A_Light2
+		MSFR D 2 BRIGHT
+		NULL A 0 A_Light0
+		Stop
+	Spawn:
+		LAUN A -1
+		Stop
+	}
+}
+
+Actor MissileAmmo : Ammo
+{
+	Inventory.Amount 15
+	Inventory.MaxAmount 15
+}
+
+Actor HeavyMissile
+{
+	PROJECTILE
+	-RANDOMIZE
+	
+	Radius 11
+	Height 8
+	Speed 26
+	Damage (100)
+	
+	DeathSound "weapons/rocklx"
+	DamageType "Explosion"
+	Decal "Scorch"
+	
+	States
+	{
+	Death:
+		NULL A 0 //A_SpawnItemEx("FlameDecay", frandom(-16, 16), frandom(-16, 16), 4,  0, 0, 0,  0, 0, 160)
+		NULL A 0 A_StopSound(CHAN_BODY)
+		NULL A 0 A_Explode(190, 256)
+		NULL A 0 A_SpawnItemEx("HeavyMissileQuake")
+		TNT1 A 5 A_SpawnItemEx("Explosion")
+		Stop
+	}
+}
+
+Actor HeavyMissileRed : HeavyMissile
+{
+	States
+	{
+	Spawn:
+		MISR A 2 BRIGHT
+	Fly:
+		NULL A 0 A_PlaySound("RCKTFLY", CHAN_BODY, 1.0, true)
+		MISR A 1 BRIGHT A_SpawnItemEx("HeavyMissileSmoke", -16)
+		Loop
+	}
+}
+
+Actor HeavyMissileBlue : HeavyMissile
+{
+	States
+	{
+	Spawn:
+		MISB A 2 BRIGHT
+	Fly:
+		NULL A 0 A_PlaySound("RCKTFLY", CHAN_BODY, 1.0, true)
+		MISB A 1 BRIGHT A_SpawnItemEx("HeavyMissileSmoke", -16)
+		Loop
+	}
+}
+
+Actor HeavyHomingMissile : HeavyMissile
+{
+	+SEEKERMISSILE
+	Obituary "%o was found by %k's seeker missile."
+	
+	States
+	{
+	Death:
+		NULL A 0 A_StopSound(CHAN_ITEM)
+		Goto Super::Death
+	}
+}
+
+Actor HeavyHomingMissileRed : HeavyHomingMissile
+{
+	States
+	{
+	Spawn:
+		MISR A 2 BRIGHT
+		NULL A 0 A_PlaySound("SEEKBEEP", CHAN_ITEM, 1.0, true)
+		NULL A 0 A_PlaySound("RCKTFLY", CHAN_BODY, 1.0, true)
+	Fly:
+		NULL A 0 A_SpawnItemEx("HeavyMissileSmoke", -16)
+		MISR A 2 BRIGHT A_SeekerMissile(4, 10)
+		Loop
+	}
+}
+
+Actor HeavyHomingMissileBlue : HeavyHomingMissile
+{
+	States
+	{
+	Spawn:
+		MISB A 2 BRIGHT
+		NULL A 0 A_PlaySound("SEEKBEEP", CHAN_ITEM, 1.0, true)
+		NULL A 0 A_PlaySound("RCKTFLY", CHAN_BODY, 1.0, true)
+	Fly:
+		NULL A 0 A_SpawnItemEx("HeavyMissileSmoke", -16)
+		MISB A 2 BRIGHT A_SeekerMissile(4, 10)
+		Loop
+	}
+}
+
+Actor HeavyMissileQuake : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		TNT1 A 5 Radius_Quake(5, 5, 0, 7, 0)
+		TNT1 A 4 Radius_Quake(4, 4, 0, 7, 0)
+		TNT1 A 3 Radius_Quake(3, 3, 0, 7, 0)
+		TNT1 A 2 Radius_Quake(2, 2, 0, 7, 0)
+		TNT1 A 1 Radius_Quake(1, 1, 0, 7, 0)
+		Stop
+	}
+}
+
+Actor HeavyMissileSmoke : Effect
+{
+	Alpha 0.6
+	Scale 0.2
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4")
+	Spawn1:
+		SMOK A 1 A_FadeOut
+		Loop
+	Spawn2:
+		SMOK B 1 A_FadeOut
+		Loop
+	Spawn3:
+		SMOK C 1 A_FadeOut
+		Loop
+	Spawn4:
+		SMOK D 1 A_FadeOut
+		Loop
+	}
+}
