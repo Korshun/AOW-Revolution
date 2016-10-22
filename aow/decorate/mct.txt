@@ -9,6 +9,8 @@ Actor MasterControlTerminal 21100
 	+SHOOTABLE
 	+NOBLOOD
 	
+	DamageFactor "Disarm", 0
+	
 	States
 	{
 	Spawn:

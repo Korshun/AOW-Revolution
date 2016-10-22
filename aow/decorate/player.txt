@@ -14,5 +14,5 @@ Actor AOWPlayer : DoomPlayer
 	Player.ForwardMove 0.875
 	Player.SideMove 0.875
 	
-	DamageFactor "Disarm", 0.0
+	DamageFactor "Disarm", 0
 }
