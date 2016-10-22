@@ -22,3 +22,15 @@ Actor FistPuff : AOWBulletPuff
 {
 	DamageType "Melee"
 }
+
+Actor ExplosiveBulletPuff
+{
+	DamageType "Explosion"
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_SpawnItemEx("ExplosionTiny", 0, 0, 0,  0, 0, 0,  0, SXF_NOCHECKPOSITION)
+		Stop
+	}
+}

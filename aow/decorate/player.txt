@@ -5,7 +5,7 @@ Actor AOWPlayer : DoomPlayer
 	Player.WeaponSlot 1, "Unarmed", "EagerBeaver"
 	Player.WeaponSlot 2, "Handgun", "Rifle"
 	Player.WeaponSlot 3, "Boomstick", "DoubleShotgun"
-	Player.WeaponSlot 4, "SMG"
+	Player.WeaponSlot 4, "SMG", "GatlingGun"
 	Player.WeaponSlot 5, "MissileLauncher"
 	Player.WeaponSlot 6, "Flamer"
 	Player.WeaponSlot 8, "LaserRifle"

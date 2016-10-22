@@ -40,7 +40,7 @@ flickerlight ExplosionLarge
 	Chance 0.45
 }
 
-flickerlight ExplosionSmall
+flickerlight ExplosionTiny
 {
 	Color 1.0 0.7 0.0
 	Size 20
