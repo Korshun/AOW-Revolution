@@ -5,3 +5,5 @@ server int aowr_credflow = 4;
 user bool aow_fx_tracers = true;
 user bool aow_fx_puffs = true;
 user bool aow_fx_casings = true;
+user bool aow_fx_smoke = true;
+user bool aow_fx_explosions = true;
