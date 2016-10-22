@@ -1,0 +1,199 @@
+// Repair gun
+Actor RepairGunBase : AOWWeapon
+{
+	Weapon.PreferredSkin "MarineBackpack"
+	Weapon.Kickback 0
+
+	Weapon.AmmoUse 0
+	Weapon.AmmoGive 0
+	//DropItem "EngineerPack"
+
+	AttackSound "repairgun/fire"
+}
+
+Actor RepairGunUpgrade : Boolean {}
+
+Actor RepairGun : RepairGunBase
+{
+	Tag "Repair Gun"
+	Inventory.PickupMessage "Repair Gun"
+	Obituary "%o was repaired to death by %k."
+	
+	States
+	{
+	Ready:
+		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "ReadyEnhanced")
+	ReadyNormal:
+		REP1 A 1 A_WeaponReady
+		Loop
+	ReadyEnhanced:
+		REP2 A 1 A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "DeselectEnhanced")
+	DeselectNormal:
+		REP1 A 1 A_Lower
+		Wait
+	DeselectEnhanced:
+		REP2 A 1 A_Lower
+		Wait
+	Select:
+		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "SelectEnhanced")
+	SelectNormal:
+		REP1 A 1 A_Raise
+		Wait
+	SelectEnhanced:
+		REP2 A 1 A_Raise
+		Wait
+	Fire:
+		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "FireEnhanced")
+	FireNormal:
+		REP1 C 2
+		REP1 B 2 BRIGHT A_FireBullets(0, 0, 1, 2, "RepairPuff", 0, 800)
+		REP1 C 2 A_Refire
+		Goto Ready
+	FireEnhanced:
+		REP2 C 1
+		REP2 B 1 BRIGHT A_FireBullets(0, 0, 1, 1, "EnhancedRepairPuff", 0, 800)
+		REP2 A 2 A_Refire
+		Goto Ready
+	AltFire:
+		NULL A 0 A_JumpIfTargetInLOS("Fire")
+		Goto Ready
+	}
+}
+
+Actor HealGun : RepairGunBase
+{
+	Tag "Heal Gun"
+	Inventory.PickupMessage "Heal Gun"
+	Obituary "%o was healed to death by %k."
+
+	States
+	{
+	Spawn:
+		NULL A 0
+		Stop
+	Ready:
+		REP4 A 1 A_WeaponReady
+		Loop
+	Deselect:
+		REP4 A 1 A_Lower
+		Loop
+	Select:
+		REP4 A 1 A_Raise
+		Loop
+	Fire:
+		REP4 C 2
+		REP4 B 2 BRIGHT A_FireBullets(0, 0, 1, 0, "HealPuff", 0, 800)
+		REP4 C 2 A_Refire
+		Goto Ready
+	AltFire:
+		NULL A 0 A_JumpIfTargetInLOS("Fire")
+		Goto Ready
+	}
+}
+
+Actor BombSquadGun : RepairGun
+{
+	Tag "Bomb-Squad Gun"
+	Inventory.PickupMessage "Bomb-Squad Gun"
+	Obituary "%o was disarmed by %k."
+
+	States
+	{
+	Ready:
+		REP3 A 1 A_WeaponReady
+		Loop
+	Deselect:
+		REP3 A 1 A_Lower
+		Loop
+	Select:
+		REP3 A 1 A_Raise
+		Loop
+	Fire:
+		REP3 C 2
+		REP3 B 2 BRIGHT A_FireBullets(2.0, 2.0, 1, 6, "DisarmPuff", 0, 500)
+		REP3 C 2 A_Refire
+		Goto Ready
+	}
+}
+
+Actor RepairGunPuffBase
+{
+	+NOINTERACTION
+	+PUFFONACTORS
+	+BLOODLESSIMPACT
+	+FORCEXYBILLBOARD
+	+ALWAYSPUFF
+	+THRUGHOST
+	+PUFFGETSOWNER
+	+NODAMAGETHRUST
+
+	RenderStyle Add
+	Alpha 0.5
+	Scale 0.25
+}
+
+Actor RepairPuff : RepairGunPuffBase
+{
+	DamageType "Disarm"
+	
+	States
+	{
+	Spawn:
+		RPF1 AA 1 A_Explode(9, 64)
+		RPF1 BC 2 BRIGHT
+	Melee:
+		RPF1 DEF 2 BRIGHT
+		Stop
+	}
+}
+
+Actor EnhancedRepairPuff : RepairGunPuffBase
+{
+	DamageType "Disarm"
+
+	Translation "112:127=250:254"
+	
+	States
+	{
+	Spawn:
+		RPF2 AA 1 A_Explode(7, 64)
+		RPF2 BC 2 BRIGHT
+	Melee:
+		RPF2 DEF 2 BRIGHT
+		Stop
+	}
+}
+
+Actor DisarmPuff : RepairGunPuffBase
+{
+	DamageType "Disarm"
+	
+	Translation "112:127=160:167"
+	
+	States
+	{
+	Spawn:
+		RPF2 AA 1 A_Explode(9, 64)
+		RPF2 BC 2 BRIGHT
+	Melee:
+		RPF2 DEF 2 BRIGHT
+		Stop
+	}
+}
+
+Actor HealPuff : RepairGunPuffBase
+{
+	Translation "112:127=174:189"
+	
+	States
+	{
+	Spawn:
+		RPF2 ABC 2 BRIGHT
+		Goto Melee
+	}
+}
+
+
