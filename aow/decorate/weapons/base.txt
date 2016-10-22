@@ -18,3 +18,5 @@ Actor AOWWeapon : Weapon
 		Stop
 	}
 }
+
+Actor IsZoomed : Boolean {}

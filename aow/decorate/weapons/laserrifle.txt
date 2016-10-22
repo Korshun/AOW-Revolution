@@ -93,35 +93,3 @@ Actor LaserRifleAmmo : Ammo
 	Inventory.Amount 20
 	Inventory.MaxAmount 200
 }
-
-Actor LaserPuff : AOWBulletPuff
-{
-	-ALLOWPARTICLES
-	+PUFFONACTORS
-	
-	DamageType "Laser"
-	
-	RenderStyle Add
-	Scale 0.5
-	Alpha 0.75
-	VSpeed 0
-	
-	States
-	{
-	Spawn:
-	Melee:
-	Crash:
-		VOLX ABCDEFEDCBA 2 BRIGHT
-		Stop
-	}
-}
-
-Actor LaserPuffRed : LaserPuff
-{
-	Translation "192:207=169:189", "240:246=45:47", "80:111=169:189"
-}
-
-Actor LaserPuffBlue : LaserPuff
-{
-
-}

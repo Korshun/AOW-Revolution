@@ -1,0 +1,117 @@
+Actor LaserChaingun : AOWWeapon
+{
+	Tag "Laser Chaingun"
+	Inventory.PickupMessage "Laser Chaingun"
+	Obituary "%o was incinerated by %k's laser chaingun."
+	Weapon.PreferredSkin "MarineMinigun"
+
+	Weapon.Kickback 100
+	
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 50
+	Weapon.AmmoType "LaserChaingunAmmo"
+	Inventory.RespawnTics 2100
+	
+	Weapon.UpSound "LCGUP"
+	AttackSound "LCGFIRE"
+	
+	States
+	{
+	Ready:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "ReadyRed")
+	ReadyBlue:
+		LCGB A 1 A_WeaponReady
+		Loop
+	ReadyRed:
+		LCGR A 1 A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_JumpIfInventory("IsZoomed", 1, "ZoomOut")
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
+	DeselectBlue:
+		LCGB A 1 A_Lower
+		Wait
+	DeselectRed:
+		LCGR A 1 A_Lower
+		Wait
+	Select:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "SelectRed")
+	SelectBlue:
+		LCGB A 1 A_Raise
+		Wait
+	SelectRed:
+		LCGR A 1 A_Raise
+		Wait
+	Fire:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "FireRed")
+	FireBlue:
+		LCGB A 2 offset(1, 29) A_CheckReload
+		NULL A 0 A_GunFlash
+		NULL A 0 A_FireBullets(1.0, 1.0, -1, 8, "LaserPuffBlue", FBF_USEAMMO | FBF_NORANDOM, 4000)
+		LCGB B 1 offset(2, 30) BRIGHT
+		
+		LCGB C 2 A_CheckReload
+		NULL A 0 A_GunFlash
+		NULL A 0 A_FireBullets(1.0, 1.0, -1, 8, "LaserPuffBlue", FBF_NORANDOM, 4000)
+		LCGB A 1 offset(1, 31) BRIGHT A_RailAttack(0, 4.8, true, none, "11 11 FF", RGF_SILENT | RGF_FULLBRIGHT, 0.0, "LaserPuffRed")
+		
+		LCGB B 2 offset(0, 30) A_CheckReload
+		NULL A 0 A_GunFlash
+		NULL A 0 A_FireBullets(1.0, 1.0, -1, 8, "LaserPuffBlue", FBF_USEAMMO | FBF_NORANDOM, 4000)
+		LCGB C 1 BRIGHT
+		
+		NULL A 0 A_ReFire
+		LCGB ABCABC 2
+		Goto Ready
+	FireRed:
+		LCGR A 2 offset(1, 29) A_CheckReload
+		NULL A 0 A_GunFlash
+		NULL A 0 A_FireBullets(1.0, 1.0, -1, 8, "LaserPuffRed", FBF_USEAMMO | FBF_NORANDOM, 4000)
+		LCGR B 1 offset(2, 30) BRIGHT
+		
+		LCGR C 2 A_CheckReload
+		NULL A 0 A_GunFlash
+		NULL A 0 A_FireBullets(1.0, 1.0, -1, 8, "LaserPuffRed", FBF_NORANDOM, 4000)
+		LCGR A 1 offset(1, 31) BRIGHT A_RailAttack(0, 4.8, true, none, "FF 11 11", RGF_SILENT | RGF_FULLBRIGHT, 0.0, "LaserPuffBlue")
+		
+		LCGR B 2 offset(0, 30) A_CheckReload
+		NULL A 0 A_GunFlash
+		NULL A 0 A_FireBullets(1.0, 1.0, -1, 8, "LaserPuffRed", FBF_USEAMMO | FBF_NORANDOM, 4000)
+		LCGR C 1 BRIGHT
+		
+		NULL A 0 A_ReFire
+		LCGR ABCABC 2
+		Goto Ready
+	AltFire:
+		NULL A 0 A_JumpIfInventory("IsZoomed", 1, "ZoomOut")
+	ZoomIn:
+		NULL A 0 A_GiveInventory("IsZoomed", 1)
+		NULL A 0 A_ZoomFactor(2.5)
+		Goto ZoomAnimation
+	ZoomOut:
+		NULL A 0 A_TakeInventory("IsZoomed", 1)
+		NULL A 0 A_ZoomFactor(1.0)
+		Goto ZoomAnimation
+	ZoomAnimation:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "ZoomRed")
+	ZoomBlue:
+		LCGB A 18
+		Goto Ready
+	ZoomRed:
+		LCGR A 18
+		Goto Ready
+	Flash:
+		TNT1 A 2 A_Light2
+		TNT1 A 1 A_Light1
+		Goto LightDone
+	Spawn:
+		LSCL X -1
+		Stop
+	}
+}
+
+Actor LaserChaingunAmmo : Ammo
+{
+	Inventory.Amount 50
+	Inventory.MaxAmount 400
+}
