@@ -1,0 +1,25 @@
+21100 MasterControlTerminal
+
+21041 Handgun
+21042 Rifle
+21043 SMG
+
+21045 GatlingGun
+
+21047 Flamer
+
+21049 GaussRifle : AOWWeapon replaces Railgun 
+
+21080 Boomstick
+21081 SniperRifleWeak
+
+21085 EagerBeaver
+21086 DoubleShotgun
+
+21213 BlueObeliskEye
+21214 RedObeliskEye
+
+21412 Credits1
+21413 Credits20
+21414 Credits40
+21415 Credits75
