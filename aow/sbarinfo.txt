@@ -18,9 +18,11 @@ statusbar fullscreen, forcescaled, fullscreenoffsets {
 	}
 	
 	drawnumber 4, INDEXFONT, White, health, 52, -13, 0;
-	IsSelected Not "SMG", "GatlingGun" {
+	IsSelected Not "SMG" { 
+	IsSelected Not "GatlingGun" { 
+	IsSelected Not "GaussRifle" {
 	drawnumber 3, INDEXFONT, White, ammo2, -17, -13, 0;
-	}
+	}}}
 	drawnumber 3, INDEXFONT, White, ammo1, -45, -13, 0;
 
 	DrawSelectedInventory alwaysshowcounter, INDEXFONT, -85, -25, -87, -13, White, 0;

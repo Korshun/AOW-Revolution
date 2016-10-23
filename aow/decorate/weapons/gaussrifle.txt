@@ -1,0 +1,186 @@
+Actor GaussRifle : AOWWeapon replaces Railgun 21049
+{
+    Tag "Gauss Rifle"
+	Inventory.PickupMessage "Gauss Rifle"
+	Obituary "%o got %p torso busted by %k's gauss rifle."
+	Weapon.PreferredSkin "MarineRailgun"
+
+	Weapon.Kickback 50
+	
+	Weapon.AmmoUse 1
+	Weapon.AmmoUse2 2
+	Weapon.AmmoGive 4
+	Weapon.AmmoType "GaussRifleAmmo"
+	Weapon.AmmoType2 "GaussRifleAmmo"
+	
+	Weapon.UpSound "GAUSUP"
+	AttackSound "GAUSFIRE"
+	Decal "GaussScorch"
+	
+	States
+	{
+	Ready:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "ReadyRed")
+	ReadyBlue:
+		GAUB E 28 A_WeaponReady
+		GAUB ABCD 2 BRIGHT A_WeaponReady
+		Loop
+	ReadyRed:
+		GAUS E 28 A_WeaponReady
+		GAUS ABCD 2 BRIGHT A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
+	DeselectBlue:
+		GAUB E 1 A_Lower
+		Wait
+	DeselectRed:
+		GAUS E 1 A_Lower
+		Wait
+	Select:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "SelectRed")
+	SelectBlue:
+		GAUB E 1 A_Raise
+		Wait
+	SelectRed:
+		GAUS E 1 A_Raise
+		Wait
+	Fire:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "FireRed")
+	FireBlue:
+		GAUB E 3
+		GAUB I 1 A_Light1
+		NULL A 0 A_FireBullets(0, 0, 1, 0, "GaussPuffBlue", 0)
+		NULL A 0 A_RailAttack(50, 4, true, "22 22 FF", " 00 30 99", RGF_SILENT | RGF_FULLBRIGHT, 0, "GaussPuffBlue")
+		GAUB I 1 offset(0, 33) A_Light1
+		GAUB J 1 offset(1, 34) A_Light2
+		GAUB J 1 offset(2, 36) A_Light2
+		GAUB J 1 offset(4, 40) A_Light2
+		NULL A 0 A_Light0
+		NULL A 0 A_CheckReload
+		GAUB H 1 offset(5, 41)
+		GAUB H 1 offset(4, 40)
+		GAUB D 1 offset(3, 38)
+		GAUB D 1 offset(2, 36)
+		GAUB E 1 offset(1, 34)
+		GAUB E 1 offset(0, 33)
+		GAUB EEEEEE 1
+		GAUB ABCD 2 A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 8)
+		GAUB E 3
+		GAUB EEEE 2
+		Goto Ready
+	FireRed:
+		GAUS E 3
+		GAUS I 1 A_Light1
+		NULL A 0 A_FireBullets(0, 0, 1, 0, "GaussPuffRed", 0)
+		NULL A 0 A_RailAttack(50, 4, true, "FF 00 00", "99 00 00", RGF_SILENT | RGF_FULLBRIGHT, 0, "GaussPuff")
+		GAUS I 1 offset(0, 33) A_Light1
+		GAUS J 1 offset(1, 34) A_Light2
+		GAUS J 1 offset(2, 36) A_Light2
+		GAUS J 1 offset(4, 40) A_Light2
+		NULL A 0 A_Light0
+		NULL A 0 A_CheckReload
+		GAUS H 1 offset(5, 41)
+		GAUS H 1 offset(4, 40)
+		GAUS D 1 offset(3, 38)
+		GAUS D 1 offset(2, 36)
+		GAUS E 1 offset(1, 34)
+		GAUS E 1 offset(0, 33)
+		GAUS EEEEEE 1
+		GAUS ABCD 2 A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 8)
+		GAUS E 3
+		GAUS EEEE 2
+		Goto Ready
+	AltFire:
+		NULL A 0 A_PlaySound("GAUSCHRG", CHAN_WEAPON)
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "AltFireRed")
+	AltFireBlue:
+		GAUB EFGH 2
+		GAUB I 1 A_Light1
+		NULL A 0 A_FireBullets(0, 0, 1, 0, "ExplosiveBigPuff", 0)
+		NULL A 0 A_RailAttack(100, 4, true, "11 11 88", white, RGF_SILENT | RGF_FULLBRIGHT, 0, "ExplosiveBigPuff")
+		GAUB J 1 offset(1, 34) A_Light1
+		GAUB J 1 offset(2, 36) A_Light2
+		GAUB H 1 offset(4, 40) A_Light2
+		GAUB H 1 offset(8, 48) A_Light2
+		NULL A 0 A_Light0
+		NULL A 0 A_CheckReload
+		GAUB D 1 offset(10, 52)
+		GAUB D 1 offset(8, 48)
+		GAUB D 1 offset(6, 44)
+		GAUB E 1 offset(4, 40)
+		GAUB E 1 offset(2, 36)
+		GAUB E 1 offset(0, 33)
+		GAUB E 8
+		GAUB ABCD 2 A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 8)
+		GAUB EEEABCD 2
+		GAUB EEE 2
+		Goto Ready
+	AltFireRed:
+		GAUS EFGH 2
+		GAUS I 1 A_Light1
+		NULL A 0 A_FireBullets(0, 0, 1, 0, "ExplosiveBigPuff", 0)
+		NULL A 0 A_RailAttack(100, 4, true, "AA 00 00", "FF FF FF", RGF_SILENT | RGF_FULLBRIGHT, 0, "ExplosiveBigPuff")
+		GAUS J 1 offset(1, 34) A_Light1
+		GAUS J 1 offset(2, 36) A_Light2
+		GAUS H 1 offset(4, 40) A_Light2
+		GAUS H 1 offset(8, 48) A_Light2
+		NULL A 0 A_Light0
+		NULL A 0 A_CheckReload
+		GAUS D 1 offset(10, 52)
+		GAUS D 1 offset(8, 48)
+		GAUS E 1 offset(6, 44)
+		GAUS E 1 offset(4, 40)
+		GAUS E 1 offset(2, 36)
+		GAUS E 1 offset(0, 33)
+		GAUS E 8
+		GAUS ABCD 2 A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 8)
+		GAUS EEEABCD 2
+		GAUS EEE 2
+		Goto Ready
+	Spawn:
+		GAUS X -1
+		Stop
+	}
+}
+
+Actor GaussRifleAmmo : Ammo
+{
+	Inventory.amount 5
+	Inventory.MaxAmount 40
+	Ammo.BackpackAmount 5
+	Ammo.BackpackMaxAmount 40
+}
+
+Actor GaussPuff : AOWBulletPuff
+{	
+	DamageType "Laser"
+	
+	-ALLOWPARTICLES
+	+PUFFONACTORS
+	
+	Translation "192:207=169:189", "240:246=45:47", "80:111=169:189"
+	RenderStyle Add
+	Alpha 0.75
+	VSpeed 0
+	
+	States
+	{
+	Spawn:
+	Melee:
+	Crash:
+		VOLX ABCDEFEDCBA 3 BRIGHT
+		Stop
+	}  
+}
+
+Actor GaussPuffRed : GaussPuff
+{
+}
+
+Actor GaussPuffBlue : GaussPuff
+{
+	DamageType "Laser"
+	Translation "0:255=0:255"
+}
+

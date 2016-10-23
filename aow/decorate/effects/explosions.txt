@@ -97,6 +97,31 @@ Actor ExplosionLarge : Explosion
 	}
 }
 
+Actor ExploSmall1 : ExplosionSprite {Scale 2.0}
+Actor ExploSmall2 : ExplosionSprite {Scale 1.5}
+Actor ExploSmall3 : ExplosionSprite {Scale 1.0}
+Actor ExploSmall4 : ExplosionSprite {Scale 0.5}
+
+Actor ExplosionSmall : Effect
+{
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_EXPLOSIONS) == 0, "Simple")
+		TNT1 AA 1 Light(ExplosionSmall) A_SpawnItemEx("ExploSmall1", 0.5*frandom(-16, 16), 0.5*frandom(-16, 16), 0.5*frandom(-16, 16),  0, 0, 0,  0, SXF_NOCHECKPOSITION)
+		TNT1 AA 1 Light(ExplosionSmall) A_SpawnItemEx("ExploSmall2", 0, 0, 0,  0.5*frandom(-1.5, 1.5),   0.5*frandom(-1.5, 1.5),   0.5*frandom(-1.5, 1.5),    frandom(0, 359), SXF_NOCHECKPOSITION)
+		TNT1 AA 1 Light(ExplosionSmall) A_SpawnItemEx("ExploSmall3", 0, 0, 0,  0.5*frandom(-0.75, 0.75), 0.5*frandom(-0.75, 0.75), 0.5*frandom(-0.75, 0.75),  frandom(0, 359), SXF_NOCHECKPOSITION)
+		TNT1 AA 1 Light(ExplosionSmall) A_SpawnItemEx("ExploSmall4", 0, 0, 0,  0.5*frandom(-0.35, 0.35), 0.5*frandom(-0.35, 0.35), 0.5*frandom(-0.35, 0.35),  frandom(0, 359), SXF_NOCHECKPOSITION)
+		TNT1 A 10 Light(ExplosionSmall)
+		Stop
+	Simple:
+		NULL A 0 A_SpawnItemEx("ExploSmall1", 0, 0, 0,  0, 0, 0,  0, SXF_NOCHECKPOSITION)
+		TNT1 A 18 Light(ExplosionSmall)
+		Stop
+	}
+}
+
 Actor ExploTiny1 : ExplosionSprite {Scale 1.0}
 Actor ExploTiny2 : ExplosionSprite {Scale 0.75}
 Actor ExploTiny3 : ExplosionSprite {Scale 0.5}
