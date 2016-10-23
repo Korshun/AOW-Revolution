@@ -8,7 +8,7 @@
 
 21047 Flamer
 
-21049 GaussRifle : AOWWeapon replaces Railgun 
+21049 GaussRifle
 
 21080 Boomstick
 21081 SniperRifleWeak
