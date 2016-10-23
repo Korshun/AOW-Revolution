@@ -50,12 +50,12 @@ Actor RepairGun : RepairGunBase
 		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "FireEnhanced")
 	FireNormal:
 		REP1 C 2
-		REP1 B 2 BRIGHT A_FireBullets(0, 0, 1, 2, "RepairPuff", 0, 800)
+		REP1 B 2 BRIGHT A_FireBullets(0, 0, 1, 4, "RepairPuff", FBF_NORANDOM, 800)
 		REP1 C 2 A_Refire
 		Goto Ready
 	FireEnhanced:
 		REP2 C 1
-		REP2 B 1 BRIGHT A_FireBullets(0, 0, 1, 1, "EnhancedRepairPuff", 0, 800)
+		REP2 B 1 BRIGHT A_FireBullets(0, 0, 1, 2, "EnhancedRepairPuff", FBF_NORANDOM, 800)
 		REP2 A 2 A_Refire
 		Goto Ready
 	AltFire:
@@ -86,7 +86,7 @@ Actor HealGun : RepairGunBase
 		Loop
 	Fire:
 		REP4 C 2
-		REP4 B 2 BRIGHT A_FireBullets(0, 0, 1, 0, "HealPuff", 0, 800)
+		REP4 B 2 BRIGHT A_FireBullets(0, 0, 1, 0, "HealPuff", FBF_NORANDOM, 800)
 		REP4 C 2 A_Refire
 		Goto Ready
 	AltFire:
@@ -114,7 +114,7 @@ Actor BombSquadGun : RepairGun
 		Loop
 	Fire:
 		REP3 C 2
-		REP3 B 2 BRIGHT A_FireBullets(2.0, 2.0, 1, 6, "DisarmPuff", 0, 500)
+		REP3 B 2 BRIGHT A_FireBullets(2.0, 2.0, 1, 12, "DisarmPuff", FBF_NORANDOM, 500)
 		REP3 C 2 A_Refire
 		Goto Ready
 	}
