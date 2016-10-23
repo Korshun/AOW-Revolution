@@ -1,0 +1,64 @@
+Actor BloodRevolver : AOWWeapon
+{
+	Tag "Blood Revolver"
+	Inventory.PickupMessage "Blood Revolver"
+	Obituary "%o was executed Western-style by %k."
+	Weapon.PreferredSkin "MarinePistol"
+
+	+WEAPON.NOAUTOFIRE
+	
+	Weapon.AmmoUse 1
+	Weapon.AmmoGive 3
+	Weapon.AmmoType "BloodRevolverAmmo"
+	DropItem "Handgun"
+	
+	Weapon.UpSound "REVOUP"
+	AttackSound "REVOFIRE"	
+	Decal "BFGLightning"
+
+	States
+	{
+	Ready:
+		REVO A 1 A_WeaponReady
+		Loop
+	Select:
+		REVO A 1 A_Raise
+		Wait
+	Deselect:
+		REVO A 1 A_Lower
+		Wait
+	Fire:
+		NULL A 0 A_FireBullets(0, 0, 1, 0, "RevolverPuff", FBF_NORANDOM)
+		NULL A 0 A_RailAttack(300, 0, true, none, none, RGF_SILENT, 0, "RevolverPuff")
+		REVF A 1 BRIGHT offset(0, 33)
+		REVF B 1 BRIGHT offset(0, 34)
+		REVF C 1 BRIGHT offset(0, 35)
+		REVF D 1 BRIGHT offset(0, 36)
+		REVO B 1 offset(0, 37)
+		REVO B 1 offset(0, 38)
+		REVO C 1 offset(0, 37)
+		REVO C 1 offset(0, 36)
+		REVO B 1 offset(0, 35)
+		REVO B 1 offset(0, 34)
+		REVO A 1 offset(0, 33)
+		REVO A 1 offset(0, 32)
+		REVO A 18
+		NULL A 0 A_JumpIfNoAmmo("TakeWeapon")
+		Goto Ready
+	TakeWeapon:
+		NULL A 0 A_TakeInventory("BloodRevolver", 1)
+        Goto Ready
+	}
+}
+
+actor BloodRevolverAmmo : Ammo 
+{
+	Inventory.Amount 1
+	Inventory.MaxAmount 3
+}
+
+actor RevolverPuff : AOWBulletPuff
+{
+	+ALWAYSPUFF
+	+PUFFONACTORS
+}

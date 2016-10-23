@@ -23,6 +23,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/weapons/fists.txt"
 #include "decorate/weapons/chainsaw.txt"
 #include "decorate/weapons/pistol.txt"
+#include "decorate/weapons/bloodrevolver.txt"
 #include "decorate/weapons/rifle.txt"
 #include "decorate/weapons/sniperrifle.txt"
 #include "decorate/weapons/shotgun.txt"

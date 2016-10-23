@@ -10,3 +10,10 @@ script aow_isopengl (void)
 {
 	SetResultValue(IsOpenGL());
 }
+
+script aow_bloodrevolver DEATH
+{
+	SetActivatorToTarget(0);
+	if (CheckWeapon("BloodRevolver"))
+		GiveInventory("BloodRevolverAmmo", 1);
+}
