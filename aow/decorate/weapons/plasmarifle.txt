@@ -132,6 +132,7 @@ Actor PlasmaShot
 {
 	PROJECTILE
 	-RANDOMIZE
+	+FORCEXYBILLBOARD
 	
 	Radius 12
 	Height 8
