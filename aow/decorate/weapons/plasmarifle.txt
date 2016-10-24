@@ -12,6 +12,8 @@ Actor PlasmaGun : AOWWeapon replaces PlasmaRifle 21087
 	Weapon.AmmoType "PlasmaRifleAmmo"
 	Weapon.AmmoType2 "PlasmaRifleHeat"
 	
+	Weapon.UpSound "PLRFUP"
+	
 	States
 	{
 	Ready: 
