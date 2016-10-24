@@ -1,3 +1,11 @@
 //ZDOOMVER: Move this to gameinfo when Zandronum 3.0 comes out
 ClearPlayerClasses
 AddPlayerClass AOWPlayer
+
+addkeysection "All out War" AOW
+
+//ZDOOMVER: Use built-in reload in Zandronum 3.0
+alias +aow_reload "use AOWReloadGiver"
+alias -aow_reload "use AOWReloadTaker"
+addmenukey "Reload" +aow_reload
+defaultbind R +aow_reload
