@@ -1,5 +1,3 @@
-21100 MasterControlTerminal
-
 21041 Handgun
 21042 Rifle
 21043 SMG
@@ -15,6 +13,9 @@
 
 21085 EagerBeaver
 21086 DoubleShotgun
+21087 PlasmaGun
+
+21100 MasterControlTerminal
 
 21213 BlueObeliskEye
 21214 RedObeliskEye
