@@ -25,6 +25,9 @@ Actor AssaultRifle : AOWWeapon 21044
 	Weapon.AmmoType "AssaultRifleAmmoClip"
 	Weapon.AmmoType2 "AssaultRifleAmmo"
 
+	Weapon.UpSound "AUTRUP"
+	AttackSound "AUTRFIRE"
+
 	States
 	{
 	Ready:
