@@ -16,6 +16,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/money.txt"
 #include "decorate/obelisk.txt"
 #include "decorate/player.txt"
+#include "decorate/reload.txt"
 #include "decorate/teams.txt"
 
 #include "decorate/weapons/base.txt"
@@ -36,3 +37,4 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/weapons/laserchaingun.txt"
 #include "decorate/weapons/gaussrifle.txt"
 #include "decorate/weapons/assaultrifle.txt"
+#include "decorate/weapons/plasmarifle.txt"

@@ -3,4 +3,7 @@ $volume  GATLFIRE 0.65
 $limit   GATLFIRE 0
 $rolloff GATLFIRE 350 1200
 $rolloff GATLLOOP 250 1500
-$rolloff SNIPCLOS 500 3000
+$rolloff SNIPFIRE 500 3000
+
+$limit 				weapons/rocklx	0
+$rolloff 			weapons/rocklx	500 2000

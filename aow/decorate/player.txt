@@ -9,7 +9,7 @@ Actor AOWPlayer : DoomPlayer
 	Player.WeaponSlot 4, "SMG", "AssaultRifle", "GatlingGun"
 	Player.WeaponSlot 5, "MissileLauncher"
 	Player.WeaponSlot 6, "Flamer"
-	Player.WeaponSlot 7, "LaserRifle", "LaserChaingun", "GaussRifle"
+	Player.WeaponSlot 7, "LaserRifle", "LaserChaingun", "GaussRifle", "PlasmaGun"
 
 	Player.ForwardMove 0.875
 	Player.SideMove 0.875

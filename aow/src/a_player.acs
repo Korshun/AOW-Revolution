@@ -44,4 +44,6 @@ function void InitPlayer()
 	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
 	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
+	GiveInventory("AOWReloadGiver", 1);
+	GiveInventory("AOWReloadTaker", 1);
 }	
