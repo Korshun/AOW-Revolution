@@ -1,0 +1,25 @@
+flickerlight LaserPuffRed
+{
+    color 1.0 0.0 0.0
+    size 6
+    secondarySize 8
+    chance 0.8
+}
+
+flickerlight LaserPuffBlue
+{
+    color 0.0 0.0 1.0
+    size 6
+    secondarySize 8
+    chance 0.8
+}
+
+object LaserPuffRed
+{
+    frame VOLX { light LaserPuffRed }
+}
+
+object LaserPuffBlue
+{
+    frame VOLX { light LaserPuffBlue }
+}

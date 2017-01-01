@@ -1,0 +1,51 @@
+flickerlight Explosion
+{
+	Color 1.0 0.7 0.0
+	Size 60
+	SecondarySize 68
+	Chance 0.45
+}
+
+flickerlight ExplosionLarge
+{
+	Color 1.0 0.7 0.0
+	Size 104
+	SecondarySize 112
+	Chance 0.45
+}
+
+Flickerlight ExplosionSmall
+{
+	Color 1.0 0.7 0.0
+	Size 28
+	SecondarySize 32
+	Chance 0.45
+}
+
+flickerlight ExplosionTiny
+{
+	Color 1.0 0.7 0.0
+	Size 20
+	SecondarySize 24
+	Chance 0.45
+}
+
+object Explosion
+{
+	frame TNT1 { light Explosion }
+}
+
+object ExplosionLarge
+{
+	frame TNT1 { light ExplosionLarge }
+}
+
+object ExplosionSmall
+{
+	frame TNT1 { light ExplosionSmall }
+}
+
+object ExplosionTiny
+{
+	frame TNT1 { light ExplosionTiny }
+}
