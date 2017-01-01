@@ -3,5 +3,5 @@
 #include "decorate/weapons/flamer.gl"
 #include "decorate/weapons/plasmarifle.gl"
 
-#include "decorate/bulletpuffs.gl"
 #include "decorate/obelisk.gl"
+#include "decorate/puffs.gl"
