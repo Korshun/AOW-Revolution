@@ -19,8 +19,8 @@ def exe(name):
 try:    
 	if call([python, 'tools/aowbuild.py']) != 0:
 		error('AOWBUILD FAILED')
-	if call([exe('bcc/bcc'), 'aow/src/aow.acs', 'aow/acs/aow.o']) != 0:
-		error('BCC FAILED')
+	if call([exe('gdcc/gdcc-acc'), 'aow/src/aow.acs', 'aow/acs/aow.o']) != 0:
+		error('GDCC-ACC FAILED')
 	if call([python, 'tools/acsinclude.py', 'aow/src/aow.acs', 'aow/src/aowmap.acs']) != 0:
 		error("ACSINCLUDE FAILED")
 	if call([python, 'tools/sndinfogen.py', 'aow']) != 0:

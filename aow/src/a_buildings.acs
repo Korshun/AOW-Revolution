@@ -28,7 +28,7 @@ function int BuildingOperational(int team, int type)
 }
 
 
-function void InitBuildings()
+function void InitBuildings(void)
 {
 	for (int team = 0; team < NUM_TEAMS; team++)
 	for (int type = 0; type < NUM_BUILDING_TYPES; type++)

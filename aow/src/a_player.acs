@@ -1,16 +1,16 @@
-struct Player
+struct AOWPlayer
 {
 	int money;
 };
 
-struct Player Players[MAX_PLAYERS];
+AOWPlayer Players[MAX_PLAYERS];
 
 function int PlayerTid(int player)
 {
 	return 1000 + player;
 }
 
-function int ConsolePlayerTid()
+function int ConsolePlayerTid(void)
 {
 	return PlayerTid(ConsolePlayerNumber());
 }
@@ -24,7 +24,7 @@ function int GetPlayerTeam(int player)
 	return TEAM_BLUE;
 }
 
-function int ConsolePlayerTeam()
+function int ConsolePlayerTeam(void)
 {
 	return GetPlayerTeam(ConsolePlayerNumber());
 }
@@ -39,7 +39,7 @@ script aow_respawn RESPAWN
 	InitPlayer();
 }
 
-function void InitPlayer()
+function void InitPlayer(void)
 {
 	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);

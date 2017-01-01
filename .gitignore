@@ -4,7 +4,8 @@ aow/src/scriptnumbers.acs
 aow/decorate/acsdefines.txt
 aow/sndinfo.sux
 bcc/*
-!bcc/README.txt
+gdcc/*
+!gdcc/README.txt
 tools/__pycache__/
 
 *.pk3
