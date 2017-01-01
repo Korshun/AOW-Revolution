@@ -13,7 +13,7 @@ function void SetPlayerMoney(int player, int money)
 	Players[player].money = max(0, money);
 }
 
-function int GiveMoney(int player, int money)
+function void GiveMoney(int player, int money)
 {
 	SetPlayerMoney(player, PlayerMoney(player) + money);
 }
