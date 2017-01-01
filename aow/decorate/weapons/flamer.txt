@@ -122,8 +122,8 @@ Actor FlamerFire
 	{
 	Spawn:
 		NULL A 0
-		FLMX BCDEFGHIJK 2 BRIGHT Light(FlamerFire) A_Explode(2, 128, 0)
-		FLMX LMNO 2 BRIGHT Light(FlamerFire) A_FadeOut(0.16)
+		FLMX BCDEFGHIJK 2 BRIGHT A_Explode(2, 128, 0)
+		FLMX LMNO 2 BRIGHT A_FadeOut(0.16)
 		Stop
 	Death:
 		NULL A 0 A_Explode(8, 128)
