@@ -4,6 +4,7 @@ Effect base - from scratch
 Bullet puff - Project MSX shotgun puff
 Casings - AOW r2539
 Explosions - AOW r2539
+Obelisk orb - realm667
 Smoke - AOW r2539
 Tracers - Complex Doom
 
@@ -30,6 +31,10 @@ SMG - AOW r2539
 Sniper Rifle - AOW r2539
 
 Weapon selection sounds - AOW 2.1
+
+Constructs:
+
+Sandbag wall - AOW r2539
 
 Items:
 
