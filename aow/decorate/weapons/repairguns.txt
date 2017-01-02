@@ -24,12 +24,11 @@ Actor RepairGun : RepairGunBase
 	{
 	Ready:
 		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "ReadyEnhanced")
-	ReadyNormal:
 		REP1 A 1 A_WeaponReady
 		Loop
 	ReadyEnhanced:
 		REP2 A 1 A_WeaponReady
-		Loop
+		Goto Ready
 	Deselect:
 		NULL A 0 A_JumpIfInventory("RepairGunUpgrade", 1, "DeselectEnhanced")
 	DeselectNormal:
