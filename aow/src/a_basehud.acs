@@ -60,7 +60,7 @@ function void AnnounceDestruction(int team, int type)
 	AmbientSound(StrParam(s:"destroyed/", s:TeamName(team)), 255);
 }
 
-function int DrawBaseHudSide(int team, int left)
+function void DrawBaseHudSide(int team, int left)
 {
 	int x = cond(left, HudLeft() + 3.0, HudRight() - 2.0 - 35.0);
 	int y = 320.0;
