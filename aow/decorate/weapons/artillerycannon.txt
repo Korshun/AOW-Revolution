@@ -266,12 +266,12 @@ Actor ArtilleryShell80mm : ArtilleryShell
 
 Actor ArtilleryShell80mmRed : ArtilleryShell80mm
 {
-	Translation "112:127=176:191"
+	Translation "80:111=104:111", "112:127=176:191"
 }
 
 Actor ArtilleryShell80mmBlue : ArtilleryShell80mm
 {
-	Translation "112:120=200:207", "121:127=241:247"
+	Translation "80:111=104:111", "112:120=200:207", "121:127=241:247"
 }
 
 
