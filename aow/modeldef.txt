@@ -7,3 +7,13 @@ Model Tracer
 	PITCHFROMMOMENTUM
 	FrameIndex RIC1 A 0 0
 }
+
+Model SandbagWall
+{
+   Path "models"
+   Model 0 "sandbag.md3"
+   Skin 0 "sandbag.png"
+   Scale 2.0 1.75 2.0
+
+   FrameIndex BAGG A 0 0
+}

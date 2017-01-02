@@ -10,6 +10,7 @@ Actor SandbagWall
 	Alpha 0.0
 	
 	+NOBLOOD
+	+ISMONSTER // Needed for A_RemoveChildren to work
 	
 	DamageFactor "Laser", 1.25
 	DamageFactor "Laser", 1.25
