@@ -1,0 +1,61 @@
+flickerlight RepBlue
+{
+	color 0.0 0.0 1.0
+	size 30
+	secondarySize 42
+	chance 0.25
+}
+
+flickerlight RepPurple
+{
+	color 0.75 0.0 0.75
+	size 30
+	secondarySize 42
+	chance 0.25
+}
+
+flickerlight RepRed
+{
+	color 1.0 0.0 0.0
+	size 30
+	secondarySize 42
+	chance 0.25
+}
+
+flickerlight RepYellow
+{
+	color 1.0 1.0 0.0
+	size 30
+	secondarySize 42
+	chance 0.25
+}
+
+flickerlight RepGreen
+{
+	color 0.1 1.0 0.0
+	size 30
+	secondarySize 42
+	chance 0.25
+}
+
+object RepairPuff
+{
+	frame RPF1 { light RepBlue }
+}
+
+object EnhancedRepairPuff
+{
+	frame RPF2 { light RepPurple }
+}
+
+object HealPuff
+{
+	frame RPF2 { light RepRed }
+}
+
+object DisarmPuff
+{
+	frame RPF2 { light RepYellow }
+}
+
+
