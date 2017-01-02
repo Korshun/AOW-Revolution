@@ -63,13 +63,25 @@ function void InitPlayerClientside(void)
 	ACS_ExecuteWithResult(aow_playerhud);
 }
 
+function bool ConsolePlayerInGame(void)
+{
+	if (!IsClient())
+	{
+		ProgramError("ConsolePlayerInGame() called serverside, returning false.");
+		return false;
+	}
+	
+	return PlayerInGame(ConsolePlayerNumber());
+}
+
 script aow_playerhud (void)
 {
 	int hid = NewHid();
 	Delay(10);
 	
-	while (IsAlive())
+	while (ConsolePlayerInGame())
 	{
+		print(d:GetActorHealth(0));
 		HudResetState();
 		HudSetStayTime(0.03);
 		HudSetTextOriginX(HUD_TEXTORIGIN_LEFT);
