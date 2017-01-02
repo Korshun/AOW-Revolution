@@ -45,3 +45,15 @@ graphic HUDRINTL, 235, 45
 	XScale 2.0 YScale 2.2
 	patch HUDRINTL, 0, 0
 }
+
+graphic HUDBFRG, 32, 32 
+{
+	XScale 3.5 YScale 3.5
+	patch HUDBFRG, 0, 0
+}
+
+graphic HUDRFRG, 32, 32 
+{
+	XScale 3.5 YScale 3.5
+	patch HUDRFRG, 0, 0
+}

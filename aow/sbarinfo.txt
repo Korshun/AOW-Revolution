@@ -17,6 +17,20 @@ statusbar fullscreen, forcescaled, fullscreenoffsets {
 		drawimage "HUDRINTL", 100, 0;
 	}
 	
+	// Frag Grenades
+	InInventory FragGrenadeAmmo 
+	{	
+		InInventory Not IsRed {
+			drawimage "HUDBFRG", -58, -29;	
+		}
+	
+		InInventory IsRed {
+			drawimage "HUDRFRG", -58, -29;
+		}	
+	
+	    drawnumber 1, INDEXFONT, White, ammo FragGrenadeAmmo, -45,  -27;			
+	}
+	
 	drawnumber 4, INDEXFONT, White, health, 52, -13, 0;
 	IsSelected Not "SMG" { 
 	IsSelected Not "GatlingGun" { 
