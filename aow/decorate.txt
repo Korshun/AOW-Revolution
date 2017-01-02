@@ -8,6 +8,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/effects/bulletpuffs.txt"
 #include "decorate/effects/casings.txt"
 #include "decorate/effects/explosions.txt"
+#include "decorate/effects/quake.txt"
 #include "decorate/effects/smoke.txt"
 #include "decorate/effects/tracers.txt"
 
@@ -32,6 +33,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/weapons/smg.txt"
 #include "decorate/weapons/gatlinggun.txt"
 #include "decorate/weapons/missilelauncher.txt"
+#include "decorate/weapons/artillerycannon.txt"
 #include "decorate/weapons/flamer.txt"
 #include "decorate/weapons/laserrifle.txt"
 #include "decorate/weapons/laserchaingun.txt"

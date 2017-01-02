@@ -9,6 +9,7 @@ Tracers - Complex Doom
 
 Weapons:
 
+Artillery Cannon - AOW r2539
 Assault Rifle - from scratch, based on AOW r2539 machinegun
 Blood Revolver - AOW 2.1
 Chainsaw - AOW r2539

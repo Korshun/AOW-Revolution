@@ -207,21 +207,6 @@ Actor HeavyHomingMissileBlue : HeavyHomingMissile
 	}
 }
 
-Actor HeavyMissileQuake : Effect
-{
-	States
-	{
-	Spawn:
-		NULL A 0
-		TNT1 A 5 Radius_Quake(5, 5, 0, 7, 0)
-		TNT1 A 4 Radius_Quake(4, 4, 0, 7, 0)
-		TNT1 A 3 Radius_Quake(3, 3, 0, 7, 0)
-		TNT1 A 2 Radius_Quake(2, 2, 0, 7, 0)
-		TNT1 A 1 Radius_Quake(1, 1, 0, 7, 0)
-		Stop
-	}
-}
-
 Actor HeavyMissileSmoke : Effect
 {
 	Alpha 0.6

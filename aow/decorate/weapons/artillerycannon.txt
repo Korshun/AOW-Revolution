@@ -1,0 +1,277 @@
+Actor ArtilleryCannonUpgrade : Boolean {}
+
+Actor ArtilleryCannon : AOWWeapon 21085
+{
+	Tag "Artillery Cannon"
+	Inventory.PickupMessage "Artillery Cannon"
+	Obituary "%o was demolished by %k's artillery cannon."
+	Weapon.PreferredSkin "MarineSRockets"
+
+	Weapon.AmmoUse 1
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive 10
+	Weapon.AmmoType "ArtilleryShellAmmo"
+	Weapon.AmmoType2 "ArtilleryShellAmmo"
+
+	Weapon.UpSound "MISLUP"
+
+	Scale 0.6
+	
+	States
+	{
+	Ready:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "ReadyRed")
+	ReadyBlue:
+		MASB A 1 A_WeaponReady
+		Loop
+	ReadyRed:
+		MASR A 1 A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "DeselectRed")
+	DeselectBlue:
+		MASB A 1 A_Lower
+		Loop
+	DeselectRed:
+		MASR A 1 A_Lower
+		Loop
+	Select:
+		NULL A 0 A_JumpIfInventory("IsRed", 1 ,"SelectRed")
+	SelectBlue:
+		MASB A 1 A_Raise
+		Loop
+	SelectRed:
+		MASR A 1 A_Raise
+		Loop
+	Fire:
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "FireRed")
+	FireBlue:
+		MASB A 1 A_PlayWeaponSound ("ARTIFIR")
+		MASB B 1 A_GunFlash
+		MASB B 2 BRIGHT A_FireCustomMissile("ArtilleryShell", 0, true, 8)
+		MASB C 1 bright offset (3, 35) A_Recoil(5)
+		MASB D 1 bright offset (6, 38) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB E 1 bright offset (9, 41)
+		MASB A 1 offset (12, 44) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (15, 47)
+		MASB A 1 offset (18, 50) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (15, 47)
+		MASB A 1 offset (12, 44) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (9, 41)
+		MASB A 1 offset (6, 38) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (3, 35)
+		MASB A 1 offset (0, 32) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		NULL A 0 A_JumpIfInventory("ArtilleryCannonUpgrade", 1, "FireEndFastBlue")
+		Goto FireEndSlowBlue	
+	FireRed:
+		MASR A 1 A_PlayWeaponSound ("ARTIFIR")
+		MASR B 1 A_GunFlash
+		MASR B 2 BRIGHT A_FireCustomMissile("ArtilleryShell", 0, true, 8)
+		MASR C 1 bright offset (3, 35) A_Recoil(5)
+		MASR D 1 bright offset (6, 38) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR E 1 bright offset (9, 41)
+		MASR A 1 offset (12, 44) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (15, 47)
+		MASR A 1 offset (18, 50) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (15, 47)
+		MASR A 1 offset (12, 44) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (9, 41)
+		MASR A 1 offset (6, 38) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (3, 35)
+		MASR A 1 offset (0, 32) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		NULL A 0 A_JumpIfInventory("ArtilleryCannonUpgrade", 1, "FireEndFastRed")
+		Goto FireEndSlowRed
+	FireEndSlowBlue:
+		MASB A 23
+		MASB A 10 A_PlaySound("ARTIRELO", 5)
+		MASB A 18 A_SpawnItemEx("ArtilleryCasing", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		Goto Ready
+	FireEndSlowRed:
+		MASR A 23
+		MASR A 10 A_PlaySound("ARTIRELO", 5)
+		MASR A 18 A_SpawnItemEx("ArtilleryCasing", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		Goto Ready
+	FireEndFastBlue:
+		MASB A 14
+		MASB A 7 A_PlaySound("ARTIRELO", 5)
+		MASB A 12 A_SpawnItemEx("ArtilleryCasing", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		Goto Ready
+	FireEndFastRed:
+		MASR A 14
+		MASR A 7 A_PlaySound("ARTIRELO", 5)
+		MASR A 12 A_SpawnItemEx("ArtilleryCasing", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		Goto Ready
+
+	AltFire:
+		NULL A 0 A_JumpIfInventory ("IsRed", 1, "AltFireRed")
+	AltFireBlue:
+		MASB B 1 A_PlayWeaponSound("ARTIFIR")
+		NULL A 0 A_GunFlash
+		MASB B 1 BRIGHT A_FireCustomMissile("ArtilleryShell80mm", 0, true, 8)
+		MASB C 1 bright offset (4, 36) A_Recoil(7)
+		MASB D 1 bright offset (8, 40) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB E 1 bright offset (12, 44)
+		MASB A 1 offset (16, 48) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (20, 52)
+		MASB A 1 offset (24, 56) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (20, 52)
+		MASB A 1 offset (16, 48) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (12, 44)
+		MASB A 1 offset (8, 40) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASB A 1 offset (4, 36)
+		MASB A 1 offset (0, 32) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		NULL A 0 A_JumpIfInventory("ArtilleryCannonUpgrade", 1, "AltFireEndFastBlue")
+		Goto AltFireEndSlowBlue
+	AltFireRed:
+		MASR B 1 A_PlayWeaponSound("ARTIFIR")
+		NULL A 0 A_GunFlash
+		MASR B 1 BRIGHT A_FireCustomMissile("ArtilleryShell80mm", 0, true, 8)
+		MASR C 1 bright offset (4, 36) A_Recoil(7)
+		MASR D 1 bright offset (8, 40) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR E 1 bright offset (12, 44)
+		MASR A 1 offset (16, 48) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (20, 52)
+		MASR A 1 offset (24, 56) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (20, 52)
+		MASR A 1 offset (16, 48) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (12, 44)
+		MASR A 1 offset (8, 40) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		MASR A 1 offset (4, 36)
+		MASR A 1 offset (0, 32) A_FireCustomMissile("OverheatSmokeSpawner", 0, false, 11, -2)
+		NULL A 0 A_JumpIfInventory("ArtilleryCannonUpgrade", 1, "AltFireEndFastRed")
+		Goto AltFireEndSlowRed
+	AltFireEndSlowBlue:
+		MASB A 44
+		MASB A 10 A_PlaySound("ARTIRELO", 5)
+		MASB A 18 A_SpawnItemEx("ArtilleryCasing80mm", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		Goto Ready
+	AltFireEndSlowRed:
+		MASR A 44
+		MASR A 10 A_PlaySound("ARTIRELO", 5)
+		MASR A 18 A_SpawnItemEx("ArtilleryCasing80mm", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		Goto Ready
+	AltFireEndFastBlue:
+		MASB A 36
+		MASB A 9 A_PlaySound("ARTIRELO", 5)
+		MASB A 12 A_SpawnItemEx("ArtilleryCasing80mm", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		NULL A 0 A_ReFire
+		Goto Ready
+	AltFireEndFastRed:
+		MASR A 36
+		MASR A 9 A_PlaySound("ARTIRELO", 5)
+		MASR A 12 A_SpawnItemEx("ArtilleryCasing80mm", 0, 8, 32, frandom(1, 3), frandom(0, 1), 0, frandom(45, 60))
+		NULL A 0 A_ReFire
+		Goto Ready
+	Flash:
+		TNT1 A 4 A_Light1
+		TNT1 A 3 A_Light2
+		Goto LightDone
+	Spawn:
+		MASD X -1
+		Stop
+	}
+}
+
+Actor ArtilleryShellAmmo : Ammo
+{
+	Inventory.Amount 2
+	Inventory.MaxAmount 30
+}
+
+
+Actor ArtilleryCasing : PistolCasing
+{
+	SeeSound "CASRIFL"
+	Scale 0.3
+}
+
+Actor ArtilleryCasing80mm : PistolCasing
+{
+	SeeSound "CASRIFL"
+	Scale 0.45
+}
+
+// Translation RANGES:
+// "112:127=176:191", - turns green strap to red for red team
+// "112:120=200:207", "121:127=241:247" - turns green strap to blue for blue team
+// "80:111=104:111" - makes the shell darker for anti-mech shells
+
+Actor ArtilleryShell
+{
+	Radius 11
+	Height 8
+	Speed 75
+	Damage (33)
+	DamageType "Artillery"
+
+	PROJECTILE
+	-NOGRAVITY
+	Gravity 0.05
+
+	Decal "Scorch"
+	Scale 0.6
+
+	DeathSound "ARTIEXP"
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_PlaySound("ARTIFLY", CHAN_BODY, 1.0, true)
+		SHRP AAAAA 1 BRIGHT A_SpawnItemEx("BaseSmoke", -25)
+		Loop
+	Death:
+		NULL A 0 A_NoGravity
+		NULL A 0 A_StopSound(CHAN_BODY)
+		NULL A 0 A_SpawnItemEx("Explosion")
+		NULL A 0 A_SpawnItemEx("HeavyMissileQuake")
+		TNT1 A 1 A_Explode(80, 184, XF_HURTSOURCE)
+		TNT1 A 4 A_Explode(95, 256, XF_HURTSOURCE)
+		Stop
+	}
+}
+
+Actor ArtilleryShellRed : ArtilleryShell
+{
+	Translation "112:127=176:191"
+}
+
+Actor ArtilleryShellBlue : ArtilleryShell
+{
+	Translation "112:120=200:207", "121:127=241:247"
+}
+
+
+Actor ArtilleryShell80mm : ArtilleryShell
+{
+	Speed 50
+	Damage (63)
+	DamageType "Explosion"
+	
+	Scale 0.74
+	Translation "80:111=104:111" 
+	
+	States
+	{
+	Death:
+		NULL A 0 A_NoGravity
+		NULL A 0 A_StopSound(CHAN_BODY)
+		NULL A 0 A_SpawnItemEx("Explosion")
+		NULL A 0 A_SpawnItemEx("HeavyMissileQuake")
+		TNT1 A 1 A_Explode(100, 224, XF_HURTSOURCE)
+		TNT1 A 5 A_Explode(110, 324, XF_HURTSOURCE)
+		Stop
+	}
+}
+
+Actor ArtilleryShell80mmRed : ArtilleryShell80mm
+{
+	Translation "112:127=176:191"
+}
+
+Actor ArtilleryShell80mmBlue : ArtilleryShell80mm
+{
+	Translation "112:120=200:207", "121:127=241:247"
+}
+
+
