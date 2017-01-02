@@ -28,6 +28,8 @@ Shotgun - AOW r2539
 SMG - AOW r2539
 Sniper Rifle - AOW r2539
 
+Weapon selection sounds - AOW 2.1
+
 Items:
 
 Credits - AOW r2539
@@ -36,4 +38,3 @@ Sounds:
 
 Announcer - AOW r2539
 Chat Sound - Quake 3
-Weapon selection sounds - AOW 2.1
