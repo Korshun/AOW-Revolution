@@ -81,7 +81,6 @@ script aow_playerhud (void)
 	
 	while (ConsolePlayerInGame())
 	{
-		print(d:GetActorHealth(0));
 		HudResetState();
 		HudSetStayTime(0.03);
 		HudSetTextOriginX(HUD_TEXTORIGIN_LEFT);
