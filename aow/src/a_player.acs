@@ -77,7 +77,6 @@ function bool ConsolePlayerInGame(void)
 script aow_playerhud (void)
 {
 	int hid = NewHid();
-	Delay(10);
 	
 	while (ConsolePlayerInGame())
 	{
