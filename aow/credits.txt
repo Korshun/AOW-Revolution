@@ -17,15 +17,18 @@ Chainsaw - AOW r2539
 Double Shotgun - AOW r2539
 Fists - AOW r2539
 Flamer - AOW 2.1
+Frag Grenades - AOW 2.1
 Gatling Gun - AOW r2539
 Gauss Rifle - AOW r2539
 Laser Chaingun - AOW r2539
 Laser Rifle - AOW r2539
 Missile Launcher - AOW r2539
 Pistol - AOW r2539
+Plasma Cannon - AOW r2539
 Plasma Rifle - AOW r2539
 Repair Guns - AOW r2539 and AOW 2.1
 Rifle - AOW r2539
+Shock Rifle - AOW r2539
 Shotgun - AOW r2539
 SMG - AOW r2539
 Sniper Rifle - AOW r2539
@@ -35,6 +38,7 @@ Weapon selection sounds - AOW 2.1
 Constructs:
 
 Sandbag wall - AOW r2539
+Utility step - AOW r2539
 
 Items:
 
@@ -44,3 +48,7 @@ Sounds:
 
 Announcer - AOW r2539
 Chat Sound - Quake 3
+
+Other:
+
+HUD (SBARINFO) - AOW 2.1
