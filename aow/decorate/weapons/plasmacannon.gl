@@ -1,0 +1,161 @@
+flickerlight PlasmaReds
+{
+	color 1.0 0.1 0.1
+	size 45
+	secondarySize 55
+	chance 0.30
+}
+
+flickerlight Plasma
+{
+	color 0.1 0.1 1.0
+	size 45
+	secondarySize 55
+	chance 0.30
+}
+
+Object PlasmaFlame
+{
+    frame PLCX { light Plasma }
+}
+
+pointlight PlasmaDebris1
+{
+    color 0.1 0.1 1.0
+    size 80
+}
+
+pointlight PlasmaBall1
+{
+    color 0.0 0.0 1.0
+    size 90
+}
+
+pointlight PlasmaBall2
+{
+    color 0.0 0.0 1.0
+    size 100
+}
+
+pointlight PlasmaBall3
+{
+    color 0.0 0.0 1.0
+    size 110
+}
+
+pointlight PlasmaBall4
+{
+    color 0.0 0.0 1.0
+    size 90
+}
+
+pointlight PlasmaBall5
+{
+    color 0.0 0.0 1.0
+    size 75
+}
+
+pointlight PlasmaBall1R
+{
+    color 1.0 0.0 0.0
+    size 90
+}
+
+pointlight PlasmaBall2R
+{
+    color 1.0 0.0 0.0
+    size 100
+}
+
+pointlight PlasmaBall3R
+{
+    color 1.0 0.0 0.0
+    size 110
+}
+
+pointlight PlasmaBall4R
+{
+    color 1.0 0.0 0.0
+    size 90
+}
+
+pointlight PlasmaBall5R
+{
+    color 1.0 0.0 0.0
+    size 75
+}
+
+Object PlasmaFlameDecayRed
+{
+    frame TNT1A { light PlasmaReds }
+}
+
+Object PlasmaFlameDecayBlue
+{
+    frame TNT1A { light Plasma }
+}
+
+Object PlasmaCannonBallRed
+{
+    frame PLS1A { light PlasmaBall1R }
+    frame PLS1B { light PlasmaBall2R }
+    frame PLS1C { light PlasmaBall3R }
+    frame PLS1D { light PlasmaBall2R }
+    frame PLS1E { light PlasmaBall4R }
+    frame PLS1F { light PlasmaBall5R }
+	frame PLE1A { light PlasmaBall1R }
+    frame PLE1B { light PlasmaBall2R }
+    frame PLE1C { light PlasmaBall3R }
+    frame PLE1D { light PlasmaBall2R }
+    frame PLE1E { light PlasmaBall4R }
+    frame PLE1F { light PlasmaBall5R }
+}
+
+Object PlasmaCannonBallBlue
+{
+    frame PLS1A { light PlasmaBall1 }
+    frame PLS1B { light PlasmaBall2 }
+    frame PLS1C { light PlasmaBall3 }
+    frame PLS1D { light PlasmaBall2 }
+    frame PLS1E { light PlasmaBall4 }
+    frame PLS1F { light PlasmaBall5 }
+	frame PLE1A { light PlasmaBall1 }
+    frame PLE1B { light PlasmaBall2 }
+    frame PLE1C { light PlasmaBall3 }
+    frame PLE1D { light PlasmaBall2 }
+    frame PLE1E { light PlasmaBall4 }
+    frame PLE1F { light PlasmaBall5 }
+}
+
+Object PlasmaCannonSmallBallRed
+{
+    frame PLS1A { light PlasmaBall1R }
+    frame PLS1B { light PlasmaBall2R }
+    frame PLS1C { light PlasmaBall3R }
+    frame PLS1D { light PlasmaBall2R }
+    frame PLS1E { light PlasmaBall4R }
+    frame PLS1F { light PlasmaBall5R }
+	frame PLE1A { light PlasmaBall1R }
+    frame PLE1B { light PlasmaBall2R }
+    frame PLE1C { light PlasmaBall3R }
+    frame PLE1D { light PlasmaBall2R }
+    frame PLE1E { light PlasmaBall4R }
+    frame PLE1F { light PlasmaBall5R }
+}
+
+
+Object PlasmaCannonSmallBallBlue
+{
+    frame PLS1A { light PlasmaBall1 }
+    frame PLS1B { light PlasmaBall2 }
+    frame PLS1C { light PlasmaBall3 }
+    frame PLS1D { light PlasmaBall2 }
+    frame PLS1E { light PlasmaBall4 }
+    frame PLS1F { light PlasmaBall5 }
+	frame PLE1A { light PlasmaBall1 }
+    frame PLE1B { light PlasmaBall2 }
+    frame PLE1C { light PlasmaBall3 }
+    frame PLE1D { light PlasmaBall2 }
+    frame PLE1E { light PlasmaBall4 }
+    frame PLE1F { light PlasmaBall5 }
+}

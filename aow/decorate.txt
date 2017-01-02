@@ -40,5 +40,6 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/weapons/gaussrifle.txt"
 #include "decorate/weapons/assaultrifle.txt"
 #include "decorate/weapons/plasmarifle.txt"
+#include "decorate/weapons/plasmacannon.txt"
 
 #include "decorate/constructs/sandbags.txt"
