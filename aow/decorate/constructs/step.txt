@@ -1,0 +1,46 @@
+Actor UtilityStep 
+{
+	Health 200
+	Radius 32
+	Height 14
+	Mass 0x7FFFFFFF
+	
+	+SHOOTABLE
+	+NOBLOOD
+	+SOLID
+	+NOGRAVITY
+	
+	Scale 0.25
+	RenderStyle Translucent
+	Alpha 0.0
+	
+	DamageFactor "RazorWireRed", 0.0
+	DamageFactor "RazorWireBlue", 0.0
+	DamageFactor "Disarm", 0.0
+	DamageFactor "Flash", 0.0
+	DamageFactor "Fist", 0.1
+	
+	States
+	{
+	Spawn:
+		USTP AAAAAAAAAA 3 A_FadeIn(0.1)
+		NULL A 0 A_SetTranslucent(1.0)
+		USTP A 35 
+		Goto Idle
+	Idle:
+		USTP A -1
+		Loop
+	Death:  
+		NULL A 0 
+		NULL A 0 A_NoBlocking
+		NULL A 0 A_SpawnItemEx("Explosion", 0, 0, 32)
+		NULL A 0 A_PlaySound("weapons/rocklx")
+		TNT1 A 1
+		Stop
+	Death.Deconstruction:
+		"----" A 0 A_NoBlocking
+		"----" A 2 //A_PlaySound("utility/deconstruct")
+		"----" AAAAAAAAAA 2 A_Fadeout(0.1) 
+		Stop
+	}
+}
