@@ -1,0 +1,46 @@
+//ZDOOMVER: Use built-in reload in Zandronum 3.0
+Actor AOWReload : Boolean {}
+
+Actor AOWReloadGiver : CustomInventory
+{
+	States
+	{
+	Use:
+		NULL A 0 A_GiveInventory("AOWReload")
+		Fail
+	}
+}
+
+Actor AOWReloadTaker : CustomInventory
+{
+	States
+	{
+	Use:
+		NULL A 0 A_TakeInventory("AOWReload")
+		Fail
+	}
+}
+
+
+//ZDOOMVER: Use built-in custom buttons in Zandronum 3.0
+Actor AOWGrenade : Boolean {}
+
+Actor AOWGrenadeGiver : CustomInventory
+{
+	States
+	{
+	Use:
+		NULL A 0 A_GiveInventory("AOWGrenade")
+		Fail
+	}
+}
+
+Actor AOWGrenadeTaker : CustomInventory
+{
+	States
+	{
+	Use:
+		NULL A 0 A_TakeInventory("AOWGrenade")
+		Fail
+	}
+}

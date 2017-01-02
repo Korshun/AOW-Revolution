@@ -9,3 +9,9 @@ alias +aow_reload "use AOWReloadGiver"
 alias -aow_reload "use AOWReloadTaker"
 addmenukey "Reload" +aow_reload
 defaultbind R +aow_reload
+
+//ZDOOMVER: Use built-in custom button in Zandronum 3.0
+alias +aow_grenade "use AOWGrenadeGiver"
+alias -aow_grenade "use AOWGrenadeTaker"
+addmenukey "Throw grenade" +aow_grenade
+defaultbind G +aow_grenade
