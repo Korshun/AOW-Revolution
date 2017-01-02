@@ -73,7 +73,8 @@ script aow_playerhud (void)
 		HudResetState();
 		HudSetStayTime(0.03);
 		HudSetTextOriginX(HUD_TEXTORIGIN_LEFT);
-		HudSetPoint(438.0, 392.0);
+		int xscale = FixedDiv(GetAspectRatio(), ASPECT_4_3);
+		HudSetPoint(HudRight() - 202 * xscale, HudBottom() - 88.0);
 		HudDrawText(hid, StrParam(s:"\cjCredits: \cd$", d:PlayerMoney(PlayerNumber())));
 		
 		Delay(1);
