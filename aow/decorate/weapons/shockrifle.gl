@@ -1,0 +1,12 @@
+flickerlight VOLTPUFF
+{
+	color 0.3 0.3 1.0
+	size 10
+	secondarySize 16
+	chance 0.25
+}
+
+Object VoltagePuff
+{
+    frame VOLX { light VOLTPUFF }
+}
