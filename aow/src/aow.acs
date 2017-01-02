@@ -38,7 +38,8 @@ function void ACSUtilsErrorHandler(int type, int message)
 
 function void AOWInit(void)
 {
-	AutoconfigureServer();
+	if (IsServer())
+		AutoconfigureServer();
 	InitBuildings();
 }
 
