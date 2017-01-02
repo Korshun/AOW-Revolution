@@ -21,6 +21,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/teams.txt"
 
 #include "decorate/weapons/base.txt"
+#include "decorate/weapons/grenade.txt"
 #include "decorate/weapons/repairguns.txt"
 #include "decorate/weapons/fists.txt"
 #include "decorate/weapons/chainsaw.txt"

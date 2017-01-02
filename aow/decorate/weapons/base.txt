@@ -16,6 +16,20 @@ Actor AOWWeapon : Weapon
 	LightDone:
 		NULL A 0 A_Light0
 		Stop
+	FragGrenade:
+		FRAG BCD 1
+		FRAG EFG 2
+		FRAG H 2 A_PlaySound("NADEPIN", CHAN_WEAPON)
+		FRAG IJ 2
+		FRAG KLMNOPQR 1
+		NULL A 10	
+	    FSH2 A 1
+		NULL A 0 A_PlaySound("NADETHRW", CHAN_WEAPON)
+		NULL A 0 A_FireCustomMissile("ThrownFragGrenade", -1, false, 10, 15)
+		NULL A 0 A_TakeInventory("FragGrenadeAmmo",1)
+        FSH2 BCDEFGHI 1
+		NULL A 0 A_Jump(256, "Ready")
+		Stop
 	}
 }
 
