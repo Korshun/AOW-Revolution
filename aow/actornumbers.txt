@@ -8,6 +8,8 @@
 
 21049 GaussRifle
 
+21068 ShockRifle
+
 21080 Boomstick
 21081 SniperRifleWeak
 

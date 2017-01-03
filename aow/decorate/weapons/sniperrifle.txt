@@ -1,6 +1,6 @@
 Actor SniperRifleUpgrade : Boolean {}
 
-Actor SniperRifle : AOWWeapon
+Actor SniperRifle : AOWWeapon 21081
 {
 	Tag "Sniper Rifle"
 	Inventory.PickupMessage "Sniper Rifle"
@@ -14,7 +14,6 @@ Actor SniperRifle : AOWWeapon
 	Weapon.AmmoUse 1
 	Weapon.AmmoGive 10
 	Weapon.AmmoType "SniperAmmo"
-	DropItem "SniperRifleWeak"
 	
 	Weapon.UpSound "SNIPUP"
 	AttackSound "SNIPFIRE"
