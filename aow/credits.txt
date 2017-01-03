@@ -34,6 +34,7 @@ SMG - AOW r2539
 Sniper Rifle - AOW r2539
 
 Weapon selection sounds - AOW 2.1
+Weapon grenade animations - AOW 2.1
 
 Constructs:
 
