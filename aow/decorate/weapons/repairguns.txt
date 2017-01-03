@@ -1,4 +1,3 @@
-// Repair gun
 Actor RepairGunBase : AOWWeapon
 {
 	Weapon.PreferredSkin "MarineBackpack"

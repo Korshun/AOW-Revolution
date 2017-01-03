@@ -1,4 +1,3 @@
-// PLASMA CANNON
 Actor PlasmaCannon : AOWWeapon
 {
 	Tag "Plasma Cannon"
