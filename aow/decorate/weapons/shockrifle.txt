@@ -11,6 +11,7 @@ Actor ShockRifle : AOWWeapon 21068
 	Weapon.AmmoType "ShockRifleCharge"
 	
 	Decal "VoltageScorch"
+	Weapon.UpSound "VOLTUP"
 	AttackSound "VOLTFIRE"
 	
 	States
