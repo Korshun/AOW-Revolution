@@ -30,14 +30,18 @@ Actor Boomstick : AOWWeapon 21080
 	States
 	{
 	Ready:
+		NULL A 0 A_JumpIfInventory("FragGrenadeAmmo", 1, 1)
+		Goto RealReady
+		NULL A 0 A_JumpIfInventory("AOWGrenade", 1, "FragGrenade")
+	RealReady:
 		SHTG A 1 A_WeaponReady
-		Wait
+		Goto Ready
 	Deselect:
 		SHTG A 1 A_Lower
-		Wait
+		Loop
 	Select:
 		SHTG A 1 A_Raise
-		Wait
+		Loop
 	Fire:
 		SHTG A 3
 		NULL A 0 A_GunFlash
@@ -59,6 +63,24 @@ Actor Boomstick : AOWWeapon 21080
 	Spawn:
 		SHOT A -1
 		Stop
+	FragGrenade:
+		SHTG A 1 offset (4,34)
+		SHTG A 1 offset (16,49)
+		SHTG A 1 offset (32,79)
+		SHTG A 1 offset (48,125)
+        NULL A 0 offset (1,33)
+		NULL A 0 A_GunFlash("Generic_FragGrenade")
+		TNT1 A 51
+		SHTG A 0 A_PlaySound("SHTGUP", CHAN_WEAPON)
+		SHTG A 1 offset (120,139)
+		SHTG A 1 offset (100,112)
+		SHTG A 1 offset (80,89)
+		SHTG A 1 offset (60,70)
+		SHTG A 1 offset (40,55)
+		SHTG A 1 offset (20,44)
+		SHTG A 1 offset (10,37)
+		SHTG A 1 offset (0,0)
+		Goto Ready
 	}
 }
 
