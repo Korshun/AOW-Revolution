@@ -26,7 +26,7 @@ Missile Launcher - AOW r2539
 Pistol - AOW r2539
 Plasma Cannon - AOW r2539
 Plasma Rifle - AOW r2539
-Repair Guns - AOW r2539 and AOW 2.1
+Repair Guns (except deconstruction) - AOW r2539, with puff sprites from AOW 2.1
 Rifle - AOW r2539
 Shock Rifle - AOW r2539
 Shotgun - AOW r2539

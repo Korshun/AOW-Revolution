@@ -141,10 +141,10 @@ Actor RepairPuff : RepairGunPuffBase
 	States
 	{
 	Spawn:
-		RPF1 AA 1 A_Explode(9, 64)
-		RPF1 BC 2 BRIGHT
+		PFRP AA 1 A_Explode(9, 64)
+		PFRP BC 2 BRIGHT
 	Melee:
-		RPF1 DEF 2 BRIGHT
+		PFRP DEF 2 BRIGHT
 		Stop
 	}
 }
@@ -153,15 +153,13 @@ Actor EnhancedRepairPuff : RepairGunPuffBase
 {
 	DamageType "Disarm"
 
-	Translation "112:127=250:254"
-	
 	States
 	{
 	Spawn:
-		RPF2 AA 1 A_Explode(7, 64)
-		RPF2 BC 2 BRIGHT
+		PFUR AA 1 A_Explode(7, 64)
+		PFUR BC 2 BRIGHT
 	Melee:
-		RPF2 DEF 2 BRIGHT
+		PFUR DEF 2 BRIGHT
 		Stop
 	}
 }
@@ -170,27 +168,23 @@ Actor DisarmPuff : RepairGunPuffBase
 {
 	DamageType "Disarm"
 	
-	Translation "112:127=160:167"
-	
 	States
 	{
 	Spawn:
-		RPF2 AA 1 A_Explode(9, 64)
-		RPF2 BC 2 BRIGHT
+		PFDS AA 1 A_Explode(9, 64)
+		PFDS BC 2 BRIGHT
 	Melee:
-		RPF2 DEF 2 BRIGHT
+		PFDS DEF 2 BRIGHT
 		Stop
 	}
 }
 
 Actor HealPuff : RepairGunPuffBase
 {
-	Translation "112:127=174:189"
-	
 	States
 	{
 	Spawn:
-		RPF2 ABC 2 BRIGHT
+		PFHL ABC 2 BRIGHT
 		Goto Melee
 	}
 }

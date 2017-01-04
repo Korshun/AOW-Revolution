@@ -40,22 +40,22 @@ flickerlight RepGreen
 
 object RepairPuff
 {
-	frame RPF1 { light RepBlue }
+	frame PFRP { light RepBlue }
 }
 
 object EnhancedRepairPuff
 {
-	frame RPF2 { light RepPurple }
+	frame PFUR { light RepPurple }
 }
 
 object HealPuff
 {
-	frame RPF2 { light RepRed }
+	frame PFHL { light RepRed }
 }
 
 object DisarmPuff
 {
-	frame RPF2 { light RepYellow }
+	frame PFDS { light RepYellow }
 }
 
 
