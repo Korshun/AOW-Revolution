@@ -52,6 +52,7 @@ Actor LaserPuff : AOWBulletPuff
 {
 	-ALLOWPARTICLES
 	+PUFFONACTORS
+	+FORCEXYBILLBOARD
 	
 	DamageType "Laser"
 	
