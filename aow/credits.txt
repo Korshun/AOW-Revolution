@@ -19,7 +19,7 @@ Fists - AOW r2539
 Flamer - AOW 2.1
 Frag Grenades - AOW 2.1
 Gatling Gun - AOW r2539
-Gauss Rifle - AOW r2539
+Gauss Rifle - code from AOW r2539, sprites from AOW 2.1, code reworked for AOW 2.1 sprites
 Laser Chaingun - AOW r2539
 Laser Rifle - AOW r2539
 Missile Launcher - AOW r2539

@@ -1,5 +1,45 @@
 // Some AOW weapons have pitch-black sprites with offsets in sprites/
 // and the real sprites in graphics/, remapped using hirestex.
+
+
+// Gauss rifle (blue)
+remap GAUBA0 GAUXA0
+remap GAUBB0 GAUXB0
+remap GAUBC0 GAUXC0
+remap GAUBD0 GAUXD0
+remap GAUBE0 GAUXE0
+remap GAUBF0 GAUXF0
+remap GAUBG0 GAUXG0
+remap GAUBH0 GAUXH0
+remap GAUBI0 GAUXI0
+remap GAUBJ0 GAUXJ0
+remap GAUBK0 GAUXK0
+remap GAUBL0 GAUXL0
+remap GAUBM0 GAUXM0
+remap GAUBN0 GAUXN0
+remap GAUBO0 GAUXO0
+
+// Gauss rifle (red)
+remap GAUSA0 GAUYA0
+remap GAUSB0 GAUYB0
+remap GAUSC0 GAUYC0
+remap GAUSD0 GAUYD0
+remap GAUSE0 GAUYE0
+remap GAUSF0 GAUYF0
+remap GAUSG0 GAUYG0
+remap GAUSH0 GAUYH0
+remap GAUSI0 GAUYI0
+remap GAUSJ0 GAUYJ0
+remap GAUSK0 GAUYK0
+remap GAUSL0 GAUYL0
+remap GAUSM0 GAUYM0
+remap GAUSN0 GAUYN0
+remap GAUSO0 GAUYO0
+
+// Gauss rifle pickup
+remap GAUSX0 GAUSX0
+
+// Shock rifle puff
 remap VOLXA0 VHRXA0
 remap VOLXB0 VHRXB0
 remap VOLXC0 VHRXC0
