@@ -1,0 +1,8 @@
+// Some AOW weapons have pitch-black sprites with offsets in sprites/
+// and the real sprites in graphics/, remapped using hirestex.
+remap VOLXA0 VHRXA0
+remap VOLXB0 VHRXB0
+remap VOLXC0 VHRXC0
+remap VOLXD0 VHRXD0
+remap VOLXE0 VHRXE0
+remap VOLXF0 VHRXF0
