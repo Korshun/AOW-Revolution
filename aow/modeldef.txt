@@ -17,3 +17,21 @@ Model SandbagWall
 
    FrameIndex BAGG A 0 0
 }
+
+model RazorWireBlue
+{
+    Path "models"
+    Model 0 "razorwire.md2"
+    Skin 0 "razorwire.png"
+    Scale 3.0 1.7 3.0
+    FrameIndex WIRE A 0 0
+}
+
+model RazorWireRed
+{
+    Path "models"
+    Model 0 "razorwire.md2"
+    Skin 0 "razorwire.png"
+    Scale 3.0 1.7 3.0
+    FrameIndex WIRE A 0 0
+}

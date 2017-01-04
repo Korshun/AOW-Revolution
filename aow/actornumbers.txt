@@ -19,6 +19,9 @@
 
 21100 MasterControlTerminal
 
+21152 RazorWireRed
+21153 RazorWireBlue
+
 21213 BlueObeliskEye
 21214 RedObeliskEye
 

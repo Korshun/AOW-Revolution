@@ -16,7 +16,8 @@ Actor SandbagWall
 	DamageFactor "Laser", 1.25
 	DamageFactor "Disarm", 0.0
 	DamageFactor "Flash", 0.0
-	DamageFactor "RazorWire", 0.0
+	DamageFactor "RazorWireRed", 0.0
+	DamageFactor "RazorWireBlue", 0.0
 	
 	States
 	{
