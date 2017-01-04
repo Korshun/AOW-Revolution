@@ -186,6 +186,7 @@ Actor GaussPuff : AOWBulletPuff
 	
 	-ALLOWPARTICLES
 	+PUFFONACTORS
+	+FORCEXYBILLBOARD
 	
 	RenderStyle Add
 	Alpha 0.75
