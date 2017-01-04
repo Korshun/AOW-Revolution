@@ -1,6 +1,7 @@
 #include "decorate/effects/explosions.gl"
 
 #include "decorate/weapons/flamer.gl"
+#include "decorate/weapons/gaussrifle.gl"
 #include "decorate/weapons/plasmacannon.gl"
 #include "decorate/weapons/plasmarifle.gl"
 #include "decorate/weapons/repairguns.gl"

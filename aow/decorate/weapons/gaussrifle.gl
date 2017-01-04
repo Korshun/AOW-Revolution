@@ -1,0 +1,25 @@
+flickerlight GaussPuffRed
+{
+    color 1.0 0.0 0.0
+    size 12
+    secondarySize 16
+    chance 0.8
+}
+
+flickerlight GaussPuffBlue
+{
+    color 0.0 0.0 1.0
+    size 12
+    secondarySize 16
+    chance 0.8
+}
+
+object GaussPuffRed
+{
+	frame VOLX { light GaussPuffRed }
+}
+
+object GaussPuffBlue
+{
+	frame VOLX { light GaussPuffBlue }
+}

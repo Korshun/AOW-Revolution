@@ -187,7 +187,6 @@ Actor GaussPuff : AOWBulletPuff
 	-ALLOWPARTICLES
 	+PUFFONACTORS
 	
-	Translation "192:207=169:189", "240:246=45:47", "80:111=169:189"
 	RenderStyle Add
 	Alpha 0.75
 	VSpeed 0
@@ -204,11 +203,11 @@ Actor GaussPuff : AOWBulletPuff
 
 Actor GaussPuffRed : GaussPuff
 {
+	Translation "192:207=169:189", "240:246=45:47", "80:111=169:189"
 }
 
 Actor GaussPuffBlue : GaussPuff
 {
 	DamageType "Laser"
-	Translation "0:255=0:255"
 }
 
