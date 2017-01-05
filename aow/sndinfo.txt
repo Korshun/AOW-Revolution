@@ -2,7 +2,7 @@ destroyed/blue			destroyb
 destroyed/red			destroyr
 
 attacked/blue/barracks			bbarattk
-attacked/blue/powerplant		bpplattk
+attacked/blue/resce		bpplattk
 attacked/blue/refinery			brefattk
 attacked/blue/factory			bfacattk
 attacked/blue/repairfacility	brepattk
