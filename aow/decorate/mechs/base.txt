@@ -52,7 +52,7 @@ Actor SmallMechExplosion
 		NULL A 0 A_Explode(50, 512)
 		NULL A 0 A_Explode(350, 128)
 		NULL A 0 A_Explode(350, 256)
-		NULL AAAAA 0 A_SpawnItemEx("MechDeathSmoke", 0, 0, frandom(64, 120),  frandom(-5, 5), frandom(-5, 5), frandom(9, 14),  0, 0, 64)
+		NULL AAAAA 0 A_SpawnItemEx("MechFallingJunk", 0, 0, frandom(64, 120),  frandom(-5, 5), frandom(-5, 5), frandom(9, 14),  0, 0, 64)
 		TNT1 A 8 A_SpawnItemEx("ExplosionLarge")
 		TNT1 A 8 A_SpawnItemEx("ExplosionLarge", 12, 16, 64)
 		TNT1 A 8 A_SpawnItemEx("ExplosionLarge", 14, 32, 96)
@@ -77,7 +77,7 @@ Actor BigMechExplosion
 		NULL A 0 A_Explode(100, 512)
 		NULL A 0 A_Explode(700, 128)
 		NULL A 0 A_Explode(700, 256)
-		NULL AAAAAAAAAA 0 A_SpawnItemEx("MechDeathSmoke", 0, 0, frandom(64, 120),  frandom(-5, 5), frandom(-5, 5), frandom(9, 14), 0, 0, 64)
+		NULL AAAAAAAAAA 0 A_SpawnItemEx("MechFallingJunk", 0, 0, frandom(64, 120),  frandom(-5, 5), frandom(-5, 5), frandom(9, 14), 0, 0, 64)
 		TNT1 A 8 A_SpawnItemEx("ExplosionLarge")
 		TNT1 A 8 A_SpawnItemEx("ExplosionLarge", 12, 16, 64)
 		TNT1 A 8 A_SpawnItemEx("ExplosionLarge", 14, 32, 96)
@@ -169,4 +169,37 @@ Actor BigMechStep : SmallMechStep
 		TNT1 A 10 A_Explode(256, 128, 0)
 		Stop
 	}  
+}
+
+// Mech fallling junk
+Actor MechFallingJunk
+{
+	Obituary "%o was blown up by %k's junk!"
+
+	Radius 11
+	Height 8
+	Speed 1
+	Damage (15)
+	DamageType "Explosion"
+	Gravity 0.3
+	
+	PROJECTILE
+	-RANDOMIZE
+	-NOGRAVITY
+	
+	Scale 0.03
+	
+	States
+	{
+	Spawn:
+		TNT1 A 6
+		TNT1 A 2 A_SpawnItemEx("BaseSmoke",  0, 0, 0,  0, 0, 1)
+		Wait
+	Death:
+		NULL A 0 A_PlaySound("MECHJUNK")
+		NULL A 0 A_Explode(35, 128, 1)
+		NULL A 0 A_SpawnItemEx("Explosion")
+		TNT1 A 1 // play sounds
+		Stop
+	}
 }

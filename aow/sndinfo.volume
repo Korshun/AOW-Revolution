@@ -11,6 +11,7 @@ $rolloff MECHEXP3 800 2200
 $rolloff MECHEXP4 800 2200
 $limit   MECHSTEP 0
 $rolloff MECHSTEP 400 1800
+$rolloff MECHJUNK 500 2000
 $rolloff PLCAEXP 2000 7500
 $limit   PLCAEXP 0
 $rolloff PLCEXP 2000 7500
