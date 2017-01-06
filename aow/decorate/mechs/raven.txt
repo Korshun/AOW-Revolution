@@ -31,7 +31,8 @@ Actor Raven : Mech
 		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
 		Goto Spawn
 	See:
-		RAVN ABC 3 A_JumpIfHealthLower(300, "SeeDamaged")
+		NULL A 0 A_JumpIfHealthLower(300, "SeeDamaged")
+		RAVN ABC 3 
 		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5)
 		RAVN D 3 A_SpawnItemEx("SmallMechStep", 0, -30, 4)
 		RAVN EFG 3
@@ -45,7 +46,6 @@ Actor Raven : Mech
 		RAVN EFG 3
 		NULL A 0 A_SpawnItemEx("SmallMechStep", 0, 30, 4)
 		RAVN H 3 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(96, 128))
-		NULL A 0 A_JumpIf(waterlevel >= 1, "Drown")
 		Goto Spawn
 	Death:
 		RAVN J 4
