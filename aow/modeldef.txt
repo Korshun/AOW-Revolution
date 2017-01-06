@@ -38,7 +38,7 @@ model RazorWireRed
 
 model Raven
 {
-   Path "models"
+   Path "models/mechs"
    Model 0 "raven.md3"
    Skin 0 "raven.png"
    Scale 10.0 10.0 10.0
