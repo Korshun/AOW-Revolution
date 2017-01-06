@@ -123,9 +123,9 @@ Actor GuardianWeapons : MechWeapons
 		TNT1 A 1 A_Raise
 		Wait
 	Fire:
-		NULL A 0 A_JumpIfInventory("Wolverine-WhatWeapon", 3, "Fire.Nuke")
-		NULL A 0 A_JumpIfInventory("Wolverine-WhatWeapon", 2, "Fire.Flak")
-		NULL A 0 A_JumpIfInventory("Wolverine-WhatWeapon", 1, "Fire.Missiles")
+		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 3, "Fire.Nuke")
+		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 2, "Fire.Flak")
+		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 1, "Fire.Missiles")
 		Goto Fire.Artillery
 	Fire.Artillery:
 		NULL A 0 A_StopSound(CHAN_BODY)
