@@ -1,0 +1,178 @@
+Actor Raven : Mech
+{
+	Radius 58
+	Height 144
+	Mass 4000
+	Health 2000
+	
+	+NOSKIN
+	
+	Player.DisplayName "Raven"
+	Player.MaxHealth 2000
+	Player.ForwardMove 0.85
+	Player.SideMove 0.25
+	Player.ViewHeight 132
+	Player.AttackZOffset 36
+	Player.MorphWeapon "RavenWeapons"
+	
+	Scale 0.65
+	
+	States
+	{
+	Spawn:
+		RAVN A 5 A_SpawnItemEx("SmallMechStep", 0, -30, 4)
+		RAVN I 35
+		RAVN IIII 35 A_PlaySound("MECHIDLE", CHAN_5)
+		RAVN I 35
+		Loop
+	GetIn:
+		NULL A 0 SetPlayerProperty(0, true, PROP_FROZEN)
+		RAV2 BB 6 
+		RAV2 BA 6
+		RAVN ZYXWVUI 6
+		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
+		Goto Spawn
+	See:
+		RAVN ABC 3 A_JumpIfHealthLower(300, "SeeDamaged")
+		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5)
+		RAVN D 3 A_SpawnItemEx("SmallMechStep", 0, -30, 4)
+		RAVN EFG 3
+		RAVN H 3 A_SpawnItemEx("SmallMechStep", 0, 30, 4)
+		Goto Spawn
+	SeeDamaged:
+		RAVN ABC 3 
+		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5)
+		NULL A 0 A_SpawnItemEx("SmallMechStep", 0, -30, 4)
+		RAVN D 3 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(96, 128))
+		RAVN EFG 3
+		NULL A 0 A_SpawnItemEx("SmallMechStep", 0, 30, 4)
+		RAVN H 3 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(96, 128))
+		NULL A 0 A_JumpIf(waterlevel >= 1, "Drown")
+		Goto Spawn
+	Death:
+		RAVN J 4
+		RAVN K 4 A_NoBlocking
+		RAVN LMNOPQRS 4
+		RAVN T 8
+		RAVN T 15 A_SpawnItemEx("SmallMechExplosion", 0, 0, 0,  0, 0, 0,  0, SXF_NOCHECKPOSITION)
+		DISR Z -1
+		Stop
+	}
+}
+
+Actor RavenAC2Ammo : Ammo
+{
+	Inventory.Amount 10
+	Inventory.MaxAmount 120
+}
+
+ACtor RavenLRMAmmo : Ammo
+{
+	Inventory.Amount 5
+	Inventory.MaxAmount 120
+}
+
+Actor RavenWeapons : MechWeapons
+{
+	Obituary "%o was pecked by %k's Raven."
+
+	Weapon.AmmoUse1 1
+	Weapon.AmmoUse2 1
+	Weapon.AmmoGive1 120
+	Weapon.AmmoGive2 120
+	Weapon.AmmoType "RavenAC2Ammo"
+	Weapon.AmmoType2 "RavenLRMAmmo"
+	
+	+CHEATNOTWEAPON
+	
+	States
+	{
+	Ready:
+		MHUD A 1 A_WeaponReady
+		Loop
+	Deselect:
+		NULL A 0 A_JumpIfHealthLower(1, "RealDeselect")
+		Goto Ready
+	RealDeselect:
+		TNT1 A 1 A_Lower
+		Wait
+	Select:
+		NULL A 0 A_Raise
+		Wait
+	Fire:
+		NULL A 0 A_JumpIfInventory("RavenAC2Ammo", 1, 1)
+		Goto Ready
+		NULL A 0 Radius_Quake(1, 4, 0, 1, 0)
+		NULL A 0 A_FireCustomMissile("RavenAC2Smoke", 0, false, -48, 20)
+		NULL A 0 A_SpawnItemEx("ArtilleryCasing", 0, -48, 128,  frandom(0, 3), 0, frandom(1, 3),  frandom(45, 60))
+		NULL A 0 A_GunFlash
+		MHUD D 8 BRIGHT A_FireCustomMissile("RavenAC2", 0, true, -48, 20)
+		MHUD C 6
+		Goto Ready
+	AltFire:
+		NULL A 0 A_JumpIfInventory("LRMReloading", 1, "Ready")
+		NULL A 0 A_JumpIfInventory("RavenLRMAmmo", 5, 1)
+		Goto Ready
+		MHUD A 2 A_PlayWeaponSound("LRMFIRE")
+		NULL A 0 Radius_Quake(2, 20, 0, 1, 0)
+		NULL A 0 A_GunFlash
+		MHUD BBBBB 2 A_FireCustomMissile("LongRangeMissile", 0, true, frandom(42, 48), 14)
+		MHUD A 20
+		MHUD A 2 A_ReFire
+		Goto Ready
+	}
+}
+
+Actor RavenAC2Smoke : Effect
+{
+	States
+	{
+	Spawn:
+		NULL AAAAAAAAAAAAAAA 0 A_SpawnItemEx("BaseSmoke",  0, 0, 0,  frandom(-1, 1), frandom(-1, 1), frandom(1, 2))
+		Stop
+	}
+}
+
+Actor RavenAC2 : FastProjectile
+{
+	Radius 4
+	Height 8
+	Speed 250
+	Damage (20)
+	DamageType "Rifle"
+	
+	PROJECTILE
+	-RANDOMIZE
+	
+	Scale 0.5
+	Decal "Scorch"
+	SeeSound "AC2FLY"
+	
+	Translation "112:127=176:191"
+	
+	States
+	{
+	Spawn:
+		SHRP A 1 BRIGHT A_SpawnItemEx("BaseSmoke", -25)
+		Wait
+	Death:
+		NULL A 0 A_Explode(20, 128)
+		NULL A 0 A_SpawnItemEx("RavenAC2Explosion", -1)
+		NULL A 0 A_SpawnItemEx("ExplosionSmall")
+		TNT1 A 1 // play sound
+		Stop
+	}
+}
+
+Actor RavenAC2Explosion
+{
+	DamageType "Explosion"
+
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 A_Explode(20, 128, 1)
+		Stop
+	}
+}

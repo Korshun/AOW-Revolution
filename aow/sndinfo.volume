@@ -1,3 +1,4 @@
+$rolloff AC2FLY 500 2000
 $limit   ARTIEXP 0
 $rolloff ARTIEXP 500 2000
 $volume  COREZAP 0.4

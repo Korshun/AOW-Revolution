@@ -50,3 +50,4 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 #include "decorate/constructs/razorwire.txt"
 
 #include "decorate/mechs/base.txt"
+#include "decorate/mechs/raven.txt"
