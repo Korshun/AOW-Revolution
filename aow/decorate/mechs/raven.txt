@@ -81,8 +81,6 @@ Actor RavenWeapons : MechWeapons
 	Weapon.AmmoType "RavenAC2Ammo"
 	Weapon.AmmoType2 "RavenLRMAmmo"
 	
-	+CHEATNOTWEAPON
-	
 	States
 	{
 	Ready:

@@ -35,8 +35,11 @@ Actor Mech : PlayerPawn
 	+NOBLOOD
 }
 
+Actor MechSelectedWeapon : Integer {}
+
 Actor MechWeapons : Weapon
 {
+	+CHEATNOTWEAPON
 	+DONTBOB
 
 	States
@@ -172,7 +175,7 @@ Actor SmallMechStep
 		NULL A 0 Radius_Quake(2, 8, 0, 2, 0)
 		NULL A 0 A_SpawnItemEx("SmallMechStepSmoke")
 		NULL A 0 A_SpawnItemEx("MechStepSound")
-		TNT1 A 10 A_Explode(72, 128, 0)
+		NULL A 0 A_Explode(72, 128, 0)
 		Stop
 	}  
 }
@@ -186,7 +189,7 @@ Actor BigMechStep : SmallMechStep
 		NULL A 0 Radius_Quake(3, 10, 0, 4, 0)
 		NULL A 0 A_SpawnItemEx("BigMechStepSmoke")
 		NULL A 0 A_SpawnItemEx("MechStepSound")
-		TNT1 A 10 A_Explode(256, 128, 0)
+		NULL A 0 A_Explode(256, 128, 0)
 		Stop
 	}  
 }
