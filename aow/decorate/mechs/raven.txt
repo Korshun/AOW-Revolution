@@ -32,6 +32,7 @@ Actor Raven : Mech
 		Goto Spawn
 	See:
 		NULL A 0 A_JumpIfHealthLower(300, "SeeDamaged")
+	SeeNormal:
 		RAVN ABC 3 
 		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5)
 		RAVN D 3 A_SpawnItemEx("SmallMechStep", 0, -30, 4)

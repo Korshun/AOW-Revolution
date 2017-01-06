@@ -25,7 +25,7 @@ Actor MadCat : Mech
 	{
 	
 	Spawn:
-		MADC A 8 A_SpawnItemEx("BigMechStepDamageStrong", 0, -42, 4)
+		MADC A 8 A_SpawnItemEx("BigMechStep", 0, -42, 4)
 		MADC K 35
 		MADC KKKK 35 A_PlaySound("MECHIDLE", CHAN_5)
 		MADC K 35
@@ -37,30 +37,28 @@ Actor MadCat : Mech
 		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
 		Goto Spawn+6
 	See:
-		MADC ABCD 4 A_JumpIfHealthLower(500, "SeeDamaged")
+		NULL A 0 A_JumpIfHealthLower(500, "SeeDamaged")
+	SeeNormal:
+		MADC ABCD 4
 		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5, true, -1)
-		NULL A 0 A_SpawnItemEx("MechStepSmokePuff", 0, -42, 4)
-		MADC E 4 A_SpawnItemEx("MechStepDamageStrong", 0, -42, 4)
+		MADC E 4 A_SpawnItemEx("BigMechStep", 0, -42, 4)
 		MADC FGHI 4
-		NULL A 0 A_SpawnItemEx("MechStepSmokePuff", 0, 42, 4)
-		MADC J 4 A_SpawnItemEx("MechStepDamageStrong", 0, 42, 4)
+		MADC J 4 A_SpawnItemEx("BigMechStep", 0, 42, 4)
 		Goto Spawn
 	SeeDamaged:
 		MADC ABCD 4 
 		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5, true, -1)
-		NULL A 0 A_SpawnItemEx("MechStepSmokePuff", 0, -42, 4, 0, 0, 0, 0, 128, 0)
-		NULL A 0 A_SpawnItemEx("MechStepDamageStrong", 0, -42, 4, 0, 0, 0, 0, 0, 0)
-		MADC E 4 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 0, 0)
+		NULL A 0 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 0, 0)
+		MADC E 4 A_SpawnItemEx("BigMechStep", 0, -42, 4)
 		MADC FGHI 4
-		NULL A 0 A_SpawnItemEx("MechStepSmokePuff", 0, 42, 4, 0, 0, 0, 0, 128, 0)
-		NULL A 0 A_SpawnItemEx("MechStepDamageStrong", 0, 42, 4, 0, 0, 0, 0, 0, 0)
-		MADC J 4 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 0, 0)
+		NULL A 0 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 0, 0)
+		MADC J 4 A_SpawnItemEx("BigMechStep", 0, 42, 4)
 		Goto Spawn
 	Death:
 		NULL A 0 A_NoBlocking
 		MADC LM 4
-		MADC NOPQRSTUUU 4 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(32, 64), 0, 0, 3)
-		TNT1 A 35 A_SpawnItemEx("MechExplosionLarge", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
+		MADC NOPQRSTUUU 4 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(32, 64), 0, 0, 3)
+		TNT1 A 35 A_SpawnItemEx("BigMechExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
 		DISR Z -1 A_SetTranslucent(0, 0.0)
 		Stop
 	}
@@ -68,15 +66,16 @@ Actor MadCat : Mech
 
 Actor MechReloadShockCannon : Boolean {}
 
+Actor MechShockRifleCharge : Ammo
+{
+	Inventory.Amount 20
+	Inventory.MaxAmount 200
+}
+
 Actor MadCatWeapons : MechWeapons
 {
-	Weapon.SelectionOrder 1
-	Weapon.AmmoUse 0
-	Weapon.AmmoGive 480
-	Weapon.AmmoType "Titan-RocketAmmo"
-	Obituary "$OB_MADCAT"
-	+WEAPON.CHEATNOTWEAPON
-	+WEAPON.DONTBOB
+	Obituary "%o was destroyed by %k's Mad Cat."
+
 	States
 	{
 	Ready:
@@ -99,7 +98,7 @@ Actor MadCatWeapons : MechWeapons
 		NULL A 0 Radius_Quake(2, 8, 0, 1, 0)
 		NULL A 0 A_GunFlash
 		NULL A 0 A_PlayWeaponSound("VOLTFIRE")
-		NULL A 0 A_TakeInventory("ShockRifleAmmo", 4)
+		NULL A 0 A_TakeInventory("MechShockRifleCharge", 4)
 		MHUD B 2 BRIGHT A_FireBullets(6.2, 6.2, 2, 20, "VoltagePuff", FBF_USEAMMO | FBF_NORANDOM)
 		MHUD A 1
 		NULL A 0 A_GunFlash
@@ -150,7 +149,7 @@ Actor ShockCannonBall
 		NULL A 0 A_Explode(4, 256)
 		Loop
 	Death:
-		TNT1 A 2 A_CustomMissile("ShockCannonBallFX")
+		TNT1 A 2 A_CustomMissile("ShockCannonBallImpact")
 		TNT1 AAAA 2 BRIGHT A_SpawnItemEx("ShockCannonExplosion2")
 		TNT1 AA 2 BRIGHT A_SpawnItemEx("ShockCannonExplosion")
 		Stop
@@ -158,22 +157,16 @@ Actor ShockCannonBall
 }
 
 Actor ShockCannonExplosion
-{
-	RenderStyle None
-	-RANDOMIZE
-	+NOCLIP
-	PROJECTILE
-	Speed 1
-	Damage 0
-	Scale 0.7
-	Obituary "%o was vaporised by %k's PPC."
+{	
 	DamageType "Explosion"
+
 	States
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_PlaySound("ppc/explode", CHAN_AUTO)
-		TNT1 A 5 A_Explode(10, 512, 0)
+		NULL A 0 A_PlaySound("SHCNEXP", CHAN_AUTO)
+		NULL A 0 A_Explode(10, 512, 0)
+		TNT1 A 1 // play sound
 		Stop
 	}  
 }
@@ -183,6 +176,7 @@ Actor ShockCannonExplosion2 : ShockCannonExplosion
 	DamageType "Laser"
 }
 
+// Shock cannon ball effects
 Actor ShockCannonBallFX : Effect
 {
 	States
@@ -193,7 +187,18 @@ Actor ShockCannonBallFX : Effect
 		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-32, 0), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
 		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-54, -32), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
 		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-92, -54), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
-		NULL A 0 A_SpawnItemEx("VoltagePuff2", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
+		NULL A 0 A_SpawnItemEx("VoltagePuffNoDecay", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
+		Stop
+	}
+}
+
+Actor VoltagePuffNoDecay : VoltagePuff
+{
+	States
+	{
+	Spawn:
+		VOLX A 2 BRIGHT
+		VOLX BCDEFEDCB 2 BRIGHT
 		Stop
 	}
 }
@@ -224,24 +229,27 @@ Actor ShockCannonBallImpact : Effect
 	}
 }
 
-Actor ShockCannonTrail
+Actor ShockCannonTrail : Effect
 {
 	Radius 1
 	Height 1
 	Speed 2
 	Damage 0
+	
 	PROJECTILE
 	-RANDOMIZE
+	
 	RenderStyle Add
 	Alpha 0.5
 	Scale 0.75
+	
 	States
 	{
 	Spawn:
 		VOLX AAAAAAAAA 2 BRIGHT A_FadeOut(0.07)
 		Stop
 	Death:
-		NULL A 0 A_SpawnItemEx("VoltageDecay", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, 0, 0, 128, 128)
+		NULL A 0 A_SpawnItemEx("VoltageDecay", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16),  0, 0, 0,  0, 0, 128)
 		Stop
 	}
 }
