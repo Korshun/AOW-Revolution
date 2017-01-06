@@ -66,6 +66,8 @@ Actor MadCat : Mech
 	}
 }
 
+Actor MechReloadShockCannon : Boolean {}
+
 Actor MadCatWeapons : MechWeapons
 {
 	Weapon.SelectionOrder 1
@@ -83,97 +85,63 @@ Actor MadCatWeapons : MechWeapons
 	Fire:
 		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 2, "FireMissiles")
 		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 1, "FireShockRifle")
-		//Continue firing PPCs
-		NULL A 0 A_JumpIfInventory("Reload-ShockCannon", 1, "FireMissiles")
-		NULL A 0 A_PlayWeaponSound("ppc/fire")
-		NULL A 0 ACS_ExecuteAlways(aow_script319, 0, 2, 5) // reload
+	FireShockCannon:
+		NULL A 0 A_PlayWeaponSound("SHCNFIRE")
 		NULL A 0 A_GunFlash
-		NULL A 0 A_JumpIfInventory("IsBlue", 1, "FireBlue")
-		NULL A 0 A_FireCustomMissile("ShockCannonBallRed", 0, 0, 64, 0)
-		NULL A 0 A_FireCustomMissile("ShockCannonBallRed", 0, 0, -64, 0)
+		NULL A 0 A_FireCustomMissile("ShockCannonBall", 0, 0, 64, 0)
+		NULL A 0 A_FireCustomMissile("ShockCannonBall", 0, 0, -64, 0)
 		MHUD D 15 BRIGHT
 		MHUD C 35
-		MHUD C 2 A_Refire
-		Goto Ready
-	FireBlue:
-		NULL A 0 A_FireCustomMissile("ShockCannonBallBlue", 0, 0, 64, 0)
-		NULL A 0 A_FireCustomMissile("ShockCannonBallBlue", 0, 0, -64, 0)
-		MHUD D 15 BRIGHT
-		MHUD C 35
-		MHUD C 2 A_Refire
+		MHUD C 2 A_ReFire
 		Goto Ready
 	FireShockRifle:
-		MHUD A 10 A_JumpIfInventory("GeneporiumCharge", 4, 2)
-		Goto AltFire
+		MHUD A 10
 		NULL A 0 Radius_Quake(2, 8, 0, 1, 0)
 		NULL A 0 A_GunFlash
-		NULL A 0 A_PlayWeaponSound("voltrifle/fire")
-		NULL A 0 A_TakeInventory("GeneporiumCharge", 4)
+		NULL A 0 A_PlayWeaponSound("VOLTFIRE")
+		NULL A 0 A_TakeInventory("ShockRifleAmmo", 4)
 		MHUD B 2 BRIGHT A_FireBullets(6.2, 6.2, 2, 20, "VoltagePuff", FBF_USEAMMO | FBF_NORANDOM)
 		MHUD A 1
 		NULL A 0 A_GunFlash
-		NULL A 0 A_PlayWeaponSound("voltrifle/fire")
-		NULL A 0 A_SpawnItemEx("CellCasing", 8, -96, 128, frandom(1, 3), frandom (-8, -12), frandom(1, 3), 0, 0, 128)
-		NULL A 0 A_SpawnItemEx("CellCasing", 8, 96, 128, frandom(-3, -1), frandom (8, 12), frandom(1, 3), 0, 0, 128)
+		NULL A 0 A_PlayWeaponSound("VOLTFIRE")
+		NULL A 0 A_SpawnItemEx("CellCasing", 8, -96, 128,  frandom(1, 3), frandom (-8, -12), frandom(1, 3))
+		NULL A 0 A_SpawnItemEx("CellCasing", 8,  96, 128,  frandom(-3, -1), frandom (8, 12), frandom(1, 3))
 		MHUD B 2 BRIGHT A_FireBullets(6.2, 6.2, 2, 20, "VoltagePuff", FBF_USEAMMO | FBF_NORANDOM)
 		MHUD A 1
-		NULL A 0 A_ReFire
-		MHUD A 4
+		MHUD A 4 A_ReFire
 		Goto Ready
 	FireMissiles:
-		NULL A 0 A_JumpIfInventory("Reload-LRM", 1, "FireShockRifle")
-		MHUD A 10 A_JumpIfInventory("MechRocketAmmo", 20, 1)
-		Goto AltFire
-		MHUD A 2 A_PlayWeaponSound("lrm/fire")
+		MHUD A 2 A_PlayWeaponSound("LRMFIRE")
 		NULL A 0 Radius_Quake(2, 70, 0, 1, 0)
-		NULL A 0 ACS_ExecuteAlways(aow_script319, 0, 1, 5) // reload
-		NULL A 0 A_TakeInventory("MechRocketAmmo", 20)
 		NULL A 0 A_GunFlash
-		NULL A 0 A_JumpIfInventory("IsBlue", 1, "FireMissilesBlue")
-		MHUD BBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissile", 0, 0, frandom(22, 48), frandom(64, 72))
+		MHUD BBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissile", 0, false, frandom(22, 48), frandom(64, 72))
 		MHUD A 10
-		MHUD A 2 A_PlayWeaponSound("lrm/fire")
+		MHUD A 2 A_PlayWeaponSound("LRMFIRE")
 		NULL A 0 A_GunFlash
-		MHUD BBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissile", 0, 0, frandom(-48, -22), frandom(64, 72))
+		MHUD BBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissile", 0, false, frandom(-48, -22), frandom(64, 72))
 		MHUD C 20
-		MHUD A 2 A_Refire
-		Goto Ready
-	FireMissilesBlue:
-		MHUD BBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissileBlue", 0, 0, frandom(22, 48), frandom(64, 72))
-		MHUD A 10
-		MHUD A 2 A_PlayWeaponSound("lrm/fire")
-		NULL A 0 A_GunFlash
-		MHUD BBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissileBlue", 0, 0, frandom(-48, -22), frandom(64, 72))
-		MHUD C 20
-		MHUD A 2 A_Refire
-		Goto Ready
-	Flash:
-		TNT1 A 1 A_Light2
-		TNT1 A 2 A_Light1
-		Goto LightDone
-	AltFire:
-		NULL A 0
-		MHUD A 35 ACS_ExecuteAlways(aow_script314, 0)
-		MHUD C 18
+		MHUD A 2 A_ReFire
 		Goto Ready
 	}
 }
 
-Actor Reload-ShockCannon : Boolean {}
-
-Actor ShockCannonBallRed
+// Shock cannon ball
+Actor ShockCannonBall
 {
-	PROJECTILE
 	Radius 8
 	Height 8
 	Speed 50
 	Damage (250)
+	DamageType "Laser"
+	
+	PROJECTILE
+	
 	RenderStyle Add
 	Alpha 0.9
 	Scale 1.5
-	DeathSound "ppc/explode"
-	DamageType "Laser"
-	Obituary "$OB_MADCAT"
+	
+	DeathSound "SHCNEXP"
+	
 	States
 	{
 	Spawn:
@@ -182,54 +150,9 @@ Actor ShockCannonBallRed
 		NULL A 0 A_Explode(4, 256)
 		Loop
 	Death:
-		NULL A 0
-		TNT1 A 2 A_CustomMissile("ShockCannonBallFX", 0, 0, 0, 4)
+		TNT1 A 2 A_CustomMissile("ShockCannonBallFX")
 		TNT1 AAAA 2 BRIGHT A_SpawnItemEx("ShockCannonExplosion2")
 		TNT1 AA 2 BRIGHT A_SpawnItemEx("ShockCannonExplosion")
-		Stop
-	}
-}
-
-Actor ShockCannonBallFX
-{
-	+CLIENTSIDEONLY
-	+NOINTERACTION
-	States
-	{
-	Spawn:
-		NULL A 0
-		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), 0, 0, 32)
-		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-32, 0), frandom(-16, 16), frandom(-16, 16), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), 0, 0, 32)
-		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-54, -32), frandom(-16, 16), frandom(-16, 16), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), 0, 0, 32)
-		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-92, -54), frandom(-16, 16), frandom(-16, 16), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), 0, 0, 32)
-		NULL A 0 A_SpawnItemEx("VoltagePuff2", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8), 0, 128, 0)
-		Stop
-	}
-}
-
-Actor ShockCannonBallImpact
-{
-	+NOCLIP
-	+NOINTERACTION
-	+CLIENTSIDEONLY
-	RenderStyle Add
-	Alpha 0.9
-	Scale 3.0
-	ReactionTime 7
-	States
-	{
-	Spawn:
-		NULL A 0
-		NULL AAAAAA 0 A_SpawnItemEx("ShockCannonTrail", 0, 0, frandom(16, 32), 0, 0, frandom(16, 32), 0, 128, 0)
-		NULL AAAAAAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
-	Idle:
-		PPCX A 2 BRIGHT A_FadeOut(0.05)
-		NULL AAAAAAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
-		NULL AAA 0 A_SpawnItemEx("VoltagePuff", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64), frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
-		NULL A 0 A_Countdown
-		Loop
-	Death:
-		PPCX AAAAAA 2 BRIGHT A_FadeOut(0.15)
 		Stop
 	}
 }
@@ -255,24 +178,51 @@ Actor ShockCannonExplosion
 	}  
 }
 
-Actor ShockCannonExplosion2 : ShockCannonExplosion {DamageType "Laser"}
-
-Actor ShockCannonBallBlue : ShockCannonBallRed
+Actor ShockCannonExplosion2 : ShockCannonExplosion
 {
 	DamageType "Laser"
+}
+
+Actor ShockCannonBallFX : Effect
+{
 	States
 	{
-	Death:
+	Spawn:
 		NULL A 0
-		TNT1 A 2 A_SpawnItemEx("ShockCannonBallImpact", 0, 0, 0, 4)
-		TNT1 AAAA 2 BRIGHT A_SpawnItemEx("ShockCannonExplosion2Blue")
-		TNT1 AA 2 BRIGHT A_SpawnItemEx("ShockCannonExplosionBlue")
+		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
+		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-32, 0), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
+		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-54, -32), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
+		NULL AAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-92, -54), frandom(-16, 16), frandom(-16, 16),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8),  0, 0, 32)
+		NULL A 0 A_SpawnItemEx("VoltagePuff2", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
 		Stop
 	}
 }
 
-Actor ShockCannonExplosionBlue : ShockCannonExplosion {DamageType "Explosion"}
-Actor ShockCannonExplosion2Blue : ShockCannonExplosion {DamageType "Laser"}
+Actor ShockCannonBallImpact : Effect
+{
+	RenderStyle Add
+	Alpha 0.9
+	Scale 3.0
+	
+	ReactionTime 7
+	
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL AAAAAA 0 A_SpawnItemEx("ShockCannonTrail", 0, 0, frandom(16, 32),  0, 0, frandom(16, 32))
+		NULL AAAAAAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
+	Idle:
+		PPCX A 2 BRIGHT A_FadeOut(0.05)
+		NULL AAAAAAAA 0 A_SpawnItemEx("VoltageSpark", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
+		NULL AAA 0 A_SpawnItemEx("VoltagePuff", frandom(-64, 64), frandom(-64, 64), frandom(-64, 64),  frandom(-8, 8), frandom(-8, 8), frandom(-8, 8))
+		NULL A 0 A_Countdown
+		Loop
+	Death:
+		PPCX AAAAAA 2 BRIGHT A_FadeOut(0.15)
+		Stop
+	}
+}
 
 Actor ShockCannonTrail
 {
@@ -292,64 +242,6 @@ Actor ShockCannonTrail
 		Stop
 	Death:
 		NULL A 0 A_SpawnItemEx("VoltageDecay", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16), 0, 0, 0, 0, 128, 128)
-		Stop
-	}
-}
-
-Actor DamagedMadCat
-{
-	Health 300
-	Radius 58
-	Height 128
-	Mass 2000
-	+SHOOTABLE
-	PainChance 0
-	Scale 0.75
-	BloodType "HHMetalHit"
-	BloodColor "White"
-	DamageFactor "Disarm", 0.0
-	Obituary "%o went boom."
-	Translation "112:127=[255,255,255]:[0,0,0]"
-	States
-	{
-	Spawn:
-		MADC K 35 
-		MADC KKKK 5 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 128, 0)
-		MADC K 5 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 128, 0)
-		Goto Spawn+5
-	Death:
-		NULL A 0 A_NoBlocking
-		MADC LM 4
-		MADC NOPQRSTUUU 4 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(32, 64), 0, 0, 3)
-		TNT1 A 35 A_SpawnItemEx("MechExplosionLarge", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-		DISR K -1
-		Stop
-	}
-}
-
-Actor EjectedMadCat
-{
-	Scale 0.75
-	Translation "112:127=[255,255,255]:[0,0,0]"
-	States
-	{
-	Spawn:
-		MADC VWXYZ 7
-		MAD2 AB 7
-		NULL A 0 A_SpawnItemEx("MadCatSwitchPickup")
-		Stop
-	}
-}
-
-Actor MadcatAmmoPackage : CustomInventory
-{
-	+AUTOACTIVATE
-	Inventory.MaxAmount 0
-	States
-	{
-	Pickup:
-		NULL A 0 A_GiveInventory("GeneporiumCharge", 400)
-		NULL A 0 A_GiveInventory("MechRocketAmmo", 240)
 		Stop
 	}
 }

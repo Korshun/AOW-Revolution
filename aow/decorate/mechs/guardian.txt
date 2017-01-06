@@ -127,28 +127,30 @@ Actor GuardianWeapons : MechWeapons
 		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 2, "Fire.Flak")
 		NULL A 0 A_JumpIfInventory("MechSelectedWeapon", 1, "Fire.Missiles")
 		Goto Fire.Artillery
+
 	Fire.Artillery:
 		NULL A 0 A_StopSound(CHAN_BODY)
-		NULL A 0 A_JumpIfInventory("Reload-80mm", 1, "Fire.Missiles")
+		NULL A 0 A_JumpIfInventory("MechReload80mm", 1, "Fire.Missiles")
 		NULL A 0 SetPlayerProperty(0, true, PROP_FROZEN)
 		NULL A 0 A_TakeInventory("ArtilleryShellAmmo", 2)
 		NULL A 0 ACS_ExecuteAlways(aow_script319, 0, 3, 5) // reload
-		JUGS A 10 A_GiveInventory("MechSelectedWeapon", 2)
-		NULL A 0 A_PlayWeaponSound("artillery/fire")
-		NULL A 0 A_JumpIfInventory("IsBlue", 1, "Fire.ArtilleryBlue")
-		JUGS A 10 BRIGHT A_FireCustomMissile("GuardianShell", 0, 0, -18)
-		NULL A 0 A_PlayWeaponSound("artillery/fire")
-		JUGS A 10 BRIGHT A_FireCustomMissile("GuardianShell", 0, 0, 18)
-		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
-		JUGS A 20 A_TakeInventory("MechSelectedWeapon", 2)
-		Goto Ready
+		NULL A 0 A_PlayWeaponSound("ARTIFIRE")
+		NULL A 0 A_JumpIfInventory("IsRed", 1, "Fire.ArtilleryRed")
 	Fire.ArtilleryBlue:
 		JUGS A 10 BRIGHT A_FireCustomMissile("GuardianShellBlue", 0, 0, -18)
-		NULL A 0 A_PlayWeaponSound("artillery/fire")
+		NULL A 0 A_PlayWeaponSound("ARTIFIRE")
 		JUGS A 10 BRIGHT A_FireCustomMissile("GuardianShellBlue", 0, 0, 18)
+		Goto Fire.ArtilleryFinish
+	Fire.ArtilleryRed:
+		JUGS A 10 BRIGHT A_FireCustomMissile("GuardianShellRed", 0, 0, -18)
+		NULL A 0 A_PlayWeaponSound("ARTIFIRE")
+		JUGS A 10 BRIGHT A_FireCustomMissile("GuardianShellRed", 0, 0, 18)
+		Goto Fire.ArtilleryFinish
+	Fire.ArtilleryFinish:
 		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
 		JUGS A 20 A_TakeInventory("MechSelectedWeapon", 2)
 		Goto Ready
+		
 	Fire.Missiles:
 		NULL A 0 A_StopSound(CHAN_BODY)
 		NULL A 0 A_JumpIfInventory("Reload-LRM", 1, "Fire.Flak")
@@ -156,7 +158,7 @@ Actor GuardianWeapons : MechWeapons
 		NULL A 0 A_TakeInventory("ShortRangeMissileAmmo", 15)
 		NULL A 0 ACS_ExecuteAlways(aow_script319, 0, 1, 6) // reload
 		JUGS A 10 A_GiveInventory("MechSelectedWeapon", 2)
-		NULL A 0 A_PlayWeaponSound("lrm/fire")
+		NULL A 0 A_PlayWeaponSound("LRMFIRE")
 		NULL A 0 A_JumpIfInventory("IsBlue", 1, "Fire.MissilesBlue")
 		JUGS AAAAAAAAAAAAAAA 2 BRIGHT A_FireCustomMissile("ShortRangeMissile", frandom (-3, 3), 0, -18, 0, 0, frandom (-3, 3))
 		JUGS A 10
@@ -426,36 +428,6 @@ Actor ShortRangeMissileBlue : ShortRangeMissile
 		NULL A 0 A_Explode(38, 128, 0)
 		NULL A 0 A_SpawnItemEx("FlameDecayBlue", frandom (-16, 16), frandom (-16, 16), 4, 0, 0, 0, 0, 0, 80)
 		TNT1 A 5 A_SpawnItemEx("ExplosionMain")
-		Stop
-	}
-}
-
-Actor GuardianAmmoPackage : CustomInventory
-{
-	+AUTOACTIVATE
-	Inventory.MaxAmount 0
-	States
-	{
-	Pickup:
-		NULL A 0 A_GiveInventory("MachineGunAmmo", 400)
-		NULL A 0 A_GiveInventory("ArtilleryShellAmmo", 30)
-		NULL A 0 A_GiveInventory("ShortRangeMissileAmmo", 150)
-		NULL A 0 A_GiveInventory("NukeAmmo", 2)
-		Stop
-	}
-}
-
-Actor GuardianAmmoPackageSmall : CustomInventory
-{
-	+AUTOACTIVATE
-	Inventory.MaxAmount 0
-	States
-	{
-	Pickup:
-		NULL A 0 A_GiveInventory("MachineGunAmmo", 100)
-		NULL A 0 A_GiveInventory("ArtilleryShellAmmo", 10)
-		NULL A 0 A_GiveInventory("ShortRangeMissileAmmo", 40)
-		NULL A 0 A_GiveInventory("NukeAmmo", 1)
 		Stop
 	}
 }

@@ -10,7 +10,8 @@ struct AOWMechWeapon
 {
 	str name;
 	str prefix;
-	int reloadDelay;
+	fixed reloadDelay;
+	str reloadSound;
 };
 
 #define MAX_MECHS 8
@@ -45,8 +46,9 @@ function void AddMechWeapon(str prefix, str name)
 	NumMechWeapons++;
 }
 
-function void SetMechWeaponReload(int reloadDelay)
+function void SetMechWeaponReload(str reloadSound, int reloadDelay)
 {
+	MechWeapons[NumMechWeapons].reloadSound = reloadSound;
 	MechWeapons[NumMechWeapons].reloadDelay = reloadDelay;
 }
 
@@ -97,31 +99,32 @@ function void InitMechs(void)
 	
 	AddMech("Wolverine", "Wolverine");
 		AddMechWeapon("LRM", "LRM x10");
-			SetMechWeaponReload(10);
+			SetMechWeaponReload("LRMRELO", 10);
 		AddMechWeapon("Pulse", "Pulse Rifle");
 		AddMechWeapon("Minigun", "Minigun");
 		
 	AddMech("MadCat", "Mad Cat");
 		AddMechWeapon("ShockCannon", "Dual Shock Cannon");
+			SetMechWeaponReload("SHCNRELO", 5 * 35);
 		AddMechWeapon("ShockRifle", "Dual Shock Rifles");
 		AddMechWeapon("LRM", "LRM 2x10");
-			SetMechWeaponReload(10);
+			SetMechWeaponReload("LRMRELO", 5 * 35);
 			
 	AddMech("Titan", "Titan");
 		AddMechWeapon("100mm", "100mm Cannon");
-			SetMechWeaponReload(10);
+			SetMechWeaponReload("", 10);
 		AddMechWeapon("Flamer", "Dual Flamethrowers");
 		AddMechWeapon("LRM", "LRM x20");
-			SetMechWeaponReload(10);
+			SetMechWeaponReload("LRMRELO", 10);
 			
 	AddMech("Guardian", "Guardian");
 		AddMechWeapon("80mm", "80mm Artillery");
-			SetMechWeaponReload(10);
+			SetMechWeaponReload("ARTIRELO", 10);
 		AddMechWeapon("SRM", "SRM x15");
-			SetMechWeaponReload(10);
+			SetMechWeaponReload("", 10);
 		AddMechWeapon("Flak", "Flak Minigun");
 		AddMechWeapon("MiniNuke", "Mini-Nuke");
-			SetMechWeaponReload(20);
+			SetMechWeaponReload("ARTIRELO", 20);
 }
 
 // DEBUG
