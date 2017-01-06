@@ -14,3 +14,45 @@ attacked/red/refinery			rrefattk
 attacked/red/factory			rfacattk
 attacked/red/repairfacility		rrepattk
 attacked/red/obelisk			roblattk
+
+$playeralias	Mech	male	*death		weapons/rocklx
+$playeralias	Mech	male	*xdeath		weapons/rocklx
+$playeralias	Mech	male	*gibbed		weapons/rocklx
+$playeralias	Mech	female	*death		weapons/rocklx
+$playeralias	Mech	female	*xdeath		weapons/rocklx
+$playeralias	Mech	female	*gibbed		weapons/rocklx
+$playeralias	Mech	other	*death		weapons/rocklx
+$playeralias	Mech	other	*xdeath		weapons/rocklx
+$playeralias	Mech	other	*gibbed		weapons/rocklx
+
+$playersound	Mech	male	*pain100	NOSOUND
+$playersounddup	Mech	male	*pain75		*pain100
+$playersounddup	Mech	male	*pain50		*pain100
+$playersounddup	Mech	male	*pain25		*pain100
+$playersound	Mech	female	*pain100	NOSOUND
+$playersounddup	Mech	female	*pain75		*pain100
+$playersounddup	Mech	female	*pain50		*pain100
+$playersounddup	Mech	female	*pain25		*pain100
+$playersound	Mech	other	*pain100	NOSOUND
+$playersounddup	Mech	other	*pain75		*pain100
+$playersounddup	Mech	other	*pain50		*pain100
+$playersounddup	Mech	other	*pain25		*pain100
+
+$playersound	Mech	male	*grunt		NOSOUND
+$playersounddup	Mech	male	*land		*grunt
+$playersound	Mech	male	*jump		NOSOUND
+$playersound	Mech	male	*fist		NOSOUND
+$playersound	Mech	male	*usefail	NOSOUND
+$playersound	Mech	male	*taunt	    NOSOUND
+$playersound	Mech	female	*grunt		NOSOUND
+$playersounddup	Mech	female	*land		*grunt
+$playersound	Mech	female	*jump		NOSOUND
+$playersound	Mech	female	*fist		NOSOUND
+$playersound	Mech	female	*usefail	NOSOUND
+$playersound	Mech	female	*taunt	    NOSOUND
+$playersound	Mech	other	*grunt		NOSOUND
+$playersounddup	Mech	other	*land		*grunt
+$playersound	Mech	other	*jump		NOSOUND
+$playersound	Mech	other	*fist		NOSOUND
+$playersound	Mech	other	*usefail	NOSOUND
+$playersound	Mech	other	*taunt	    NOSOUND
