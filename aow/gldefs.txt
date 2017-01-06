@@ -9,3 +9,5 @@
 
 #include "decorate/obelisk.gl"
 #include "decorate/puffs.gl"
+
+#include "decorate/mechs/madcat.gl"

@@ -1,0 +1,15 @@
+Pointlight PPCBALL
+{
+Color 1.0 1.0 1.0
+Size 100
+}
+
+object ShockCannonBall
+{
+	frame PPCX { light PPCBALL }
+}
+
+object ShockCannonBallImpact
+{
+	frame PPCX { light PPCBALL }
+}
