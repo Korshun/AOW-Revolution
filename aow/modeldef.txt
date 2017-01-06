@@ -35,3 +35,40 @@ model RazorWireRed
     Scale 3.0 1.7 3.0
     FrameIndex WIRE A 0 0
 }
+
+model Raven
+{
+   Path "models"
+   Model 0 "raven.md3"
+   Skin 0 "raven.png"
+   Scale 10.0 10.0 10.0
+
+   FrameIndex RAVN I 0 0
+   FrameIndex RAVN A 0 1
+   FrameIndex RAVN B 0 2
+   FrameIndex RAVN C 0 3
+   FrameIndex RAVN D 0 4
+   FrameIndex RAVN E 0 5
+   FrameIndex RAVN F 0 6
+   FrameIndex RAVN G 0 7
+   FrameIndex RAVN H 0 8
+   FrameIndex RAVN J 0 9
+   FrameIndex RAVN K 0 11
+   FrameIndex RAVN L 0 12
+   FrameIndex RAVN M 0 13
+   FrameIndex RAVN N 0 14
+   FrameIndex RAVN O 0 15
+   FrameIndex RAVN P 0 16
+   FrameIndex RAVN Q 0 17
+   FrameIndex RAVN R 0 18
+   FrameIndex RAVN S 0 19
+   FrameIndex RAVN T 0 20
+   FrameIndex RAVN U 0 21
+   FrameIndex RAVN V 0 22
+   FrameIndex RAVN W 0 23
+   FrameIndex RAVN X 0 24
+   FrameIndex RAVN Y 0 25
+   FrameIndex RAVN Z 0 26
+   FrameIndex RAV2 A 0 27
+   FrameIndex RAV2 B 0 28
+}
