@@ -56,3 +56,17 @@ $playersound	Mech	other	*jump		NOSOUND
 $playersound	Mech	other	*fist		NOSOUND
 $playersound	Mech	other	*usefail	NOSOUND
 $playersound	Mech	other	*taunt	    NOSOUND
+
+$playeralias	Guardian	male	*death		GRDDETH
+$playeralias	Guardian	male	*xdeath		GRDDETH
+$playeralias	Guardian	male	*gibbed		GRDDETH
+$playeralias	Guardian	male	*pain100	GRDPAIN
+$playersounddup	Guardian	male	*pain75		*pain100
+$playersounddup	Guardian	male	*pain50		*pain100
+$playersounddup	Guardian	male	*pain25		*pain100
+$playersound	Guardian	male	*grunt		NOSOUND
+$playersounddup	Guardian	male	*land		*grunt
+$playersound	Guardian	male	*jump		NOSOUND
+$playersound	Guardian	male	*fist		NOSOUND
+$playersound	Guardian	male	*usefail	NOSOUND
+$playeralias	Guardian	male	*taunt	    GRDSEE

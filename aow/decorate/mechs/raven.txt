@@ -4,9 +4,7 @@ Actor Raven : Mech
 	Height 144
 	Mass 4000
 	Health 2000
-	
-	+NOSKIN
-	
+
 	Player.DisplayName "Raven"
 	Player.MaxHealth 2000
 	Player.ForwardMove 0.85
