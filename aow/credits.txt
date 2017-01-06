@@ -36,6 +36,10 @@ Sniper Rifle - AOW r2539
 Weapon selection sounds - AOW 2.1
 Weapon grenade animations - AOW 2.1
 
+Mechs:
+Raven - AOW r2539
+Mad Cat - AOW r2539, with shock cannon projectile sprite from AOW 2.1
+
 Constructs:
 
 Sandbag wall - AOW r2539
