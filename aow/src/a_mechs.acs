@@ -1,0 +1,105 @@
+struct AOWMech
+{
+	str name;
+	str actorname;
+	int firstWeapon;
+	int numWeapons;
+};
+
+struct AOWMechWeapon
+{
+	str name;
+	str prefix;
+	int reloadDelay;
+};
+
+#define MAX_MECHS 8
+#define MAX_MECH_WEAPONS 32
+
+int NumMechs = 0;
+int NumMechWeapons = 0;
+AOWMech Mechs[MAX_MECHS];
+AOWMechWeapon MechWeapons[MAX_MECH_WEAPONS];
+
+function void AddMech(str actorname, str name)
+{
+	if (NumMechs == MAX_MECHS)
+		LimitError("MAX_MECHS");
+		
+	Mechs[NumMechs].actorname = actorname;
+	Mechs[NumMechs].name = name;
+	Mechs[NumMechs].firstWeapon = NumMechWeapons;
+	Mechs[NumMechs].numWeapons = 0;
+	NumMechs++;
+}
+
+function void AddMechWeapon(str prefix, str name)
+{
+	if (NumMechWeapons == MAX_MECH_WEAPONS)
+		LimitError("MAX_MECH_WEAPONS");
+
+	MechWeapons[NumMechWeapons].prefix = prefix;
+	MechWeapons[NumMechWeapons].name = name;
+	MechWeapons[NumMechWeapons].reloadDelay = 0;
+	Mechs[NumMechs].numWeapons++;
+	NumMechWeapons++;
+}
+
+function void SetMechWeaponReload(int reloadDelay)
+{
+	MechWeapons[NumMechWeapons].reloadDelay = reloadDelay;
+}
+
+function bool ActorIsMech(int tid)
+{
+	for (int i = 0; i < NumMechs; i++)
+	{
+		if (CheckActorClass(tid, Mechs[i].actorname))
+			return true;
+	}
+	return false;
+}
+
+function bool IsMech(void)
+{
+	return ActorIsMech(0);
+}
+
+function int MechWeaponCount(int mech)
+{
+	return Mechs[mech].numWeapons;
+}
+
+function void InitMechs(void)
+{
+	AddMech("Orca", "Orca");
+	AddMech("Raven", "Raven");
+	
+	AddMech("Wolverine", "Wolverine");
+		AddMechWeapon("LRM", "LRM x10");
+			SetMechWeaponReload(10);
+		AddMechWeapon("Pulse", "Pulse Rifle");
+		AddMechWeapon("Minigun", "Minigun");
+		
+	AddMech("MadCat", "Mad Cat");
+		AddMechWeapon("ShockCannon", "Dual Shock Cannon");
+		AddMechWeapon("ShockRifle", "Dual Shock Rifles");
+		AddMechWeapon("LRM", "LRM 2x10");
+			SetMechWeaponReload(10);
+			
+	AddMech("Titan", "Titan");
+		AddMechWeapon("100mm", "100mm Cannon");
+			SetMechWeaponReload(10);
+		AddMechWeapon("Flamer", "Dual Flamethrowers");
+		AddMechWeapon("LRM", "LRM x20");
+			SetMechWeaponReload(10);
+			
+	AddMech("Guardian", "Guardian");
+		AddMechWeapon("80mm", "80mm Artillery");
+			SetMechWeaponReload(10);
+		AddMechWeapon("SRM", "SRM x15");
+			SetMechWeaponReload(10);
+		AddMechWeapon("Flak", "Flak Minigun");
+		AddMechWeapon("MiniNuke", "Mini-Nuke");
+			SetMechWeaponReload(20);
+}

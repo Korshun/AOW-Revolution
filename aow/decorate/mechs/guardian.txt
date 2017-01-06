@@ -244,10 +244,14 @@ Actor GuardianShell : ArtilleryShell80mm
 		NULL A 0 A_SpawnItemEx("FlameDecay", frandom(-32, 32), frandom(-32, 32), 4)
 		NULL A 0 A_SpawnItemEx("ExplosionMain")
 		TNT1 A 1 A_Explode(60, 32, 1)
-		TNT1 A 5 A_Explode(60, 128, 1)
+		NULL A 0 A_Explode(60, 128, 1)
 		Stop
 	}
 }
+
+Actor GuardianShellRed : GuaridanShell
+{
+	
 
 Actor GuardianShellBlue : GuardianShell
 {

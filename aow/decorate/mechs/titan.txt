@@ -55,7 +55,7 @@ Actor Titan : Mech
 	}
 }
 
-Actor TitanWeapons : AOWWeapon
+Actor TitanWeapons : MechWeapons
 {
 	Weapon.SelectionOrder 1
 	Weapon.AmmoUse 0

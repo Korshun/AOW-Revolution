@@ -60,7 +60,7 @@ Actor Orca : Mech
 	}
 }
 
-Actor OrcaWeapons : AOWWeapon
+Actor OrcaWeapons : MechWeapons
 {
 	Weapon.SelectionOrder 1
 	Weapon.AmmoUse 1

@@ -35,12 +35,14 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_basehud.acs"
 #include "a_newhid.acs"
 #include "a_money.acs"
+#include "a_mechs.acs"
 
 function void AOWInit(void)
 {
 	if (IsServer())
 		AutoconfigureServer();
 	InitBuildings();
+	InitMechs();
 }
 
 script aow_init OPEN
