@@ -32,3 +32,20 @@ const int RGF_CENTERZ = 16;
 // Flags for A_Explode
 const int XF_HURTSOURCE = 1;
 const int XF_NOTMISSILE = 4;
+
+// For SetPlayerProprty action special
+Const Int PROP_FROZEN = 0;
+Const Int PROP_NOTARGET = 1;
+Const Int PROP_INSTANTWEAPONSWITCH = 2;
+Const Int PROP_FLY = 3;
+Const Int PROP_TOTALLYFROZEN = 4;
+Const Int PROP_INVULNERABILITY  = 5; // (Deprecated)
+Const Int PROP_STRENGTH = 6; // (Deprecated)
+Const Int PROP_INVISIBILITY = 7; // (Deprecated)
+Const Int PROP_RADIATIONSUIT = 8; // (Deprecated)
+Const Int PROP_ALLMAP = 9; // (Deprecated)
+Const Int PROP_INFRARED = 10; // (Deprecated)
+Const Int PROP_WEAPONLEVEL2 = 11; // (Deprecated)
+Const Int PROP_FLIGHT = 12; // (Deprecated)
+Const Int PROP_SPEED = 15; // (Deprecated)
+Const Int PROP_BUDDHA = 16;
