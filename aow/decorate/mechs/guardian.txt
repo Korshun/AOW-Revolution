@@ -158,13 +158,13 @@ Actor GuardianWeapons : MechWeapons
 		JUGS A 10 A_GiveInventory("MechSelectedWeapon", 2)
 		NULL A 0 A_PlayWeaponSound("lrm/fire")
 		NULL A 0 A_JumpIfInventory("IsBlue", 1, "Fire.MissilesBlue")
-		JUGS AAAAAAAAAAAAAAA 2 BRIGHT A_FireCustomMissile("ShortRangeMissile", random (-3, 3), 0, -18, 0, 0, random (-3, 3))
+		JUGS AAAAAAAAAAAAAAA 2 BRIGHT A_FireCustomMissile("ShortRangeMissile", frandom (-3, 3), 0, -18, 0, 0, frandom (-3, 3))
 		JUGS A 10
 		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
 		JUGS A 20 A_TakeInventory("MechSelectedWeapon", 2)
 		Goto Ready
 	Fire.MissilesBlue:
-		JUGS AAAAAAAAAAAAAAA 2 BRIGHT A_FireCustomMissile("ShortRangeMissileBlue", random (-3, 3), 0, -18, 0, 0, random (-3, 3))
+		JUGS AAAAAAAAAAAAAAA 2 BRIGHT A_FireCustomMissile("ShortRangeMissileBlue", frandom (-3, 3), 0, -18, 0, 0, frandom (-3, 3))
 		JUGS A 10
 		NULL A 0 SetPlayerProperty(0, false, PROP_FROZEN)
 		JUGS A 20 A_TakeInventory("MechSelectedWeapon", 2)
@@ -241,7 +241,7 @@ Actor GuardianShell : ArtilleryShell80mm
 	Death:
 		NULL A 0 A_NoGravity
 		NULL A 0 A_StopSound(CHAN_BODY)
-		NULL A 0 A_SpawnItemEx("FlameDecay", random(-32, 32), random(-32, 32), 4)
+		NULL A 0 A_SpawnItemEx("FlameDecay", frandom(-32, 32), frandom(-32, 32), 4)
 		NULL A 0 A_SpawnItemEx("ExplosionMain")
 		TNT1 A 1 A_Explode(60, 32, 1)
 		TNT1 A 5 A_Explode(60, 128, 1)
@@ -258,7 +258,7 @@ Actor GuardianShellBlue : GuardianShell
 	Death:
 		NULL A 0 A_NoGravity
 		NULL A 0 A_StopSound(CHAN_BODY)
-		NULL A 0 A_SpawnItemEx("FlameDecayBlue", random(-32, 32), random(-32, 32), 4)
+		NULL A 0 A_SpawnItemEx("FlameDecayBlue", frandom(-32, 32), frandom(-32, 32), 4)
 		NULL A 0 A_SpawnItemEx("ExplosionMain")
 		TNT1 A 1 A_Explode(60, 32, 1)
 		TNT1 A 5 A_Explode(60, 128, 1)
@@ -407,7 +407,7 @@ Actor ShortRangeMissile : LongRangeMissile
 	Death:
 		NULL A 0 A_StopSound(CHAN_BODY)
 		NULL A 0 A_Explode(38, 128, 0)
-		NULL A 0 A_SpawnItemEx("FlameDecay", random (-16, 16), random (-16, 16), 4, 0, 0, 0, 0, 0, 80)
+		NULL A 0 A_SpawnItemEx("FlameDecay", frandom (-16, 16), frandom (-16, 16), 4, 0, 0, 0, 0, 0, 80)
 		TNT1 A 5 A_SpawnItemEx("ExplosionMain")
 		Stop
 	}
@@ -420,7 +420,7 @@ Actor ShortRangeMissileBlue : ShortRangeMissile
 	Death:
 		NULL A 0 A_StopSound(CHAN_BODY)
 		NULL A 0 A_Explode(38, 128, 0)
-		NULL A 0 A_SpawnItemEx("FlameDecayBlue", random (-16, 16), random (-16, 16), 4, 0, 0, 0, 0, 0, 80)
+		NULL A 0 A_SpawnItemEx("FlameDecayBlue", frandom (-16, 16), frandom (-16, 16), 4, 0, 0, 0, 0, 0, 80)
 		TNT1 A 5 A_SpawnItemEx("ExplosionMain")
 		Stop
 	}

@@ -32,21 +32,21 @@ Actor Orca : Mech
 		NULL A 0 A_PlaySound("orca/Loop", CHAN_5, 1.0, 1)
 		NULL A 0 A_JumpIf(Health < 300, "SeeDamaged")
 		ORCV A 2 A_SpawnItemEx("MechStepDamageOrca", 32, 0, -8, 0, 0, 0, 0, 0, 0)
-		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, -48, 32, 0.5*Random(-4, 4), 0, random(-2, -4), random(-6, 6), 128, 0) 
-		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, 48, 32, 0.5*Random(-4, 4), 0, random(-2, -4), random(-6, 6), 128, 0) 
-		NULL A 0 A_SpawnItemEx("OrcaSmokePuff", -38, -48, 24, 0.5*Random(-4, 4), 0, random(-1, -2), random(-1, 1), 128, 0) 
-		NULL A 0 A_SpawnItemEx("OrcaSmokePuff", -38, 48, 24, 0.5*Random(-4, 4), 0, random(-1, -2), random(-1, 1), 128, 0) 
+		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, -48, 32, 0.5*frandom(-4, 4), 0, frandom(-2, -4), frandom(-6, 6), 128, 0) 
+		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, 48, 32, 0.5*frandom(-4, 4), 0, frandom(-2, -4), frandom(-6, 6), 128, 0) 
+		NULL A 0 A_SpawnItemEx("OrcaSmokePuff", -38, -48, 24, 0.5*frandom(-4, 4), 0, frandom(-1, -2), frandom(-1, 1), 128, 0) 
+		NULL A 0 A_SpawnItemEx("OrcaSmokePuff", -38, 48, 24, 0.5*frandom(-4, 4), 0, frandom(-1, -2), frandom(-1, 1), 128, 0) 
 		NULL A 0 A_JumpIf(WaterLevel >= 1, "Drown")
 		Goto See+1
 	SeeDamaged:
 		NULL A 0 A_PlaySound("orca/Loop", 5, 1.0, 1)
 		NULL A 0 A_JumpIf(Health >= 300, "See")
-		ORCV A 2 A_SpawnItemEx("EjectedMechSmokePuff", random(-8, 8), random(-8, 8), random(64, 96), 0, 0, 3, 0, 0, 0)
+		ORCV A 2 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-8, 8), frandom(-8, 8), frandom(64, 96), 0, 0, 3, 0, 0, 0)
 		NULL A 0 A_SpawnItemEx("MechStepDamageOrca", 32, 0, -8, 0, 0, 0, 0, 0, 0)
-		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, -48, 32, 0.5*Random(-4, 4), 0, random(-2, -4), random(-6, 6), 128, 0) 
-		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, 48, 32, 0.5*Random(-4, 4), 0, random(-2, -4), random(-6, 6), 128, 0) 
-		NULL AA 0 A_SpawnItemEx("OrcaSmokePuff", -38, -48, 24, 0.5*Random(-4, 4), 0, random(-1, -2), random(-1, 1), 128, 0) 
-		NULL AA 0 A_SpawnItemEx("OrcaSmokePuff", -38, 48, 24, 0.5*Random(-4, 4), 0, random(-1, -2), random(-1, 1), 128, 0) 
+		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, -48, 32, 0.5*frandom(-4, 4), 0, frandom(-2, -4), frandom(-6, 6), 128, 0) 
+		NULL A 0 A_SpawnItemEx("OrcaFlame", -38, 48, 32, 0.5*frandom(-4, 4), 0, frandom(-2, -4), frandom(-6, 6), 128, 0) 
+		NULL AA 0 A_SpawnItemEx("OrcaSmokePuff", -38, -48, 24, 0.5*frandom(-4, 4), 0, frandom(-1, -2), frandom(-1, 1), 128, 0) 
+		NULL AA 0 A_SpawnItemEx("OrcaSmokePuff", -38, 48, 24, 0.5*frandom(-4, 4), 0, frandom(-1, -2), frandom(-1, 1), 128, 0) 
 		Goto SeeDamaged+1
 	Death:
 		NULL A 0 A_StopSound(5)
@@ -169,7 +169,7 @@ Actor OrcaRocket
 	Death:
 		NULL A 0 A_PlaySoundEx("blanksnd", "Body", 0)
 		NULL A 0 A_Explode(80, 128)
-		NULL A 0 A_SpawnItemEx("FlameDecay", random(-16, 16), random(-16, 16), 4, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SpawnItemEx("FlameDecay", frandom(-16, 16), frandom(-16, 16), 4, 0, 0, 0, 0, 0, 160)
 		TNT1 A 5 A_SpawnItemEx("ExplosionMain")
 		Stop
 	}
@@ -184,7 +184,7 @@ Actor OrcaRocketBlue : OrcaRocket
 	Death:
 		NULL A 0 A_PlaySoundEx("blanksnd", "Body", 0)
 		NULL A 0 A_Explode(80, 128)
-		NULL A 0 A_SpawnItemEx("FlameDecayBlue", random(-16, 16), random(-16, 16), 4, 0, 0, 0, 0, 0, 160)
+		NULL A 0 A_SpawnItemEx("FlameDecayBlue", frandom(-16, 16), frandom(-16, 16), 4, 0, 0, 0, 0, 0, 160)
 		TNT1 A 5 A_SpawnItemEx("ExplosionMain")
 		Stop
 	}

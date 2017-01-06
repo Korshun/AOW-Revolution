@@ -39,11 +39,11 @@ Actor Titan : Mech
 		NULL A 0 A_PlaySoundEx("mech/idle", "SoundSlot5", 1, -1)
 		NULL A 0 A_SpawnItemEx("MechStepSmokePuffLarge", 0, -34, 4, 0, 0, 0, 0, 128, 0)
 		NULL A 0 A_SpawnItemEx("MechStepDamageStrong", 0, -34, 4, 0, 0, 0, 0, 0, 0)
-		ROB3 E 10 A_SpawnItemEx("EjectedMechSmokePuff", random(-32, 32), random(-32, 32), random(96, 128), 0, 0, 3, 0, 0, 0)
+		ROB3 E 10 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 0, 0)
 		ROB3 DC 7
 		NULL A 0 A_SpawnItemEx("MechStepSmokePuffLarge", 0, 34, 4, 0, 0, 0, 0, 128, 0)
 		NULL A 0 A_SpawnItemEx("MechStepDamageStrong", 0, 34, 4, 0, 0, 0, 0, 0, 0)
-		ROB3 B 10 A_SpawnItemEx("EjectedMechSmokePuff", random(-32, 32), random(-32, 32), random(96, 128), 0, 0, 3, 0, 0, 0)
+		ROB3 B 10 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 0, 0)
 		Goto Spawn
 	Death:
 		ROB3 A 10 A_NoBlocking
@@ -115,80 +115,80 @@ Actor TitanWeapons : AOWWeapon
 		NULL A 0 A_PlaySound("flamer2/fire", 6, 1.0, 1)
 		NULL A 0 A_GunFlash
 		NULL A 0 A_JumpIfInventory("IsBlue", 1, "Fire.FlamerBlue")
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShot", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShot", frandom(-2, 2), 0, -18, 3)
 		NULL A 0
 		NULL A 0 A_Refire 
 		MHUD B 3 BRIGHT A_PlaySound("flamer2/down", 6)
 		MHUD A 3
 		Goto Ready
 	Fire.FlamerBlue:
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
 		NULL A 0 A_GunFlash
-		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
-		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, 18, 3)
-		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", random(-2, 2), 0, -18, 3)
+		MHUD A 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
+		MHUD B 1 BRIGHT A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, 18, 3)
+		NULL A 0 A_FireCustomMissile("FastFlameShotBlue", frandom(-2, 2), 0, -18, 3)
 		NULL A 0
 		NULL A 0 A_Refire 
 		MHUD B 3 BRIGHT A_PlaySound("flamer2/down", 6)
@@ -206,12 +206,12 @@ Actor TitanWeapons : AOWWeapon
 		NULL A 0 ACS_ExecuteAlways(aow_script319, 0, 1, 6) // reload
 		NULL A 0 A_GunFlash
 		NULL A 0 A_JumpIfInventory("IsBlue", 1, "Fire.MissilesBlue")
-		MHUD BBBBBBBBBBBBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissile", random(-1, 1), 0, -25, 0)
+		MHUD BBBBBBBBBBBBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissile", frandom(-1, 1), 0, -25, 0)
 		MHUD A 35
 		MHUD A 2 A_Refire
 		Goto Ready
 	Fire.MissilesBlue:
-		MHUD BBBBBBBBBBBBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissileBlue", random(-1, 1), 0, -25, 0)
+		MHUD BBBBBBBBBBBBBBBBBBBB 2 A_FireCustomMissile("LongRangeMissileBlue", frandom(-1, 1), 0, -25, 0)
 		MHUD A 35
 		MHUD A 2 A_Refire
 		Goto Ready
@@ -273,7 +273,7 @@ Actor TitanShell
 	Death:
 		NULL A 0 A_NoGravity
 		NULL A 0 A_StopSound(CHAN_BODY)
-		NULL AA 0 A_SpawnItemEx("FlameDecayStrong", random(-32, 32), random(-32, 32), 4)
+		NULL AA 0 A_SpawnItemEx("FlameDecayStrong", frandom(-32, 32), frandom(-32, 32), 4)
 		NULL A 0 A_SpawnItemEx("ExplosionMainLarge")
 		TNT1 A 1 A_Explode(32, 32, 0)
 		TNT1 A 1 A_Explode(32, 32, 0)
@@ -294,7 +294,7 @@ Actor TitanShellBlue : TitanShell
 	Death:
 		NULL A 0 A_NoGravity
 		NULL A 0 A_StopSound(CHAN_BODY)
-		NULL AA 0 A_SpawnItemEx("FlameDecayStrongBlue", random(-32, 32), random(-32, 32), 4)
+		NULL AA 0 A_SpawnItemEx("FlameDecayStrongBlue", frandom(-32, 32), frandom(-32, 32), 4)
 		NULL A 0 A_SpawnItemEx("ExplosionMainLarge")
 		TNT1 A 1 A_Explode(32, 32, 0)
 		TNT1 A 1 A_Explode(32, 32, 0)
@@ -336,8 +336,8 @@ Actor DamagedTitan
 	Spawn:
 		ROB3 AAAA 35
 		ROB3 A 35 
-		ROB3 AAAA 5 A_SpawnItemEx("EjectedMechSmokePuff", random(-32, 32), random(-32, 32), random(96, 128), 0, 0, 3, 0, 128, 0)
-		ROB3 A 5 A_SpawnItemEx("EjectedMechSmokePuff", random(-32, 32), random(-32, 32), random(96, 128), 0, 0, 3, 0, 128, 0)
+		ROB3 AAAA 5 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 128, 0)
+		ROB3 A 5 A_SpawnItemEx("EjectedMechSmokePuff", frandom(-32, 32), frandom(-32, 32), frandom(96, 128), 0, 0, 3, 0, 128, 0)
 		Goto Spawn+5
 	Death:
 		NULL A 0
