@@ -87,7 +87,7 @@ script aow_playerhud (void)
 		HudSetTextOriginX(HUD_TEXTORIGIN_LEFT);
 		int xscale = FixedDiv(GetAspectRatio(), ASPECT_4_3);
 		HudSetPoint(HudRight() - 202 * xscale, HudBottom() - 88.0);
-		HudDrawText(hid, StrParam(s:"\cjCredits: \cd$", d:PlayerMoney(PlayerNumber())));
+		HudDrawText(hid, StrParam(s:"\cjCredits: \cd$", d:PlayerMoney(ConsolePlayerNumber())));
 		
 		Delay(1);
 	}
