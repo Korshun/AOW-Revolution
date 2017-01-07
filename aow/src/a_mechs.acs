@@ -48,8 +48,8 @@ function void AddMechWeapon(str prefix, str name)
 
 function void SetMechWeaponReload(str reloadSound, int reloadDelay)
 {
-	MechWeapons[NumMechWeapons].reloadSound = reloadSound;
-	MechWeapons[NumMechWeapons].reloadDelay = reloadDelay;
+	MechWeapons[NumMechWeapons - 1].reloadSound = reloadSound;
+	MechWeapons[NumMechWeapons - 1].reloadDelay = reloadDelay;
 }
 
 function bool IdentifyMech(int tid)
@@ -137,19 +137,15 @@ script aow_entermech (int mech)
 {
 	print(s:"Entering mech ", s:MechName(mech));
 
-	// A morphhed actor has its tid reset to 0, but restored on unmorph.
-	// Make players save the same tid in mech.
-	int tid = ActivatorTid();
-	if (!MorphActor(0, MechActorName(mech), "", INT_MAX, 0, "", ""))
+	if (!MorphActor(0, MechActorName(mech), "", INT_MAX, MRF_WHENINVULNERABLE | MRF_NEWTIDBEHAVIOUR, "", ""))
 	{
 		print(s:"Morph failed");
 		terminate;
 	}
-	Thing_ChangeTid(0, tid);
-	
+
 	while (IsAlive())
 	{
-		if (MechWeaponCount(mech) > 3 && KeyPressed(BT_ALTATTACK))
+		if (MechWeaponCount(mech) > 2 && KeyPressed(BT_ALTATTACK))
 		{
 			int weapon = CheckInventory("MechSelectedWeapon");
 			weapon = (weapon + 1) % MechWeaponCount(mech);
