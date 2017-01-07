@@ -126,7 +126,7 @@ script aow_entermech (int mech)
 	{
 		if (MechWeaponCount(mech) > 2 && KeyPressed(BT_ALTATTACK))
 		{
-			int weapon = CheckInventory("MechSelectedWeapon");
+			int weapon = CheckActorInventory(ActivatorTid(), "MechSelectedWeapon");
 			weapon = (weapon + 1) % MechWeaponCount(mech);
 			print(s:"Switching to ", s:MechWeaponName(weapon));
 			SetInventory("MechSelectedWeapon", weapon);
