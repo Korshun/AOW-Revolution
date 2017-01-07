@@ -42,7 +42,7 @@ function void AddMechWeapon(str prefix, str name)
 	MechWeapons[NumMechWeapons].prefix = prefix;
 	MechWeapons[NumMechWeapons].name = name;
 	MechWeapons[NumMechWeapons].reloadDelay = 0;
-	Mechs[NumMechs].numWeapons++;
+	Mechs[NumMechs - 1].numWeapons++;
 	NumMechWeapons++;
 }
 
