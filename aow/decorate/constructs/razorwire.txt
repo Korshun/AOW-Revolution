@@ -1,4 +1,4 @@
-Actor RazorWire 21152
+Actor RazorWire
 {
 	Obituary "%o walked into razor wire."
 
