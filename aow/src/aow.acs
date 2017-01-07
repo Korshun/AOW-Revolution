@@ -36,6 +36,7 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_newhid.acs"
 #include "a_money.acs"
 #include "a_mechs.acs"
+#include "a_classes.acs"
 
 function void AOWInit(void)
 {
@@ -43,6 +44,7 @@ function void AOWInit(void)
 		AutoconfigureServer();
 	InitBuildings();
 	InitMechs();
+	InitClasses();
 }
 
 script aow_init OPEN
