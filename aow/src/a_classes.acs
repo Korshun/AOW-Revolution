@@ -22,6 +22,16 @@ function str ClassName(int class)
 	return Classes[class].name;
 }
 
+function int PlayerAOWClass(int player)
+{
+	if (!PlayerInGame(player))
+	{
+		ProgramError("PlayerAOWClass called on a player not in game");
+		return -1;
+	}
+	return Players[player].class;
+}
+
 function void InitClasses(void)
 {
     AddClass("Light Assault");
