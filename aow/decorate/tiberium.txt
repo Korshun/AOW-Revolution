@@ -1,0 +1,24 @@
+Actor TiberiumCrystal : CustomInventory 21407
+{
+
+	Obituary "%o ventured too close to Tiberium."
+
+	Inventory.RespawnTics 175 // 5*35
+	Inventory.PickupMessage "Picked up a Tiberium Crystal!"
+	DamageType "ChemicalSpecial"
+
+	+BRIGHT
+	+BLOODLESSIMPACT
+	+NODAMAGETHRUST
+	
+	Scale 0.125
+	
+	States
+	{
+	Spawn:
+		TIBE A 35 BRIGHT A_Explode(24, 112)
+		Wait
+	}
+}
+
+Actor TiberiumCrystalItem : Boolean {}

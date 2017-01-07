@@ -1,0 +1,12 @@
+flickerlight TiberiumCrystal
+{
+	color 0.4 1.0 0.0
+	size 39
+	secondarySize 34
+	chance 0.04
+}
+
+object TiberiumCrystal
+{
+	frame TIBE { light TiberiumCrystal }
+}
