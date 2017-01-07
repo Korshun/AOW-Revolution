@@ -94,37 +94,16 @@ function str MechWeaponName(int mech)
 
 function void InitMechs(void)
 {
-	AddMech("Orca", "Orca");
 	AddMech("Raven", "Raven");
-	
 	AddMech("Wolverine", "Wolverine");
-		AddMechWeapon("LRM", "LRM x10");
-			SetMechWeaponReload("LRMRELO", 10);
-		AddMechWeapon("Pulse", "Pulse Rifle");
-		AddMechWeapon("Minigun", "Minigun");
-		
 	AddMech("MadCat", "Mad Cat");
 		AddMechWeapon("ShockCannon", "Dual Shock Cannon");
 			SetMechWeaponReload("SHCNRELO", 5 * 35);
 		AddMechWeapon("ShockRifle", "Dual Shock Rifles");
 		AddMechWeapon("LRM", "LRM 2x10");
 			SetMechWeaponReload("LRMRELO", 5 * 35);
-			
 	AddMech("Titan", "Titan");
-		AddMechWeapon("100mm", "100mm Cannon");
-			SetMechWeaponReload("", 10);
-		AddMechWeapon("Flamer", "Dual Flamethrowers");
-		AddMechWeapon("LRM", "LRM x20");
-			SetMechWeaponReload("LRMRELO", 10);
-			
 	AddMech("Guardian", "Guardian");
-		AddMechWeapon("80mm", "80mm Artillery");
-			SetMechWeaponReload("ARTIRELO", 10);
-		AddMechWeapon("SRM", "SRM x15");
-			SetMechWeaponReload("", 10);
-		AddMechWeapon("Flak", "Flak Minigun");
-		AddMechWeapon("MiniNuke", "Mini-Nuke");
-			SetMechWeaponReload("ARTIRELO", 20);
 }
 
 // DEBUG
