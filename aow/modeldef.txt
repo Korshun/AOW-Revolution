@@ -72,3 +72,40 @@ model Raven
    FrameIndex RAV2 A 0 27
    FrameIndex RAV2 B 0 28
 }
+
+model MadCat
+{
+   Path "models/mechs"
+   Model 0 "madcat.md3"
+   Skin 0 "madcat.png"
+   Scale 7.0 7.0 7.0
+
+   FrameIndex MADC K 0 0
+   FrameIndex MADC A 0 1
+   FrameIndex MADC B 0 2
+   FrameIndex MADC C 0 3
+   FrameIndex MADC D 0 4
+   FrameIndex MADC E 0 5
+   FrameIndex MADC F 0 6
+   FrameIndex MADC G 0 7
+   FrameIndex MADC H 0 8
+   FrameIndex MADC I 0 9
+   FrameIndex MADC J 0 10
+   FrameIndex MADC L 0 11
+   FrameIndex MADC M 0 12
+   FrameIndex MADC N 0 13
+   FrameIndex MADC O 0 14
+   FrameIndex MADC P 0 15
+   FrameIndex MADC Q 0 16
+   FrameIndex MADC R 0 17
+   FrameIndex MADC S 0 18
+   FrameIndex MADC T 0 19
+   FrameIndex MADC U 0 20
+   FrameIndex MADC V 0 21
+   FrameIndex MADC W 0 22
+   FrameIndex MADC X 0 23
+   FrameIndex MADC Y 0 24
+   FrameIndex MADC Z 0 25
+   FrameIndex MAD2 A 0 26
+   FrameIndex MAD2 B 0 27
+}
