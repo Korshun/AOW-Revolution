@@ -17,3 +17,37 @@ script aow_bloodrevolver DEATH
 	if (CheckWeapon("BloodRevolver"))
 		GiveInventory("BloodRevolverAmmo", 1);
 }
+
+#define PAINFADE_EXPLOSION 0
+#define PAINFADE_FIRE 1
+#define PAINFADE_CHEMICAL 2
+#define PAINFADE_LASER 3
+
+script aow_painfade (int type)
+{
+	switch (type)
+	{
+	case PAINFADE_EXPLOSION:
+		FadeTo(128,0,0,0.6,0.0);
+		FadeTo(128,0,0,0.0,1.0);
+		break;
+		
+	case PAINFADE_FIRE:
+		FadeTo(128,128,0,0.5,0.0);
+		FadeTo(128,128,0,0.0,1.0);
+		break;
+		
+	case PAINFADE_CHEMICAL:
+		FadeTo(0,125,0,0.5,0.0);
+		FadeTo(0,125,0,0.0,1.0);
+		break;
+		
+	case PAINFADE_LASER:
+		FadeTo(128,0,0,0.6,0.0);
+		FadeTo(128,0,0,0.0,1.0);
+		break;
+	
+	default:
+		ProgramError(StrParam(s:"aow_painfade called with ", d:type));
+	}
+}

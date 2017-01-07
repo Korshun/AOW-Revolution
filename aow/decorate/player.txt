@@ -16,4 +16,25 @@ Actor AOWPlayer : DoomPlayer
 	Player.SideMove 0.875
 	
 	DamageFactor "Disarm", 0
+	
+	States
+	{
+	Pain.Explosion:
+		PLAY G 0 ACS_ExecuteWithResult(aow_painfade, PAINFADE_EXPLOSION)
+		Goto Pain
+	Pain.Laser:
+		PLAY G 0 ACS_ExecuteWithResult(aow_painfade, PAINFADE_LASER)
+		Goto Pain
+	Pain.RazorWireBlue:
+	Pain.RazorWireRed:
+		PLAY G 0 ACS_ExecuteWithResult(aow_painfade, PAINFADE_LASER)
+		Goto Pain
+	Pain.Fire:
+		PLAY G 0 ACS_ExecuteWithResult(aow_painfade, PAINFADE_FIRE)
+		Goto Pain
+	Pain.Chemical:
+	Pain.ChemicalSpecial:
+		PLAY G 0 ACS_ExecuteWithResult(aow_painfade, PAINFADE_CHEMICAL)
+		Goto Pain
+	}
 }
