@@ -1,0 +1,152 @@
+sprite TIBXA0, 128, 128
+{
+XScale 2.0
+YScale 2.0
+Offset 64, 64
+WorldPanning
+Patch Chem01, 0, 0
+}
+
+sprite TIBXB0, 128, 128
+{
+XScale 1.9
+YScale 1.9
+Offset 64, 64
+WorldPanning
+Patch Chem02, 0, 0
+}
+
+sprite TIBXC0, 128, 128
+{
+XScale 1.8
+YScale 1.8
+Offset 64, 64
+WorldPanning
+Patch Chem03, 0, 0
+}
+
+sprite TIBXD0, 128, 128
+{
+XScale 1.7
+YScale 1.7
+Offset 64, 64
+WorldPanning
+Patch Chem04, 0, 0
+}
+
+sprite TIBXE0, 128, 128
+{
+XScale 1.6
+YScale 1.6
+Offset 64, 64
+WorldPanning
+Patch Chem05, 0, 0
+}
+
+sprite TIBXF0, 128, 128
+{
+XScale 1.5
+YScale 1.5
+Offset 64, 64
+WorldPanning
+Patch Chem06, 0, 0
+}
+
+sprite TIBXG0, 128, 128
+{
+XScale 1.4
+YScale 1.4
+Offset 64, 64
+WorldPanning
+Patch Chem07, 0, 0
+}
+
+sprite TIBXH0, 128, 128
+{
+XScale 1.3
+YScale 1.3
+Offset 64, 64
+WorldPanning
+Patch Chem08, 0, 0
+}
+
+sprite TIBXI0, 128, 128
+{
+XScale 1.2
+YScale 1.2
+Offset 64, 64
+WorldPanning
+Patch Chem09, 0, 0
+}
+
+sprite TIBXJ0, 128, 128
+{
+XScale 1.1
+YScale 1.1
+Offset 64, 64
+WorldPanning
+Patch Chem10, 0, 0
+}
+
+sprite TIBXK0, 128, 128
+{
+XScale 1.0
+YScale 1.0
+Offset 64, 64
+WorldPanning
+Patch Chem11, 0, 0
+}
+
+sprite TIBXL0, 128, 128
+{
+XScale 0.9
+YScale 0.9
+Offset 64, 64
+WorldPanning
+Patch Chem12, 0, 0
+}
+
+sprite TIBXM0, 128, 128
+{
+XScale 0.8
+YScale 0.8
+Offset 64, 64
+WorldPanning
+Patch Chem13, 0, 0
+}
+
+sprite TIBXN0, 128, 128
+{
+XScale 0.7
+YScale 0.7
+Offset 64, 64
+WorldPanning
+Patch Chem14, 0, 0
+}
+
+sprite TIBXO0, 128, 128
+{
+XScale 0.6
+YScale 0.6
+Offset 64, 64
+WorldPanning
+Patch Chem15, 0, 0
+}
+
+sprite TIBXP0, 128, 128
+{
+XScale 0.5
+YScale 0.5
+Offset 64, 64
+WorldPanning
+Patch Chem16, 0, 0
+}
+
+sprite TIBXQ0, 128, 128
+{
+XScale 0.4
+YScale 0.4
+Offset 64, 64
+WorldPanning
+Patch Chem16, 0, 0
+}
