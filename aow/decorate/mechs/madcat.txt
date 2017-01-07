@@ -57,7 +57,7 @@ Actor MadCat : Mech
 		MADC LM 4
 		MADC NOPQRSTUUU 4 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(32, 64), 0, 0, 3)
 		TNT1 A 35 A_SpawnItemEx("BigMechExplosion", 0, 0, 0, 0, 0, 0, 0, SXF_NOCHECKPOSITION)
-		DISR Z -1 A_SetTranslucent(0, 0.0)
+		TNT1 A -1
 		Stop
 	}
 }

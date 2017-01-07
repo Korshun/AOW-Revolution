@@ -54,7 +54,7 @@ Actor Raven : Mech
 		RAVN LMNOPQRS 4
 		RAVN T 8
 		RAVN T 15 A_SpawnItemEx("SmallMechExplosion", 0, 0, 0,  0, 0, 0,  0, SXF_NOCHECKPOSITION)
-		DISR Z -1
+		TNT1 A -1
 		Stop
 	}
 }
