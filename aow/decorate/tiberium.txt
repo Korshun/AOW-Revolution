@@ -15,21 +15,8 @@ Actor TiberiumCrystal : CustomInventory 21407
 	States
 	{
 	Spawn:
-		TIBE A 4
-		NULL A 0 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)
-		TIBE A 1
-		NULL A 0 A_Explode(24, 112)
-		TIBE A 3
-		NULL A 0 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)
-		TIBE A 2
-		NULL A 0 A_Explode(24, 112)
-		TIBE A 2
-		NULL A 0 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)
-		TIBE A 3
-		NULL A 0 A_Explode(24, 112)
-		TIBE A 1
-		NULL A 0 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)
-		TIBE A 4
+		NULL A 0
+		TIBE AAAAAAA 5 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)
 		NULL A 0 A_Explode(24, 112)
 		Loop
 	}
