@@ -9,7 +9,7 @@ Actor EagerBeaverSpawner replaces Chainsaw
 	}
 }
 
-Actor EagerBeaver : AOWWeapon 21085
+Actor EagerBeaver : AOWWeapon
 {
 	Tag "Chainsaw"
 	Inventory.PickupMessage "Chainsaw"

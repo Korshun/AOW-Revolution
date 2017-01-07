@@ -13,7 +13,7 @@
 21080 Boomstick
 21081 SniperRifleWeak
 
-21085 EagerBeaver ArtilleryCannon
+21085 ArtilleryCannon
 21086 DoubleShotgun
 21087 PlasmaGun
 
