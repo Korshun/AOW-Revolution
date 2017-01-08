@@ -1,22 +1,3 @@
-destroyed/blue			destroyb
-destroyed/red			destroyr
-
-attacked/blue/barracks			bbarattk
-attacked/blue/resce		bpplattk
-attacked/blue/refinery			brefattk
-attacked/blue/factory			bfacattk
-attacked/blue/repairfacility	brepattk
-attacked/blue/obelisk			boblattk
-
-attacked/red/barracks			rbarattk
-attacked/red/powerplant			rpplattk
-attacked/red/refinery			rrefattk
-attacked/red/factory			rfacattk
-attacked/red/repairfacility		rrepattk
-attacked/red/obelisk			roblattk
-
-$ambient 12 GEIGER point 1.0 continuous 1
-
 $playeralias	Mech	male	*death		weapons/rocklx
 $playeralias	Mech	male	*xdeath		weapons/rocklx
 $playeralias	Mech	male	*gibbed		weapons/rocklx
