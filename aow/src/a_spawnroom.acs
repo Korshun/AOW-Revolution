@@ -17,6 +17,7 @@ function void TeleportToSpawnRoom(void)
 		ProgramError(StrParam(s:"Failed to teleport player ", d:PlayerNumber(), s:" to spawn room"));
 	
 	SetPlayerProperty(0, true, PROP_TOTALLYFROZEN);
+	ACS_ExecuteAlways(aow_classmenu, 0);
 }
 
 function void DeployPlayer(void)

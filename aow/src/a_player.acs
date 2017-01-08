@@ -1,7 +1,9 @@
 struct AOWPlayer
 {
-	int class;
 	int money;
+	
+	bool hasClass;
+	int class;
 };
 
 AOWPlayer Players[MAX_PLAYERS];
@@ -41,21 +43,6 @@ function void SetActivatorToPlayer(int player)
 	SetActivator(PlayerTid(player));
 }
 
-script aow_enter ENTER
-{
-	InitPlayer();
-	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
-	Delay(35);
-	DeployPlayer();
-}
-
-script aow_respawn RESPAWN
-{
-	InitPlayer();
-	Delay(35);
-	DeployPlayer();
-}
-
 function void InitPlayer(void)
 {
 	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
@@ -64,8 +51,23 @@ function void InitPlayer(void)
 	SetInventory("AOWReloadTaker", 1);
 	SetInventory("AOWGrenadeGiver", 1);
 	SetInventory("AOWGrenadeTaker", 1);
+	
+	int player = PlayerNumber();
+	Players[player].hasClass = false;
+	
 	TeleportToSpawnRoom();
-}	
+}
+
+script aow_enter ENTER
+{
+	InitPlayer();
+	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
+}
+
+script aow_respawn RESPAWN
+{
+	InitPlayer();
+}
 
 script aow_enter_clientside ENTER CLIENTSIDE
 {

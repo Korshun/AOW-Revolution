@@ -22,14 +22,31 @@ function str ClassName(int class)
 	return Classes[class].name;
 }
 
+function int SetPlayerClass(int player, int class)
+{
+	Players[player].hasClass = true;
+	Players[player].class = class;
+	SetActorInventory(PlayerTid(player), "AOWClass", class + 1);
+}
+
 function int PlayerAOWClass(int player)
 {
 	if (!PlayerInGame(player))
-	{
-		ProgramError("PlayerAOWClass called on a player not in game");
 		return -1;
+	
+	if (IsServer())
+	{
+		if (!Players[player].hasClass)
+			return -1;
+		return Players[player].class;
 	}
-	return Players[player].class;
+	
+	return CheckActorInventory(PlayerTid(player), "AOWClass") - 1;
+}
+
+function bool PlayerHasClass(int player)
+{
+	return PlayerAOWClass(player) != -1;
 }
 
 function void InitClasses(void)
@@ -42,4 +59,69 @@ function void InitClasses(void)
     AddClass("Mech Pilot");
 	AddClass("Stealth Trooper");
 	AddClass("Sniper");
+}
+
+// ZDOOMVER: make this array local
+int ClassHids[MAX_CLASSES];
+
+script aow_classmenu (void) CLIENTSIDE
+{
+	int cursor = 0;
+	
+	for (int i = 0; i < MAX_CLASSES; i++)
+		ClassHids[i] = NewHid();
+
+	while (true)
+	{
+		if (KeyPressed(BT_BACK))
+			cursor++;
+		if (KeyPressed(BT_FORWARD))
+			cursor--;
+		
+		cursor = mod(cursor, NumClasses);
+		
+		if (KeyPressedAny(BT_USE | BT_ATTACK))
+		{
+			// Reliable puke.
+			while (!PlayerHasClass(PlayerNumber()))
+			{
+				RequestScriptPuke(aow_pickclass, cursor, 0, 0);
+				Delay(10);
+			}
+			terminate;
+		}
+	
+		int x = 320.0;
+		int y = 50.0;
+		
+		HudResetState();
+		HudSetStayTime(0.03);
+		HudSetFont("BIGFONT");
+		
+		for (int class = 0; class < NumClasses; class++)
+		{
+			HudSetPoint(x, y);
+			if (cursor == class)
+				HudSetTextColor(CR_GOLD);
+			else
+				HudSetTextColor(CR_GREEN);
+			HudDrawText(ClassHids[class], ClassName(class));
+			y += 20.0;
+		}
+		
+		Delay(1);
+	}
+}
+		
+script aow_pickclass (int class) NET
+{
+	int player = PlayerNumber();
+	
+	// Protect against cheaters and redundant pukes.
+	if (PlayerHasClass(player))
+		terminate;
+		
+	SetPlayerClass(player, class);
+	print(s:"Selected class: ", s:ClassName(class));
+	DeployPlayer(player);
 }
