@@ -19,7 +19,10 @@ function str BuildingTypeCodeName(int type)
 	case BUILDING_RESCENTER: return "rescenter";
 	case BUILDING_FACTORY: return "factory";
 	case BUILDING_REPAIR: return "repair";
+	case BUILDING_OBELISK: return "obelisk";
 	}
+	
+	return "unknown";
 }
 
 function str BuildingTypeName(int type)
@@ -30,8 +33,11 @@ function str BuildingTypeName(int type)
 	case BUILDING_REFINERY:  return "Refinery";
 	case BUILDING_RESCENTER: return "Research Center";
 	case BUILDING_FACTORY:   return "War Factory";
+	case BUILDING_REPAIR:    return "Repair Facility";
 	case BUILDING_OBELISK:   return "Obelisk of Light";
 	}
+	
+	return "Unknown Building";
 }
 
 function int BuildingTypeHealth(int type)
@@ -42,6 +48,9 @@ function int BuildingTypeHealth(int type)
 	case BUILDING_REFINERY:  return 30000;
 	case BUILDING_RESCENTER: return 20000;
 	case BUILDING_FACTORY:   return 30000;
+	case BUILDING_REPAIR:    return 15000;
 	case BUILDING_OBELISK:   return 15000;
 	}
+	
+	return 0;
 }
