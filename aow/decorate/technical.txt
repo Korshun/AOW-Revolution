@@ -1,0 +1,12 @@
+Actor SpawnRoom 22000
+{
+	//$Category "AOW Technical"
+	States
+	{
+	Spawn:
+		NULL A 0
+		NULL A 0 Thing_ChangeTid(0, TID_SPAWNROOM)
+		TNT1 A 1
+		Wait
+	}
+}

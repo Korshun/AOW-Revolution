@@ -30,25 +30,41 @@ function int ConsolePlayerTeam(void)
 	return GetPlayerTeam(ConsolePlayerNumber());
 }
 
+function void SetActivatorToPlayer(int player)
+{
+	int count = ThingCount(T_NONE, PlayerTid(player));
+	if (count == 0)
+		ProgramError(StrParam(s:"SetActivatorToPlayer: Player ", d:player, s:" has no tid"));
+	else if (count > 1)
+		ProgramError(StrParam(s:"SetActivatorToPlayer: Player ", d:player, s:"'s tid is taken by ", d:count, s:"actors"));
+
+	SetActivator(PlayerTid(player));
+}
+
 script aow_enter ENTER
 {
 	InitPlayer();
+	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
+	Delay(35);
+	DeployPlayer();
 }
 
 script aow_respawn RESPAWN
 {
 	InitPlayer();
+	Delay(35);
+	DeployPlayer();
 }
 
 function void InitPlayer(void)
 {
 	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
-	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
 	SetInventory("AOWReloadGiver", 1);
 	SetInventory("AOWReloadTaker", 1);
 	SetInventory("AOWGrenadeGiver", 1);
 	SetInventory("AOWGrenadeTaker", 1);
+	TeleportToSpawnRoom();
 }	
 
 script aow_enter_clientside ENTER CLIENTSIDE

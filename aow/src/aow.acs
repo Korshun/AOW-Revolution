@@ -23,6 +23,8 @@ function void ACSUtilsErrorHandler(int type, int message)
 	printbold(s:prefix, d:Timer(), s:" error: ", s:message);
 }
 
+#define TID_SPAWNROOM 3000
+
 #include "scriptnumbers.acs"
 #include "a_autoconfig.acs"
 #include "a_buildingtypes.acs"
@@ -37,6 +39,7 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_money.acs"
 #include "a_mechs.acs"
 #include "a_classes.acs"
+#include "a_spawnroom.acs"
 
 function void AOWInit(void)
 {

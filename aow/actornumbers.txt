@@ -29,3 +29,5 @@
 21413 Credits20
 21414 Credits40
 21415 Credits75
+
+22000 SpawnRoom

@@ -1,0 +1,26 @@
+#define SPAWNROOM_TILESIZE 64.0
+#define SPAWNROOM_WIDTH 8
+#define SPAWNROOM_HEIGHT 8
+
+function void TeleportToSpawnRoom(void)
+{
+	int tx = PlayerNumber() % SPAWNROOM_WIDTH;
+	int ty = PlayerNumber() / SPAWNROOM_WIDTH;
+	
+	int left = GetActorX(TID_SPAWNROOM);
+	int top = GetActorY(TID_SPAWNROOM);
+	
+	int x = SPAWNROOM_TILESIZE / 2 + left + tx * SPAWNROOM_TILESIZE;
+	int y = -SPAWNROOM_TILESIZE / 2 + top - ty * SPAWNROOM_TILESIZE;
+	
+	if (!SetActorPosition(0, x, y, 0, false))
+		ProgramError(StrParam(s:"Failed to teleport player ", d:PlayerNumber(), s:" to spawn room"));
+	
+	SetPlayerProperty(0, true, PROP_TOTALLYFROZEN);
+}
+
+function void DeployPlayer(void)
+{
+	Teleport(1 + PlayerTeam());
+	SetPlayerProperty(0, false, PROP_TOTALLYFROZEN);
+}
