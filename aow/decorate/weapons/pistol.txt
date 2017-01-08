@@ -30,9 +30,8 @@ Actor Handgun : AOWWeapon 21041
 	{
 	Ready:
 		NULL A 0 A_JumpIfInventory("FragGrenadeAmmo", 1, 1)
-		Goto RealReady
+		Goto Ready+2
 		NULL A 0 A_JumpIfInventory("AOWGrenade", 1, "FragGrenade")
-	RealReady:
 		PISG A 1 A_WeaponReady
 		Goto Ready
 	Deselect:
