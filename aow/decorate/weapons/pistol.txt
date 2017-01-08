@@ -62,8 +62,8 @@ Actor Handgun : AOWWeapon 21041
 		PISG A 1 offset (32,79)
 		PISG A 1 offset (48,125)
         NULL A 0 offset (1,33)
-		NULL A 0 A_GunFlash("Generic_FragGrenade")
-		TNT1 A 51
+		Goto Generic_FragGrenade
+	GrenadeReturn:
 		NULL A 0 A_PlaySound("PISTUP", CHAN_WEAPON)
 		PISG A 1 offset (120,139)
 		PISG A 1 offset (100,112)

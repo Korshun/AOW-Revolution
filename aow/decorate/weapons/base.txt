@@ -28,6 +28,8 @@ Actor AOWWeapon : Weapon
 		NULL A 0 A_FireCustomMissile("ThrownFragGrenade", -1, false, 10, 15)
 		NULL A 0 A_TakeInventory("FragGrenadeAmmo",1)
         FSH2 BCDEFGHI 1
+		TNT1 A 51
+		NULL A 0 A_JumpIfInventory("VirtualJump", 1, "GrenadeReturn")
 		Stop
 	}
 }

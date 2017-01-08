@@ -47,6 +47,7 @@ function void InitPlayer(void)
 {
 	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
+	SetInventory("VirtualJump", 1); // ZDOOMVER
 	SetInventory("AOWReloadGiver", 1);
 	SetInventory("AOWReloadTaker", 1);
 	SetInventory("AOWGrenadeGiver", 1);
