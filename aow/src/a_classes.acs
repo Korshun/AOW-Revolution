@@ -49,7 +49,7 @@ function bool PlayerHasClass(int player)
 	return PlayerAOWClass(player) != -1;
 }
 
-function void InitClasses(void)
+function void InitClassData(void)
 {
     AddClass("Light Assault");
     AddClass("Heavy Assault");

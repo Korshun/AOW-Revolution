@@ -92,7 +92,7 @@ function str MechWeaponName(int mech)
 	return MechWeapons[mech].name;
 }
 
-function void InitMechs(void)
+function void InitMechData(void)
 {
 	AddMech("Raven", "Raven");
 	AddMech("Wolverine", "Wolverine");

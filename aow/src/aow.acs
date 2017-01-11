@@ -45,9 +45,11 @@ function void AOWInit(void)
 {
 	if (IsServer())
 		AutoconfigureServer();
-	InitBuildings();
-	InitMechs();
-	InitClasses();
+	
+	InitMechData();
+	InitClassData();
+	
+	InitBuildings();	
 }
 
 script aow_init OPEN
@@ -57,6 +59,5 @@ script aow_init OPEN
 
 script aow_init_clientside OPEN CLIENTSIDE
 {
-	if (!IsServer())
-		AOWInit();
+	AOWInit();
 }
