@@ -66,6 +66,9 @@ int ClassHids[MAX_CLASSES];
 
 script aow_classmenu (void) CLIENTSIDE
 {
+	if (PlayerNumber() != ConsolePlayerNumber())
+		terminate;
+
 	int cursor = 0;
 	
 	for (int i = 0; i < MAX_CLASSES; i++)
