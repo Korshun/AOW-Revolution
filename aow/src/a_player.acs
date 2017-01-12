@@ -13,35 +13,12 @@ function int PlayerTid(int player)
 	return 1000 + player;
 }
 
-function int ConsolePlayerTid(void)
-{
-	return PlayerTid(ConsolePlayerNumber());
-}
 
-function int GetPlayerTeam(int player)
-{
-	if (!PlayerInGame(player))
-		return TEAM_NONE;
-	if (CheckActorInventory(PlayerTid(player), "IsRed"))
-		return TEAM_RED;
-	return TEAM_BLUE;
-}
 
-function int ConsolePlayerTeam(void)
-{
-	return GetPlayerTeam(ConsolePlayerNumber());
-}
 
-function void SetActivatorToPlayer(int player)
-{
-	int count = ThingCount(T_NONE, PlayerTid(player));
-	if (count == 0)
-		ProgramError(StrParam(s:"SetActivatorToPlayer: Player ", d:player, s:" has no tid"));
-	else if (count > 1)
-		ProgramError(StrParam(s:"SetActivatorToPlayer: Player ", d:player, s:"'s tid is taken by ", d:count, s:"actors"));
 
-	SetActivator(PlayerTid(player));
-}
+
+
 
 function void InitPlayer(void)
 {
@@ -80,16 +57,7 @@ script aow_respawn_clientside RESPAWN CLIENTSIDE
 
 }
 
-function bool ConsolePlayerInGame(void)
-{
-	if (!IsClient())
-	{
-		ProgramError("ConsolePlayerInGame() called serverside, returning false.");
-		return false;
-	}
-	
-	return PlayerInGame(ConsolePlayerNumber());
-}
+
 
 script aow_playerhud OPEN CLIENTSIDE
 {

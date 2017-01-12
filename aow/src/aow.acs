@@ -42,6 +42,7 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_mechs.acs"
 #include "a_classes.acs"
 #include "a_spawnroom.acs"
+#include "a_utils.acs"
 
 function void AOWInit(void)
 {
