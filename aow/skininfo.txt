@@ -112,3 +112,13 @@ sprite = PFLM
 name = "MarineSniper"
 sprite = PSNP
 }
+
+{
+name = "MarineTimegun"
+sprite = PTGN
+}
+
+{
+name = "MarineShockRifle"
+sprite = PLRF
+}
