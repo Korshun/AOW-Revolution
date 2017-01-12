@@ -46,6 +46,3 @@ remap VOLXC0 VOLXC0
 remap VOLXD0 VOLXD0
 remap VOLXE0 VOLXE0
 remap VOLXF0 VOLXF0
-
-// Shock cannon projectile
-remap PPCXA0 PPCXA0
