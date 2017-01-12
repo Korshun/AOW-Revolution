@@ -115,6 +115,7 @@ function void InitPlayer(bool isnew)
 script aow_playerhud OPEN CLIENTSIDE
 {
 	int hid = NewHid();
+	int hid2 = NewHid();
 	
 	while (true)
 	{
@@ -130,6 +131,12 @@ script aow_playerhud OPEN CLIENTSIDE
 		int xscale = FixedDiv(GetAspectRatio(), ASPECT_4_3);
 		HudSetPoint(HudRight() - 202 * xscale, HudBottom() - 88.0);
 		HudDrawText(hid, StrParam(s:"\cjCredits: \cd$", d:ConsolePlayerMoney()));
+		
+		if (ConsolePlayerHasClass())
+		{
+			HudSetPoint(HudRight() - 202 * xscale, HudBottom() - 70.0);
+			HudDrawText(hid2, StrParam(s:"\cj", s:ClassName(ConsolePlayerClassAOW())));
+		}
 		
 		Delay(1);
 	}
