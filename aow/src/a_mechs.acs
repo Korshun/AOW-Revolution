@@ -1,3 +1,21 @@
+function void InitMechData(void)
+{
+	AddMech("Raven", "Raven");
+		AddMechWeapon("AC2", "AC2");
+		AddMechWeapon("LRM", "LRM x5");
+	AddMech("Wolverine", "Wolverine");
+	AddMech("MadCat", "Mad Cat");
+		AddMechWeapon("ShockCannon", "Dual Shock Cannon");
+			SetMechWeaponReload("SHCNRELO", 5 * 35);
+		AddMechWeapon("ShockRifle", "Dual Shock Rifles");
+		AddMechWeapon("LRM", "LRM 2x10");
+			SetMechWeaponReload("LRMRELO", 5 * 35);
+	AddMech("Titan", "Titan");
+	AddMech("Guardian", "Guardian");
+}
+
+
+// Structure
 struct AOWMech
 {
 	str name;
@@ -52,6 +70,15 @@ function void SetMechWeaponReload(str reloadSound, int reloadDelay)
 	MechWeapons[NumMechWeapons - 1].reloadDelay = reloadDelay;
 }
 
+// Accessors
+function str MechName(int mech){ return Mechs[mech].name; }
+function str MechActorName(int mech) { return Mechs[mech].actorName; }
+function int MechFirstWeapon(int mech) { return Mechs[mech].firstWeapon; }
+function int MechWeaponCount(int mech) { return Mechs[mech].numWeapons; }
+
+function str MechWeaponName(int weapon) { return MechWeapons[weapon].name; }
+
+// Functions
 function bool IdentifyMech(int tid)
 {
 	for (int i = 0; i < NumMechs; i++)
@@ -70,40 +97,6 @@ function bool ActorIsMech(int tid)
 function bool IsMech(void)
 {
 	return ActorIsMech(0);
-}
-
-function str MechName(int mech)
-{
-	return Mechs[mech].name;
-}
-
-function str MechActorName(int mech)
-{
-	return Mechs[mech].actorName;
-}
-
-function int MechWeaponCount(int mech)
-{
-	return Mechs[mech].numWeapons;
-}
-
-function str MechWeaponName(int mech)
-{
-	return MechWeapons[mech].name;
-}
-
-function void InitMechData(void)
-{
-	AddMech("Raven", "Raven");
-	AddMech("Wolverine", "Wolverine");
-	AddMech("MadCat", "Mad Cat");
-		AddMechWeapon("ShockCannon", "Dual Shock Cannon");
-			SetMechWeaponReload("SHCNRELO", 5 * 35);
-		AddMechWeapon("ShockRifle", "Dual Shock Rifles");
-		AddMechWeapon("LRM", "LRM 2x10");
-			SetMechWeaponReload("LRMRELO", 5 * 35);
-	AddMech("Titan", "Titan");
-	AddMech("Guardian", "Guardian");
 }
 
 // DEBUG
