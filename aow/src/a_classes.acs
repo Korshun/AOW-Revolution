@@ -1,3 +1,16 @@
+function void InitClassData(void)
+{
+    AddClass("Light Assault");
+    AddClass("Heavy Assault");
+    AddClass("Engineer");
+    AddClass("Medic");
+    AddClass("Tiberium Harvester");
+    AddClass("Mech Pilot");
+	AddClass("Stealth Trooper");
+	AddClass("Sniper");
+}
+
+// Structure
 struct AOWClass
 {
 	str name;
@@ -17,11 +30,10 @@ function void AddClass(str name)
 	NumClasses++;
 }
 
-function str ClassName(int class)
-{
-	return Classes[class].name;
-}
+// Accessors
+function str ClassName(int class) {	return Classes[class].name; }
 
+// Functions
 function int SetPlayerClass(int player, int class)
 {
 	Players[player].hasClass = true;
@@ -49,17 +61,7 @@ function bool PlayerHasClass(int player)
 	return PlayerAOWClass(player) != -1;
 }
 
-function void InitClassData(void)
-{
-    AddClass("Light Assault");
-    AddClass("Heavy Assault");
-    AddClass("Engineer");
-    AddClass("Medic");
-    AddClass("Tiberium Harvester");
-    AddClass("Mech Pilot");
-	AddClass("Stealth Trooper");
-	AddClass("Sniper");
-}
+
 
 // ZDOOMVER: make this array local
 int ClassHids[MAX_CLASSES];
