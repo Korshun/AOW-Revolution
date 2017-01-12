@@ -21,6 +21,7 @@ Actor VirtualJump : Boolean {} // ZDOOMVER: always present in inventory to perfo
 #include "decorate/obelisk.txt"
 #include "decorate/player.txt"
 #include "decorate/puffs.txt"
+#include "decorate/randomcrate.txt"
 #include "decorate/teams.txt"
 #include "decorate/technical.txt"
 #include "decorate/tiberium.txt"

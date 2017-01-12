@@ -1,0 +1,18 @@
+Actor RandomCrate : CustomInventory 21410
+{
+	+LOWGRAVITY
+	+ALWAYSPICKUP
+	Inventory.PickupMessage "Powerup Crate"
+	Inventory.pickupSound "CRATE"
+	Inventory.RespawnTics 2100 // 1 minute
+	States
+	{
+	Spawn:
+		UCRT A 6 BRIGHT
+		UCRT A 6
+		Loop
+	Pickup:
+		NULL A 0 ACS_ExecuteAlways(aow_randomcrate, 0)
+		Stop
+	}
+}

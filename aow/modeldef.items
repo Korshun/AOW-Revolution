@@ -1,0 +1,11 @@
+Model RandomCrate
+{
+	Path "models"
+	
+	Model 0 "randomcrate.md3"
+	Skin 0 "randomcrate.png"
+
+	Scale 0.20 0.20 0.20
+
+	FrameIndex UCRT A 0 0
+}

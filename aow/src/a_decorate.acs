@@ -51,3 +51,8 @@ script aow_painfade (int type)
 		ProgramError(StrParam(s:"aow_painfade called with ", d:type));
 	}
 }
+
+script aow_randomcrate (void)
+{
+	print(s:"Random crates are not implemented yet");
+}

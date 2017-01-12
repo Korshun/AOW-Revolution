@@ -48,6 +48,7 @@ Utility step - AOW r2539
 Items:
 
 Credits - AOW r2539
+Random Crate - AOW r2539, with model from AOW 2.1
 Tiberium - AOW r2539
 
 Sounds:
