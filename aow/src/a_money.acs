@@ -1,10 +1,12 @@
 function int PlayerMoney(int player)
 {
-	if (IsServer())
-		return Players[player].money;
-		
-	int money1 = CheckActorInventory(PlayerTid(player), "MoneyClientside1");
-	int money2 = CheckActorInventory(PlayerTid(player), "MoneyClientside2");
+	return Players[player].money;
+}
+
+function int ConsolePlayerMoney(void)
+{
+	int money1 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside1");
+	int money2 = CheckActorInventory(ConsolePlayertid(), "MoneyClientside2");
 	return (money2<<15) | money1;
 }
 
