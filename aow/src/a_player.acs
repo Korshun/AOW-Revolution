@@ -72,17 +72,12 @@ script aow_respawn RESPAWN
 
 script aow_enter_clientside ENTER CLIENTSIDE
 {
-	InitPlayerClientside();
+
 }
 
 script aow_respawn_clientside RESPAWN CLIENTSIDE
 {
-	InitPlayerClientside();
-}
 
-function void InitPlayerClientside(void)
-{
-	ACS_ExecuteWithResult(aow_playerhud);
 }
 
 function bool ConsolePlayerInGame(void)
@@ -96,12 +91,18 @@ function bool ConsolePlayerInGame(void)
 	return PlayerInGame(ConsolePlayerNumber());
 }
 
-script aow_playerhud (void)
+script aow_playerhud OPEN CLIENTSIDE
 {
 	int hid = NewHid();
 	
-	while (ConsolePlayerInGame())
+	while (true)
 	{
+		if (!ConsolePlayerInGame())
+		{
+			Delay(1);
+			restart;
+		}
+		
 		HudResetState();
 		HudSetStayTime(0.03);
 		HudSetTextOriginX(HUD_TEXTORIGIN_LEFT);
