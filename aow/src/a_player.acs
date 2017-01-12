@@ -6,20 +6,14 @@ struct AOWPlayer
 
 AOWPlayer Players[MAX_PLAYERS];
 
-function int PlayerTid(int player)
-{
-	return 1000 + player;
-}
+
+// Accessors
+function int PlayerTid(int player) { return 1000 + player; }
+function int PlayerMoney(int player) { return Players[player].money; }
+function int PlayerClassAOW(int player) { return Players[player].class; }
 
 
-
-
-
-
-
-
-
-
+// Game logic
 script aow_enter ENTER
 {
 	InitPlayer(true);
@@ -55,6 +49,7 @@ function void InitPlayer(bool isnew)
 	TeleportToSpawnRoom();
 }
 
+// Player HUD
 script aow_playerhud OPEN CLIENTSIDE
 {
 	int hid = NewHid();

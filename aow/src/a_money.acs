@@ -1,8 +1,3 @@
-function int PlayerMoney(int player)
-{
-	return Players[player].money;
-}
-
 function int ConsolePlayerMoney(void)
 {
 	int money1 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside1");
