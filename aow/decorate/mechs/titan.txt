@@ -18,21 +18,21 @@ Actor Titan : Mech
 	{
 	Spawn:
 		ROB3 A 35
-		ROB3 AAAA 35 A_PlaySound("mech/idle", CHAN_5, true, -1)
+		ROB3 AAAA 35 A_PlaySound("MECHIDLE", CHAN_5, true, -1)
 		ROB3 A 35
 		Loop
 	See:
 		NULL A 0 A_JumpIfHealthLower(500, "SeeDamaged")
 	SeeNormal:
 		ROB3 CD 7
-		NULL A 0 A_PlaySound("mech/idle", CHAN_5, true, -1)
+		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5, true, -1)
 		ROB3 E 10 A_SpawnItemEx("BigMechStep", 0, -34, 4)
 		ROB3 DC 7
 		ROB3 B 10 A_SpawnItemEx("BigMechStep", 0, 34, 4)
 		Goto Spawn
 	SeeDamaged:
 		ROB3 CD 7
-		NULL A 0 A_PlaySound("mech/idle", CHAN_5, true, -1)
+		NULL A 0 A_PlaySound("MECHIDLE", CHAN_5, true, -1)
 		NULL A 0 A_SpawnItemEx("DamagedMechSmoke", frandom(-32, 32), frandom(-32, 32), frandom(96, 128),  0, 0, 3)
 		ROB3 E 10 A_SpawnItemEx("BigMechStep", 0, -34, 4)
 		ROB3 DC 7
