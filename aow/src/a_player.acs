@@ -13,6 +13,51 @@ function int PlayerMoney(int player) { return Players[player].money; }
 function int PlayerClassAOW(int player) { return Players[player].class; }
 
 
+// Setters
+function void SetPlayerMoney(int player, int money)
+{
+	Players[player].money = max(0, money);
+}
+
+function void GiveMoney(int player, int money)
+{
+	SetPlayerMoney(player, PlayerMoney(player) + money);
+}
+
+
+// Clientside accessors
+function int ConsolePlayerMoney(void)
+{
+	int money1 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside1");
+	int money2 = CheckActorInventory(ConsolePlayertid(), "MoneyClientside2");
+	return (money2<<15) | money1;
+}
+
+
+// Property synchronization
+script aow_syncplayers OPEN
+{
+	while (true)
+	{
+		for (int player = 0; player < MAX_PLAYERS; player++)
+		{
+			if (!PlayerInGame(player))
+				continue;
+				
+			// Credit flow
+			if (Timer() % 35 == 0)
+				GiveMoney(player, GetCVar("aowr_credflow"));
+		
+			int money = PlayerMoney(player);
+			SetActorInventory(PlayerTid(player), "Money", money);
+			SetActorInventory(PlayerTid(player), "MoneyClientside1", money & 0x7fff);
+			SetActorInventory(Playertid(player), "MoneyClientside2", money>>15);
+		}
+		
+		Delay(1);
+	}
+}
+
 // Game logic
 script aow_enter ENTER
 {

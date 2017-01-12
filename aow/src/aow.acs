@@ -38,7 +38,6 @@ function void ACSUtilsErrorHandler(int type, int message)
 #include "a_tracers.acs"
 #include "a_basehud.acs"
 #include "a_newhid.acs"
-#include "a_money.acs"
 #include "a_mechs.acs"
 #include "a_classes.acs"
 #include "a_spawnroom.acs"
