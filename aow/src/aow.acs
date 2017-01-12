@@ -48,6 +48,7 @@ function void AOWInit(void)
 	if (IsServer())
 		AutoconfigureServer();
 	
+	InitBuildingTypeData();
 	InitMechData();
 	InitClassData();
 	

@@ -10,47 +10,45 @@ enum
 	NUM_BUILDING_TYPES
 };
 
-function str BuildingTypeCodeName(int type)
+function void InitBuildingTypeData(void)
 {
-	switch (type)
-	{
-	case BUILDING_BARRACKS: return "barracks";
-	case BUILDING_REFINERY: return "refinery";
-	case BUILDING_RESCENTER: return "rescenter";
-	case BUILDING_FACTORY: return "factory";
-	case BUILDING_REPAIR: return "repair";
-	case BUILDING_OBELISK: return "obelisk";
-	}
-	
-	return "unknown";
+	AddBuildingType(BUILDING_BARRACKS, 20000, "barracks", "Barracks");
+	AddBuildingType(BUILDING_REFINERY, 30000, "refinery", "Refinery");
+	AddBuildingType(BUILDING_RESCENTER, 20000,	"rescenter", "Research Center");
+	AddBuildingType(BUILDING_FACTORY, 30000, "factory", "War Factory");
+	AddBuildingType(BUILDING_REPAIR, 15000, "repair", "Repair Facility");
+	AddBuildingType(BUILDING_OBELISK, 15000, "obelisk", "Obelisk of Light");
+	FinishBuildingTypes();
 }
 
-function str BuildingTypeName(int type)
+
+// Structure
+struct AOWBuildingType
 {
-	switch (type)
-	{
-	case BUILDING_BARRACKS:  return "Barracks";
-	case BUILDING_REFINERY:  return "Refinery";
-	case BUILDING_RESCENTER: return "Research Center";
-	case BUILDING_FACTORY:   return "War Factory";
-	case BUILDING_REPAIR:    return "Repair Facility";
-	case BUILDING_OBELISK:   return "Obelisk of Light";
-	}
-	
-	return "Unknown Building";
+	str codename;
+	str name;
+	int health;
 }
 
-function int BuildingTypeHealth(int type)
+AOWBuildingType BuildingTypes[NUM_BUILDING_TYPES];
+int NumBuildingTypes;
+
+function void AddBuildingType(int id, int health, int codename, int name)
 {
-	switch (type)
-	{
-	case BUILDING_BARRACKS:  return 20000;
-	case BUILDING_REFINERY:  return 30000;
-	case BUILDING_RESCENTER: return 20000;
-	case BUILDING_FACTORY:   return 30000;
-	case BUILDING_REPAIR:    return 15000;
-	case BUILDING_OBELISK:   return 15000;
-	}
-	
-	return 0;
+	BuildingTypes[id].codename = codename;
+	BuildingTypes[id].name = name;
+	BuildingTypes[id].health = health;
+	NumBuildingTypes++;
 }
+
+function void FinishBuildingTypes(void)
+{
+	if (NumBuildingTypes != NUM_BUILDING_TYPES)
+		ProgramError(StrParam(s:"NUM_BUILDING_TYPES is ", d:NUM_BUILDING_TYPES, s:" but ", d:NumBuildingTypes, s:" data elements defined"));
+}
+
+
+// Accessors
+function str BuildingTypeCodename(int type) { return BuildingTypes[type].codename; }
+function str BuildingTypeName(int type) { return BuildingTypes[type].name; }
+function int BuildingTypeHealth(int type) { return BuildingTypes[type].health; }	
