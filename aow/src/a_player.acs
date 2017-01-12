@@ -1,8 +1,6 @@
 struct AOWPlayer
 {
 	int money;
-	
-	bool hasClass;
 	int class;
 };
 
@@ -20,31 +18,16 @@ function int PlayerTid(int player)
 
 
 
-function void InitPlayer(void)
-{
-	Thing_ChangeTid(0, PlayerTid(PlayerNumber()));
-	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
-	SetInventory("VirtualJump", 1); // ZDOOMVER
-	SetInventory("AOWReloadGiver", 1);
-	SetInventory("AOWReloadTaker", 1);
-	SetInventory("AOWGrenadeGiver", 1);
-	SetInventory("AOWGrenadeTaker", 1);
-	
-	int player = PlayerNumber();
-	Players[player].hasClass = false;
-	
-	TeleportToSpawnRoom();
-}
+
 
 script aow_enter ENTER
 {
-	InitPlayer();
-	SetPlayerMoney(PlayerNumber(), GetCVar("aowr_startcredits"));
+	InitPlayer(true);
 }
 
 script aow_respawn RESPAWN
 {
-	InitPlayer();
+	InitPlayer(false);
 }
 
 script aow_death DEATH
@@ -52,6 +35,24 @@ script aow_death DEATH
 	SetActivatorToTarget(0);
 	if (CheckWeapon("BloodRevolver"))
 		GiveInventory("BloodRevolverAmmo", 1);
+}
+
+function void InitPlayer(bool isnew)
+{
+	int player = PlayerNumber();
+	Thing_ChangeTid(0, PlayerTid(player));
+	
+	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
+	SetInventory("VirtualJump", 1); // ZDOOMVER
+	SetInventory("AOWReloadGiver", 1);
+	SetInventory("AOWReloadTaker", 1);
+	SetInventory("AOWGrenadeGiver", 1);
+	SetInventory("AOWGrenadeTaker", 1);
+	
+	if (isnew) Players[player].money = GetCVar("aowr_startcredits");
+	Players[player].class = -1;
+	
+	TeleportToSpawnRoom();
 }
 
 script aow_playerhud OPEN CLIENTSIDE

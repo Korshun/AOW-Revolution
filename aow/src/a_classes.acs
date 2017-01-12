@@ -36,7 +36,6 @@ function str ClassName(int class) {	return Classes[class].name; }
 // Functions
 function int SetPlayerClass(int player, int class)
 {
-	Players[player].hasClass = true;
 	Players[player].class = class;
 	SetActorInventory(PlayerTid(player), "AOWClass", class + 1);
 }
@@ -48,8 +47,6 @@ function int PlayerAOWClass(int player)
 	
 	if (IsServer())
 	{
-		if (!Players[player].hasClass)
-			return -1;
 		return Players[player].class;
 	}
 	
