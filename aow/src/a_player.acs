@@ -47,17 +47,12 @@ script aow_respawn RESPAWN
 	InitPlayer();
 }
 
-script aow_enter_clientside ENTER CLIENTSIDE
+script aow_death DEATH
 {
-
+	SetActivatorToTarget(0);
+	if (CheckWeapon("BloodRevolver"))
+		GiveInventory("BloodRevolverAmmo", 1);
 }
-
-script aow_respawn_clientside RESPAWN CLIENTSIDE
-{
-
-}
-
-
 
 script aow_playerhud OPEN CLIENTSIDE
 {
