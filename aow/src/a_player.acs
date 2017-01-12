@@ -11,6 +11,7 @@ AOWPlayer Players[MAX_PLAYERS];
 function int PlayerTid(int player) { return 1000 + player; }
 function int PlayerMoney(int player) { return Players[player].money; }
 function int PlayerClassAOW(int player) { return Players[player].class; }
+function bool PlayerHasClass(int player) { return PlayerClassAOW(player) != -1; }
 
 
 // Setters
@@ -24,6 +25,12 @@ function void GiveMoney(int player, int money)
 	SetPlayerMoney(player, PlayerMoney(player) + money);
 }
 
+function int SetPlayerClass(int player, int class)
+{
+	Players[player].class = class;
+	SetActorInventory(PlayerTid(player), "AOWClass", class + 1);
+}
+
 
 // Clientside accessors
 function int ConsolePlayerMoney(void)
@@ -31,6 +38,16 @@ function int ConsolePlayerMoney(void)
 	int money1 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside1");
 	int money2 = CheckActorInventory(ConsolePlayertid(), "MoneyClientside2");
 	return (money2<<15) | money1;
+}
+
+function int ConsolePlayerClassAOW(void)
+{
+	return CheckActorInventory(ConsolePlayerTid(), "AOWClass") - 1;
+}
+
+function bool ConsolePlayerHasClass(void)
+{
+	return ConsolePlayerClassAOW() != -1;
 }
 
 

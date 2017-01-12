@@ -34,29 +34,9 @@ function void AddClass(str name)
 function str ClassName(int class) {	return Classes[class].name; }
 
 // Functions
-function int SetPlayerClass(int player, int class)
-{
-	Players[player].class = class;
-	SetActorInventory(PlayerTid(player), "AOWClass", class + 1);
-}
 
-function int PlayerAOWClass(int player)
-{
-	if (!PlayerInGame(player))
-		return -1;
-	
-	if (IsServer())
-	{
-		return Players[player].class;
-	}
-	
-	return CheckActorInventory(PlayerTid(player), "AOWClass") - 1;
-}
 
-function bool PlayerHasClass(int player)
-{
-	return PlayerAOWClass(player) != -1;
-}
+
 
 
 
@@ -85,7 +65,7 @@ script aow_classmenu (void) CLIENTSIDE
 		if (KeyPressedAny(BT_USE | BT_ATTACK))
 		{
 			// Reliable puke.
-			while (!PlayerHasClass(PlayerNumber()))
+			while (!ConsolePlayerHasClass())
 			{
 				RequestScriptPuke(aow_pickclass, cursor, 0, 0);
 				Delay(10);
@@ -119,10 +99,14 @@ script aow_pickclass (int class) NET
 {
 	int player = PlayerNumber();
 	
-	// Protect against cheaters and redundant pukes.
-	if (PlayerHasClass(player))
+	// Validate player
+	if (!PlayerInGame(player) || PlayerHasClass(player) || !IsAlive())
 		terminate;
 		
+	// Validate class
+	if (class < 0 || class > NumClasses)
+		terminate;
+	
 	SetPlayerClass(player, class);
 	print(s:"Selected class: ", s:ClassName(class));
 	DeployPlayer(player);
