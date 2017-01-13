@@ -16,12 +16,14 @@ function void TeleportToSpawnRoom(void)
 	if (!SetActorPosition(0, x, y, 0, false))
 		ProgramError(StrParam(s:"Failed to teleport player ", d:PlayerNumber(), s:" to spawn room"));
 	
+	Players[PlayerNumber()].inSpawnRoom = true;
 	SetPlayerProperty(0, true, PROP_TOTALLYFROZEN);
 	ACS_ExecuteAlways(aow_classmenu, 0);
 }
 
 function void DeployPlayer(void)
 {
+	Players[PlayerNumber()].inSpawnRoom = false;
 	Teleport(1 + PlayerTeam());
 	SetPlayerProperty(0, false, PROP_TOTALLYFROZEN);
 }

@@ -100,7 +100,7 @@ script aow_pickclass (int class) NET
 	int player = PlayerNumber();
 	
 	// Validate player
-	if (!PlayerInGame(player) || PlayerHasClass(player) || !IsAlive())
+	if (!PlayerInGame(player) || PlayerHasClass(player) || !IsAlive() || !PlayerInSpawnRoom(player))
 		terminate;
 		
 	// Validate class

@@ -1,5 +1,6 @@
 struct AOWPlayer
 {
+	bool inSpawnRoom;
 	int money;
 	int class;
 };
@@ -12,6 +13,7 @@ function int PlayerTid(int player) { return 1000 + player; }
 function int PlayerMoney(int player) { return Players[player].money; }
 function int PlayerClassAOW(int player) { return Players[player].class; }
 function bool PlayerHasClass(int player) { return PlayerClassAOW(player) != -1; }
+function bool PlayerInSpawnRoom(int player) { return Players[player].inSpawnRoom; }
 
 
 // Setters
@@ -110,6 +112,7 @@ function void InitPlayer(bool isnew)
 	
 	TeleportToSpawnRoom();
 }
+
 
 // Player HUD
 script aow_playerhud OPEN CLIENTSIDE
