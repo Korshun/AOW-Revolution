@@ -1,14 +1,10 @@
-enum
-{
-	BUILDING_BARRACKS,
-	BUILDING_REFINERY,
-	BUILDING_RESCENTER,
-	BUILDING_FACTORY,
-	BUILDING_REPAIR,
-	BUILDING_OBELISK,
-	
-	NUM_BUILDING_TYPES
-};
+#define BUILDING_BARRACKS 0
+#define BUILDING_REFINERY 1
+#define BUILDING_RESCENTER 2
+#define BUILDING_FACTORY 3
+#define BUILDING_REPAIR 4
+#define BUILDING_OBELISK 5
+#define NUM_BUILDING_TYPES 6
 
 function void InitBuildingTypeData(void)
 {
@@ -23,21 +19,19 @@ function void InitBuildingTypeData(void)
 
 
 // Structure
-struct AOWBuildingType
-{
-	str codename;
-	str name;
-	int health;
-}
+#define BTYPE_Codename 0
+#define BTYPE_Name 1
+#define BTYPE_Health 2
+#define BTYPE_NUM_PROPS 3
 
-AOWBuildingType BuildingTypes[NUM_BUILDING_TYPES];
+int BuildingTypes[NUM_BUILDING_TYPES][BTYPE_NUM_PROPS];
 int NumBuildingTypes;
 
 function void AddBuildingType(int id, int health, int codename, int name)
 {
-	BuildingTypes[id].codename = codename;
-	BuildingTypes[id].name = name;
-	BuildingTypes[id].health = health;
+	BuildingTypes[id][BTYPE_Codename] = codename;
+	BuildingTypes[id][BTYPE_Name] = name;
+	BuildingTypes[id][BTYPE_Health] = health;
 	NumBuildingTypes++;
 }
 
@@ -49,6 +43,6 @@ function void FinishBuildingTypes(void)
 
 
 // Accessors
-function str BuildingTypeCodename(int type) { return BuildingTypes[type].codename; }
-function str BuildingTypeName(int type) { return BuildingTypes[type].name; }
-function int BuildingTypeHealth(int type) { return BuildingTypes[type].health; }	
+function str BuildingTypeCodename(int type) { return BuildingTypes[type][BTYPE_Codename]; }
+function str BuildingTypeName(int type) { return BuildingTypes[type][BTYPE_Name]; }
+function int BuildingTypeHealth(int type) { return BuildingTypes[type][BTYPE_Health]; }	

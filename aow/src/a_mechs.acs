@@ -16,39 +16,39 @@ function void InitMechData(void)
 
 
 // Structure
-struct AOWMech
-{
-	str name;
-	str actorname;
-	int firstWeapon;
-	int numWeapons;
-};
-
-struct AOWMechWeapon
-{
-	str name;
-	str prefix;
-	fixed reloadDelay;
-	str reloadSound;
-};
+#define M_Name 0
+#define M_Actorname 1
+#define M_FirstWeapon 2
+#define M_NumWeapons 3
+#define M_NUM_PROPS 4
 
 #define MAX_MECHS 8
+
+int Mechs[MAX_MECHS][M_NUM_PROPS];
+int NumMechs;
+
+
+#define MW_Name 0
+#define MW_Prefix 1
+#define MW_ReloadSound 2
+#define MW_ReloadDelay 3
+#define MW_NUM_PROPS 4
+
 #define MAX_MECH_WEAPONS 32
 
-int NumMechs = 0;
-int NumMechWeapons = 0;
-AOWMech Mechs[MAX_MECHS];
-AOWMechWeapon MechWeapons[MAX_MECH_WEAPONS];
+int MechWeapons[MAX_MECH_WEAPONS][MW_NUM_PROPS];
+int NumMechWeapons;
+
 
 function void AddMech(str actorname, str name)
 {
 	if (NumMechs == MAX_MECHS)
 		LimitError("MAX_MECHS");
 		
-	Mechs[NumMechs].actorname = actorname;
-	Mechs[NumMechs].name = name;
-	Mechs[NumMechs].firstWeapon = NumMechWeapons;
-	Mechs[NumMechs].numWeapons = 0;
+	Mechs[NumMechs][M_Actorname] = actorname;
+	Mechs[NumMechs][M_Name] = name;
+	Mechs[NumMechs][M_FirstWeapon] = NumMechWeapons;
+	Mechs[NumMechs][M_NumWeapons] = 0;
 	NumMechs++;
 }
 
@@ -57,33 +57,33 @@ function void AddMechWeapon(str prefix, str name)
 	if (NumMechWeapons == MAX_MECH_WEAPONS)
 		LimitError("MAX_MECH_WEAPONS");
 
-	MechWeapons[NumMechWeapons].prefix = prefix;
-	MechWeapons[NumMechWeapons].name = name;
-	MechWeapons[NumMechWeapons].reloadDelay = 0;
-	Mechs[NumMechs - 1].numWeapons++;
+	MechWeapons[NumMechWeapons][MW_Prefix] = prefix;
+	MechWeapons[NumMechWeapons][MW_Name] = name;
+	MechWeapons[NumMechWeapons][MW_ReloadDelay] = 0;
+	Mechs[NumMechs - 1][M_numWeapons]++;
 	NumMechWeapons++;
 }
 
 function void SetMechWeaponReload(str reloadSound, int reloadDelay)
 {
-	MechWeapons[NumMechWeapons - 1].reloadSound = reloadSound;
-	MechWeapons[NumMechWeapons - 1].reloadDelay = reloadDelay;
+	MechWeapons[NumMechWeapons - 1][MW_ReloadSound] = reloadSound;
+	MechWeapons[NumMechWeapons - 1][MW_ReloadDelay] = reloadDelay;
 }
 
 // Accessors
-function str MechName(int mech){ return Mechs[mech].name; }
-function str MechActorName(int mech) { return Mechs[mech].actorName; }
-function int MechFirstWeapon(int mech) { return Mechs[mech].firstWeapon; }
-function int MechWeaponCount(int mech) { return Mechs[mech].numWeapons; }
+function str MechName(int mech) { return Mechs[mech][M_Name]; }
+function str MechActorName(int mech) { return Mechs[mech][M_Actorname]; }
+function int MechFirstWeapon(int mech) { return Mechs[mech][M_FirstWeapon]; }
+function int MechWeaponCount(int mech) { return Mechs[mech][M_NumWeapons]; }
 
-function str MechWeaponName(int weapon) { return MechWeapons[weapon].name; }
+function str MechWeaponName(int weapon) { return MechWeapons[weapon][MW_Name]; }
 
 // Functions
 function bool IdentifyMech(int tid)
 {
 	for (int i = 0; i < NumMechs; i++)
 	{
-		if (CheckActorClass(tid, Mechs[i].actorname))
+		if (CheckActorClass(tid, Mechs[i][M_actorname]))
 			return i;
 	}
 	return -1;

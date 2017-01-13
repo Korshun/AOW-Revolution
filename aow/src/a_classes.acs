@@ -11,27 +11,25 @@ function void InitClassData(void)
 }
 
 // Structure
-struct AOWClass
-{
-	str name;
-};
+#define C_Name 0
+#define C_NUMPROPS 1
 
 #define MAX_CLASSES 8
 
-int NumClasses = 0;
-AOWClass Classes[MAX_CLASSES];
+int Classes[MAX_CLASSES][C_NUMPROPS];
+int NumClasses;
 
 function void AddClass(str name)
 {
 	if (NumClasses == MAX_CLASSES)
 		LimitError("MAX_CLASSES");
 	
-	Classes[NumClasses].name = name;
+	Classes[NumClasses][C_Name] = name;
 	NumClasses++;
 }
 
 // Accessors
-function str ClassName(int class) {	return Classes[class].name; }
+function str ClassName(int class) {	return Classes[class][C_Name]; }
 
 // Functions
 
@@ -109,5 +107,5 @@ script aow_pickclass (int class) NET
 	
 	SetPlayerClass(player, class);
 	print(s:"Selected class: ", s:ClassName(class));
-	DeployPlayer(player);
+	DeployPlayer();
 }

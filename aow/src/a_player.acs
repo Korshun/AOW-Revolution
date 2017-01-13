@@ -1,25 +1,23 @@
-struct AOWPlayer
-{
-	bool inSpawnRoom;
-	int money;
-	int class;
-};
+#define P_InSpawnRoom 0
+#define P_Money 1
+#define P_Class 2
+#define P_NUM_PROPS 3
 
-AOWPlayer Players[MAX_PLAYERS];
+int Players[MAX_PLAYERS][P_NUM_PROPS];
 
 
 // Accessors
 function int PlayerTid(int player) { return 1000 + player; }
-function int PlayerMoney(int player) { return Players[player].money; }
-function int PlayerClassAOW(int player) { return Players[player].class; }
+function int PlayerMoney(int player) { return Players[player][P_Money]; }
+function int PlayerClassAOW(int player) { return Players[player][P_Class]; }
 function bool PlayerHasClass(int player) { return PlayerClassAOW(player) != -1; }
-function bool PlayerInSpawnRoom(int player) { return Players[player].inSpawnRoom; }
+function bool PlayerInSpawnRoom(int player) { return Players[player][P_InSpawnRoom]; }
 
 
 // Setters
 function void SetPlayerMoney(int player, int money)
 {
-	Players[player].money = max(0, money);
+	Players[player][P_Money]= max(0, money);
 }
 
 function void GiveMoney(int player, int money)
@@ -27,9 +25,9 @@ function void GiveMoney(int player, int money)
 	SetPlayerMoney(player, PlayerMoney(player) + money);
 }
 
-function int SetPlayerClass(int player, int class)
+function void SetPlayerClass(int player, int class)
 {
-	Players[player].class = class;
+	Players[player][P_Class] = class;
 	SetActorInventory(PlayerTid(player), "AOWClass", class + 1);
 }
 
@@ -107,8 +105,8 @@ function void InitPlayer(bool isnew)
 	SetInventory("AOWGrenadeGiver", 1);
 	SetInventory("AOWGrenadeTaker", 1);
 	
-	if (isnew) Players[player].money = GetCVar("aowr_startcredits");
-	Players[player].class = -1;
+	if (isnew) Players[player][P_Money] = GetCVar("aowr_startcredits");
+	Players[player][P_Class] = -1;
 	
 	TeleportToSpawnRoom();
 }
