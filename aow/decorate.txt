@@ -3,7 +3,7 @@ Actor Boolean : Inventory { Inventory.MaxAmount 1 }
 Actor VirtualJump : Boolean {} // ZDOOMVER: always present in inventory to perform virtual jumps without desyncs using A_JumpIfInventory
 
 #include "decorate/acsdefines.txt"
-#include "decorate/flags.txt"
+
 
 #include "decorate/effects/base.txt"
 #include "decorate/effects/bulletpuffs.txt"
