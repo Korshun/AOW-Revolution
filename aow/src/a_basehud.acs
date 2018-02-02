@@ -1,6 +1,6 @@
 int BuildingPrevHealth[NUM_TEAMS][NUM_BUILDING_TYPES];
 int BuildingHids[NUM_TEAMS][NUM_BUILDING_TYPES][4];
-int FirstBaseHudTic = true;
+int IsFirstBaseHudTic = true;
 
 script aow_basehud OPEN CLIENTSIDE
 {
@@ -19,45 +19,9 @@ script aow_basehud OPEN CLIENTSIDE
 		DrawBaseHudSide(TEAM_BLUE, !redOnLeft);
 		DrawBaseHudSide(TEAM_RED, redOnLeft);
 	
-		FirstBaseHudTic = false;
+		IsFirstBaseHudTic = false;
 		Delay(1);
 	}
-}
-
-function str PercentageColorCode(int percentage)
-{
-	if (percentage > 100)
-		return "\ch";
-	else if (percentage == 100) // 100%
-		return "\cq";
-	else if (Percentage > 75) // healthy
-		return "\cd";
-	else if (Percentage > 50) // moderate
-		return "\cf";
-	else if (Percentage > 25) // low
-		return "\ci";
-	else if (Percentage > 0) // critical
-		return "\cr";
-	return "\cm"; // destroyed
-}
-
-int LastAttackAnnouncementTime = INT_MIN;
-
-function void AnnounceAttack(int team, int type)
-{
-	if (ConsolePlayerTeam() != team)
-		return;
-
-	if (Timer() < LastAttackAnnouncementTime + 35 * 15)
-		return;
-		
-	LastAttackAnnouncementTime = Timer();
-	AmbientSound(StrParam(s:"attacked/", s:TeamName(team), s:"/", s:BuildingTypeCodeName(type)), 255);
-}
-
-function void AnnounceDestruction(int team, int type)
-{
-	AmbientSound(StrParam(s:"destroyed/", s:TeamName(team)), 255);
 }
 
 function void DrawBaseHudSide(int team, int left)
@@ -74,12 +38,15 @@ function void DrawBaseHudSide(int team, int left)
 			
 		int hp1 = BuildingPrevHealth[team][type];
 		int hp2 = BuildingHealth(team, type);
-		int flash = hp1 != hp2 && !FirstBaseHudTic;
+		int flash = hp1 != hp2 && !IsFirstBaseHudTic;
 		int flashcolor;
+		
 		if (flash)
 		{
 			if (hp2 > hp1)
+			{
 				flashcolor = CR_GREEN;
+			}
 			else if (hp2 <= 0)
 			{
 				AnnounceDestruction(team, type);
@@ -128,4 +95,44 @@ function void DrawBaseHudSide(int team, int left)
 		
 		y += 10.0;
 	}
+}
+
+
+// Building health color
+function str PercentageColorCode(int percentage)
+{
+	if (percentage > 100)
+		return "\ch";
+	else if (percentage == 100) // 100%
+		return "\cq";
+	else if (Percentage > 75) // healthy
+		return "\cd";
+	else if (Percentage > 50) // moderate
+		return "\cf";
+	else if (Percentage > 25) // low
+		return "\ci";
+	else if (Percentage > 0) // critical
+		return "\cr";
+	return "\cm"; // destroyed
+}
+
+
+// Attack announcements
+int LastAttackAnnouncementTime = INT_MIN;
+
+function void AnnounceAttack(int team, int type)
+{
+	if (ConsolePlayerTeam() != team)
+		return;
+
+	if (Timer() < LastAttackAnnouncementTime + 35 * 15)
+		return;
+		
+	LastAttackAnnouncementTime = Timer();
+	AmbientSound(StrParam(s:"attacked/", s:TeamName(team), s:"/", s:BuildingTypeCodeName(type)), 255);
+}
+
+function void AnnounceDestruction(int team, int type)
+{
+	AmbientSound(StrParam(s:"destroyed/", s:TeamName(team)), 255);
 }
