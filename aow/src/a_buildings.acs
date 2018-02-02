@@ -49,11 +49,11 @@ function void InitBuildings(void)
 	}
 	
 	if (IsServer())
-		ACS_ExecuteAlways(aow_syncbuildinghp, 0);
+		ACS_NamedExecuteAlways("aow_syncbuildinghp", 0);
 }
 
 
-script aow_syncbuildinghp (void)
+script "aow_syncbuildinghp" (void)
 {
 	while (true)
 	{

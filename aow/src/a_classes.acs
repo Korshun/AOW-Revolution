@@ -41,7 +41,7 @@ function str ClassName(int class) {	return Classes[class][C_Name]; }
 // ZDOOMVER: make this array local
 int ClassHids[MAX_CLASSES];
 
-script aow_classmenu (void) CLIENTSIDE
+script "aow_classmenu" (void) CLIENTSIDE
 {
 	if (PlayerNumber() != ConsolePlayerNumber())
 		terminate;
@@ -65,7 +65,7 @@ script aow_classmenu (void) CLIENTSIDE
 			// Reliable puke.
 			while (!ConsolePlayerHasClass())
 			{
-				RequestScriptPuke(aow_pickclass, cursor, 0, 0);
+				NamedRequestScriptPuke("aow_pickclass", cursor, 0, 0);
 				Delay(10);
 			}
 			terminate;
@@ -93,7 +93,7 @@ script aow_classmenu (void) CLIENTSIDE
 	}
 }
 		
-script aow_pickclass (int class) NET
+script "aow_pickclass" (int class) NET
 {
 	int player = PlayerNumber();
 	

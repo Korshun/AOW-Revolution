@@ -11,7 +11,7 @@ Actor AOWBulletPuff replaces BulletPuff
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 ACS_ExecuteWithResult(aow_spawntracer)
+		NULL A 0 ACS_NamedExecuteWithResult("aow_spawntracer")
 	Melee:
 		NULL A 0 A_SpawnItemEx("BulletPuffEffect")
 		Stop

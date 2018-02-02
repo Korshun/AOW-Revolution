@@ -16,7 +16,7 @@ str EffectNames[FX_CVAR_COUNT] =
 
 #define FX_CVAR_PREFIX "aow_fx_"
 
-script aow_checkfx (int effect)
+script "aow_checkfx" (int effect)
 {
 	if (!IsClient() && effect != FX_TRACERS)
 		ProgramError("aow_checkfx called serverside");

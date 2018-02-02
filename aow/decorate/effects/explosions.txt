@@ -7,7 +7,7 @@ Actor ExplosionSprite : Effect
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_isopengl), 1)
+		NULL A 0 A_JumpIf(CallACS("aow_isopengl"), 1)
 		NULL A 0 A_SetTranslucent(0.75, 1)
 		NULL A 0 A_JumpIf(waterlevel > 1, "Water")
 		NULL A 0 A_Jump(256, "Spawn1", "Spawn2", "Spawn3", "Spawn4", "Spawn5")
@@ -58,7 +58,7 @@ Actor Explosion : Effect
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_EXPLOSIONS) == 0, "Simple")
+		NULL A 0 A_JumpIf(CallACS("aow_checkfx", FX_EXPLOSIONS) == 0, "Simple")
 		TNT1 AA 1 A_SpawnItemEx("Explo1", frandom(-16, 16), frandom(-16, 16), frandom(-16, 16),  0, 0, 0,  0, SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("Explo2", 0, 0, 0,  frandom(-1.5, 1.5),   frandom(-1.5, 1.5),   frandom(-1.5, 1.5),    frandom(0, 359), SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("Explo3", 0, 0, 0,  frandom(-0.75, 0.75), frandom(-0.75, 0.75), frandom(-0.75, 0.75),  frandom(0, 359), SXF_NOCHECKPOSITION)
@@ -83,7 +83,7 @@ Actor ExplosionLarge : Explosion
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_EXPLOSIONS) == 0, "Simple")
+		NULL A 0 A_JumpIf(CallACS("aow_checkfx", FX_EXPLOSIONS) == 0, "Simple")
 		TNT1 AA 1 A_SpawnItemEx("ExploLarge1", 2*frandom(-16, 16), 2*frandom(-16, 16), 2*frandom(-16, 16),  0, 0, 0,  0, SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("ExploLarge2", 0, 0, 0,  2*frandom(-1.5, 1.5),   2*frandom(-1.5, 1.5),   2*frandom(-1.5, 1.5),    frandom(0, 359), SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("ExploLarge3", 0, 0, 0,  2*frandom(-0.75, 0.75), 2*frandom(-0.75, 0.75), 2*frandom(-0.75, 0.75),  frandom(0, 359), SXF_NOCHECKPOSITION)
@@ -108,7 +108,7 @@ Actor ExplosionSmall : Effect
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_EXPLOSIONS) == 0, "Simple")
+		NULL A 0 A_JumpIf(CallACS("aow_checkfx", FX_EXPLOSIONS) == 0, "Simple")
 		TNT1 AA 1 A_SpawnItemEx("ExploSmall1", 0.5*frandom(-16, 16), 0.5*frandom(-16, 16), 0.5*frandom(-16, 16),  0, 0, 0,  0, SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("ExploSmall2", 0, 0, 0,  0.5*frandom(-1.5, 1.5),   0.5*frandom(-1.5, 1.5),   0.5*frandom(-1.5, 1.5),    frandom(0, 359), SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("ExploSmall3", 0, 0, 0,  0.5*frandom(-0.75, 0.75), 0.5*frandom(-0.75, 0.75), 0.5*frandom(-0.75, 0.75),  frandom(0, 359), SXF_NOCHECKPOSITION)
@@ -133,7 +133,7 @@ Actor ExplosionTiny : Effect
 	{
 	Spawn:
 		NULL A 0
-		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_EXPLOSIONS) == 0, "Simple")
+		NULL A 0 A_JumpIf(CallACS("aow_checkfx", FX_EXPLOSIONS) == 0, "Simple")
 		TNT1 AA 1 A_SpawnItemEx("ExploTiny1", 0.25*frandom(-16, 16), 0.25*frandom(-16, 16), 0.25*frandom(-16, 16),  0, 0, 0,  0, SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("ExploTiny2", 0, 0, 0,  0.25*frandom(-1.5, 1.5),   0.25*frandom(-1.5, 1.5),   0.25*frandom(-1.5, 1.5),    frandom(0, 359), SXF_NOCHECKPOSITION)
 		TNT1 AA 1 A_SpawnItemEx("ExploTiny3", 0, 0, 0,  0.25*frandom(-0.75, 0.75), 0.25*frandom(-0.75, 0.75), 0.25*frandom(-0.75, 0.75),  frandom(0, 359), SXF_NOCHECKPOSITION)

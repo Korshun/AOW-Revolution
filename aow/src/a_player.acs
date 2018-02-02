@@ -52,7 +52,7 @@ function bool ConsolePlayerHasClass(void)
 
 
 // Property synchronization
-script aow_syncplayers OPEN
+script "aow_syncplayers" OPEN
 {
 	while (true)
 	{
@@ -76,17 +76,17 @@ script aow_syncplayers OPEN
 }
 
 // Game logic
-script aow_enter ENTER
+script "aow_enter" ENTER
 {
 	InitPlayer(true);
 }
 
-script aow_respawn RESPAWN
+script "aow_respawn" RESPAWN
 {
 	InitPlayer(false);
 }
 
-script aow_death DEATH
+script "aow_death" DEATH
 {
 	SetActivatorToTarget(0);
 	if (CheckWeapon("BloodRevolver"))
@@ -113,7 +113,7 @@ function void InitPlayer(bool isnew)
 
 
 // Player HUD
-script aow_playerhud OPEN CLIENTSIDE
+script "aow_playerhud" OPEN CLIENTSIDE
 {
 	int hid = NewHid();
 	int hid2 = NewHid();

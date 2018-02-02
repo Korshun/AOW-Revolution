@@ -12,7 +12,7 @@ Actor RandomCrate : CustomInventory 21410
 		UCRT A 6
 		Loop
 	Pickup:
-		NULL A 0 ACS_ExecuteAlways(aow_randomcrate, 0)
+		NULL A 0 ACS_NamedExecuteAlways("aow_randomcrate", 0)
 		Stop
 	}
 }

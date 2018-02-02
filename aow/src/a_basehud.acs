@@ -2,7 +2,7 @@ int BuildingPrevHealth[NUM_TEAMS][NUM_BUILDING_TYPES];
 int BuildingHids[NUM_TEAMS][NUM_BUILDING_TYPES][4];
 int IsFirstBaseHudTic = true;
 
-script aow_basehud OPEN CLIENTSIDE
+script "aow_basehud" OPEN CLIENTSIDE
 {
 	for (int team = 0; team < NUM_TEAMS; team++)
 	for (int type = 0; type < NUM_BUILDING_TYPES; type++)

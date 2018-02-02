@@ -18,7 +18,7 @@ Actor Credits1 : CustomInventory 21412
 		COIN A -1
 		Stop
 	Pickup:
-		NULL A 0 ACS_ExecuteAlways(aow_givemoney, 0, 1)
+		NULL A 0 ACS_NamedExecuteAlways("aow_givemoney", 0, 1)
 		Stop
 	}
 }
@@ -35,7 +35,7 @@ Actor Credits20 : Credits1 21413
 		CRED A -1
 		Stop
 	Pickup:
-		NULL A 0 ACS_ExecuteAlways(aow_givemoney, 0, 20)
+		NULL A 0 ACS_NamedExecuteAlways("aow_givemoney", 0, 20)
 		Stop
 	}
 }
@@ -52,7 +52,7 @@ Actor Credits40 : Credits20 21414
 		SACK A -1
 		Stop
 	Pickup:
-		NULL A 0 ACS_ExecuteAlways(aow_givemoney, 0, 40)
+		NULL A 0 ACS_NamedExecuteAlways("aow_givemoney", 0, 40)
 		Stop
 	}
 }
@@ -69,7 +69,7 @@ Actor Credits75 : Credits20 21415
 		CHST A -1
 		Stop
 	Pickup:
-		NULL A 0 ACS_ExecuteAlways(aow_givemoney, 0, 75)
+		NULL A 0 ACS_NamedExecuteAlways("aow_givemoney", 0, 75)
 		Stop
 	}
 }

@@ -11,7 +11,7 @@ Actor Tracer : CollidingEffect
 	{
 	Spawn:
 		NULL A 0		
-		NULL A 0 A_JumpIf(ACS_ExecuteWithResult(aow_checkfx, FX_TRACERS) == 0, "Unseen")
+		NULL A 0 A_JumpIf(CallACS("aow_checkfx", FX_TRACERS) == 0, "Unseen")
 	Fly:
 		RIC1 A 1 BRIGHT
 		Loop

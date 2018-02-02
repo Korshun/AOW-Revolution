@@ -28,7 +28,7 @@ Actor BloodRevolver : AOWWeapon
 		REVO A 1 A_Lower
 		Wait
 	Fire:
-		NULL A 0 ACS_ExecuteWithResult(aow_traceroffset, 0, 0)
+		NULL A 0 ACS_NamedExecuteWithResult("aow_traceroffset", 0, 0)
 		NULL A 0 A_FireBullets(0, 0, 1, 0, "RevolverPuff", FBF_NORANDOM)
 		NULL A 0 A_RailAttack(300, 0, true, none, none, RGF_SILENT, 0, "RevolverPuff")
 		REVF A 1 BRIGHT offset(0, 33)

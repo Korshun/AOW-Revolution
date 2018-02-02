@@ -5,13 +5,13 @@
 int TracerOffsetX = 0;
 int TracerOffsetY = 0;
 
-script aow_traceroffset (int x, int y)
+script "aow_traceroffset" (int x, int y)
 {
 	TracerOffsetX = x;
 	TracerOffsetY = y;
 }
 
-script aow_spawntracer (void)
+script "aow_spawntracer" (void)
 {
 	if (!GetCVar("aowr_tracers"))
 		terminate;

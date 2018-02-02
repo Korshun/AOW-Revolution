@@ -55,12 +55,12 @@ function void AOWInit(void)
 	InitBuildings();	
 }
 
-script aow_init OPEN
+script "aow_init" OPEN
 {
 	AOWInit();
 }
 
-script aow_init_clientside OPEN CLIENTSIDE
+script "aow_init_clientside" OPEN CLIENTSIDE
 {
 	AOWInit();
 }

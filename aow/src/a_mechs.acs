@@ -102,10 +102,10 @@ function bool IsMech(void)
 // DEBUG
 script 1 (int mech)
 {
-	ACS_ExecuteAlways(aow_entermech, 0, mech);
+	ACS_NamedExecuteAlways("aow_entermech", 0, mech);
 }
 
-script aow_entermech (int mech)
+script "aow_entermech" (int mech)
 {
 	print(s:"Entering mech ", s:MechName(mech));
 

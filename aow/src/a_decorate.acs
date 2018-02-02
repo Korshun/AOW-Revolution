@@ -1,12 +1,12 @@
 #define PLAYER_VIEWHEIGHT 41.0
 
 // Returns casing spawn height adjusted for crouching.
-script aow_casingheight (int height)
+script "aow_casingheight" (int height)
 {
 	SetResultValue(FixedMul(FixedDiv(GetActorViewHeight(0), PLAYER_VIEWHEIGHT), height));
 }
 
-script aow_isopengl (void)
+script "aow_isopengl" (void)
 {
 	SetResultValue(IsOpenGL());
 }
@@ -17,7 +17,7 @@ script aow_isopengl (void)
 #define PAINFADE_CHEMICAL 2
 #define PAINFADE_LASER 3
 
-script aow_painfade (int type)
+script "aow_painfade" (int type)
 {
 	switch (type)
 	{
@@ -46,12 +46,12 @@ script aow_painfade (int type)
 	}
 }
 
-script aow_randomcrate (void)
+script "aow_randomcrate" (void)
 {
 	print(s:"Random crates are not implemented yet");
 }
 
-script aow_givemoney (int money)
+script "aow_givemoney" (int money)
 {
 	GiveMoney(PlayerNumber(), money);
 }
