@@ -2,14 +2,14 @@ destroyed/blue			destroyb
 destroyed/red			destroyr
 
 attacked/blue/barracks			bbarattk
-attacked/blue/resce		bpplattk
+attacked/blue/researchcenter	bresattk
 attacked/blue/refinery			brefattk
 attacked/blue/factory			bfacattk
 attacked/blue/repairfacility	brepattk
 attacked/blue/obelisk			boblattk
 
 attacked/red/barracks			rbarattk
-attacked/red/powerplant			rpplattk
+attacked/red/researchcenter		rresattk
 attacked/red/refinery			rrefattk
 attacked/red/factory			rfacattk
 attacked/red/repairfacility		rrepattk
