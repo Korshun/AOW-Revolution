@@ -19,17 +19,6 @@ function int GetPlayerTeam(int player)
 	return TEAM_BLUE;
 }
 
-function void SetActivatorToPlayer(int player)
-{
-	int count = ThingCount(T_NONE, PlayerTid(player));
-	if (count == 0)
-		ProgramError(StrParam(s:"SetActivatorToPlayer: Player ", d:player, s:" has no tid"));
-	else if (count > 1)
-		ProgramError(StrParam(s:"SetActivatorToPlayer: Player ", d:player, s:"'s tid is taken by ", d:count, s:"actors"));
-
-	SetActivator(PlayerTid(player));
-}
-
 function bool ConsolePlayerInGame(void)
 {
 	if (!IsClient())
