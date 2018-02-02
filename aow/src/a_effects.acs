@@ -14,7 +14,7 @@ str EffectNames[FX_CVAR_COUNT] =
 	"explosions"
 };
 
-#define FX_CVAR_PREFIX "aow_fx_"
+#define FX_CVAR_PREFIX "aowfx_"
 
 script "aow_checkfx" (int effect)
 {
