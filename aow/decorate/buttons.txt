@@ -1,4 +1,4 @@
-//ZDOOMVER: Use built-in custom buttons in Zandronum 3.0
+//ZDOOMVER: Use built-in custom buttons
 Actor AOWGrenade : Boolean {}
 
 Actor AOWGrenadeGiver : CustomInventory
