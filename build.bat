@@ -7,9 +7,9 @@ py tools/aowbuild.py
 	EXIT
 )
 
-%ACCPATH%\acc.exe aow/src/aow.acs aow/acs/aow.o
+%BCCPATH%\bcc.exe aow/src/aow.acs aow/acs/aow.o
 @if ERRORLEVEL 1 (
-	echo ACC FAILED
+	echo BCC FAILED
 	PAUSE
 	EXIT
 )
