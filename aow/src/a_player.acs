@@ -100,8 +100,6 @@ function void InitPlayer(bool isnew)
 	
 	SetInventory("IsRed", PlayerTeam() == TEAM_RED);
 	SetInventory("VirtualJump", 1); // ZDOOMVER
-	SetInventory("AOWReloadGiver", 1);
-	SetInventory("AOWReloadTaker", 1);
 	SetInventory("AOWGrenadeGiver", 1);
 	SetInventory("AOWGrenadeTaker", 1);
 	
