@@ -1,4 +1,4 @@
-#define FX_UNUSED 0
+#define FX_TIBERIUMFOG 0
 #define FX_PUFFS 1
 #define FX_CASINGS 2
 #define FX_SMOKE 3
@@ -7,7 +7,7 @@
 
 str EffectNames[FX_CVAR_COUNT] = 
 {
-	"UNUSED",
+	"tiberiumfog",
 	"puffs",
 	"casings",
 	"smoke",
