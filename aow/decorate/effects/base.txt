@@ -21,7 +21,7 @@ Actor Effect
 	Spawn:
 		NULL A 0
 		Stop
-	Unseen:
+	Hidden:
 		NULL A 0
 		Stop
 	}
