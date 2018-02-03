@@ -18,7 +18,11 @@ function void TeleportToSpawnRoom(void)
 	
 	Players[PlayerNumber()][P_INSPAWNROOM] = true;
 	SetPlayerProperty(0, true, PROP_TOTALLYFROZEN);
-	ACS_NamedExecuteAlways("aow_classmenu", 0);
+	
+	if (PlayerIsBot(PlayerNumber()))
+		ACS_NamedExecuteWithResult("aow_pickclass", random(0, NumClasses - 1));
+	else
+		ACS_NamedExecuteAlways("aow_classmenu", 0);
 }
 
 function void DeployPlayer(void)
