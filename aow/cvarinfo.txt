@@ -2,7 +2,7 @@ server bool aowr_tracers = true;
 server int aowr_startcredits = 300;
 server int aowr_credflow = 4;
 
-user bool aowfx_tracers = true;
+//user bool aowfx_unused = true;
 user bool aowfx_puffs = true;
 user bool aowfx_casings = true;
 user bool aowfx_smoke = true;

@@ -1,4 +1,4 @@
-#define FX_TRACERS 0
+#define FX_UNUSED 0
 #define FX_PUFFS 1
 #define FX_CASINGS 2
 #define FX_SMOKE 3
@@ -7,7 +7,7 @@
 
 str EffectNames[FX_CVAR_COUNT] = 
 {
-	"tracers",
+	"UNUSED",
 	"puffs",
 	"casings",
 	"smoke",
@@ -18,12 +18,14 @@ str EffectNames[FX_CVAR_COUNT] =
 
 script "aow_checkfx" (int effect)
 {
-	if (!IsClient() && effect != FX_TRACERS)
+	if (!IsClient())
 		ProgramError("aow_checkfx called serverside");
 
 	str name = EffectNames[effect];
 	if (StrIsEmpty(name))
 		ProgramError(StrParam(s:"aow_checkfx: unknown effect ", d:effect));
+	else if (StrEquals(name, "UNUSED"))
+		ProgramError(strParam(s:"aow_checkfx: unused effect ", d:effect));
 		
 	SetResultValue(GetCVar(StrParam(s:FX_CVAR_PREFIX, s:name)));
 }
