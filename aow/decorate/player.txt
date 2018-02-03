@@ -30,10 +30,11 @@ Actor AOWPlayer : DoomPlayer
 		PLAY G 0 ACS_NamedExecuteAlways("aow_painfade", PAINFADE_LASER)
 		Goto Pain
 	Pain.Fire:
+	Pain.FireEnvironment:
 		PLAY G 0 ACS_NamedExecuteAlways("aow_painfade", PAINFADE_FIRE)
 		Goto Pain
 	Pain.Chemical:
-	Pain.ChemicalSpecial:
+	Pain.ChemicalEnvironment:
 		PLAY G 0 ACS_NamedExecuteAlways("aow_painfade", PAINFADE_CHEMICAL)
 		Goto Pain
 	}

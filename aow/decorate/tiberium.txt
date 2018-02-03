@@ -4,7 +4,7 @@ Actor TiberiumCrystal : CustomInventory 21407
 
 	Inventory.RespawnTics 175 // 5*35
 	Inventory.PickupMessage "Picked up a Tiberium Crystal!"
-	DamageType "ChemicalSpecial"
+	DamageType "ChemicalEnvironment"
 
 	+BRIGHT
 	+BLOODLESSIMPACT

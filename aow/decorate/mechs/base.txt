@@ -6,8 +6,9 @@ Actor Mech : PlayerPawn
 	DamageFactor "Rifle", 0.8
 	DamageFactor "Explosion", 1.25
 	DamageFactor "Fire", 1.25
+	DamageFactor "FireEnvironment", 0.0
 	DamageFactor "Chemical", 1.75
-	DamageFactor "ChemicalSpecial", 0.0
+	DamageFactor "ChemicalEnvironment", 0.0
 	DamageFactor "Laser", 1.0
 	DamageFactor "RazorWireRed", 1.0
 	DamageFactor "RazorWireBlue", 1.0
