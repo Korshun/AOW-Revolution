@@ -6,7 +6,7 @@ Casings - AOW r2539
 Explosions - AOW r2539
 Obelisk orb - realm667
 Smoke - AOW r2539
-Tracers - Complex Doom
+Tracers - sprite from Hell vs Marines, model from Complex Doom, code from scratch
 
 Weapons:
 

@@ -1,0 +1,9 @@
+Model Tracer
+{ 
+   Path "models"
+   SKIN 0 "tracer.tga"
+   MODEL 0 "tracer.md3"
+   Scale 4.5 4.5 1.5
+   PITCHFROMMOMENTUM
+   FrameIndex RIC1 A 0 0
+}
