@@ -42,6 +42,7 @@ Mad Cat - AOW r2539, with shock cannon projectile sprite from AOW 2.1
 
 Constructs:
 
+Razor wire - AOW r2539
 Sandbag wall - AOW r2539
 Utility step - AOW r2539
 
