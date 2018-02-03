@@ -16,8 +16,8 @@ Actor TiberiumCrystal : CustomInventory 21407
 	{
 	Spawn:
 		TIBE A 0 // make it look nice in the map editor
-		TIBE AAAAAAA 5 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)
-		NULL A 0 A_Explode(24, 112)
+		TIBE AAAAA 1 A_Explode(5, 112)
+		NULL A 0 A_SpawnItemEx("TiberiumFog", frandom(-16, 16), frandom(-16, 16), frandom(0, 16),  0, 0, frandom(1, 2.5),  0, 0, 128)		
 		Loop
 	}
 }
