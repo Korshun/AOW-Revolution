@@ -2,7 +2,7 @@ Actor Tracer : CollidingEffect
 {
 	RenderStyle Add
 	Alpha 0.85
-	Scale 0.1
+	Scale 0.2
 	
 	// For tests.
 	PROJECTILE
