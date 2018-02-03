@@ -35,9 +35,7 @@ function void SetPlayerClass(int player, int class)
 // Clientside accessors
 function int ConsolePlayerMoney(void)
 {
-	int money1 = CheckActorInventory(ConsolePlayerTid(), "MoneyClientside1");
-	int money2 = CheckActorInventory(ConsolePlayertid(), "MoneyClientside2");
-	return (money2<<15) | money1;
+	return CheckActorInventory(ConsolePlayerTid(), "Money");
 }
 
 function int ConsolePlayerClassAOW(void)
@@ -67,8 +65,6 @@ script "aow_syncplayers" OPEN
 		
 			int money = PlayerMoney(player);
 			SetActorInventory(PlayerTid(player), "Money", money);
-			SetActorInventory(PlayerTid(player), "MoneyClientside1", money & 0x7fff);
-			SetActorInventory(Playertid(player), "MoneyClientside2", money>>15);
 		}
 		
 		Delay(1);
