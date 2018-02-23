@@ -43,7 +43,7 @@ int NumMechWeapons;
 function void AddMech(str actorname, str name)
 {
 	if (NumMechs == MAX_MECHS)
-		LimitError("MAX_MECHS");
+		printbold(s:"MAX_MECHS");
 		
 	Mechs[NumMechs][M_Actorname] = actorname;
 	Mechs[NumMechs][M_Name] = name;
@@ -55,7 +55,7 @@ function void AddMech(str actorname, str name)
 function void AddMechWeapon(str prefix, str name)
 {
 	if (NumMechWeapons == MAX_MECH_WEAPONS)
-		LimitError("MAX_MECH_WEAPONS");
+		printbold(s:"MAX_MECH_WEAPONS");
 
 	MechWeapons[NumMechWeapons][MW_Prefix] = prefix;
 	MechWeapons[NumMechWeapons][MW_Name] = name;

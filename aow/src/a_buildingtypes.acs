@@ -38,7 +38,7 @@ function void AddBuildingType(int id, int health, int codename, int name)
 function void FinishBuildingTypes(void)
 {
 	if (NumBuildingTypes != NUM_BUILDING_TYPES)
-		ProgramError(StrParam(s:"NUM_BUILDING_TYPES is ", d:NUM_BUILDING_TYPES, s:" but ", d:NumBuildingTypes, s:" data elements defined"));
+		printbold(s:"NUM_BUILDING_TYPES is ", d:NUM_BUILDING_TYPES, s:" but ", d:NumBuildingTypes, s:" data elements defined");
 }
 
 

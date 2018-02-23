@@ -22,7 +22,7 @@ int NumClasses;
 function void AddClass(str name)
 {
 	if (NumClasses == MAX_CLASSES)
-		LimitError("MAX_CLASSES");
+		printbold(s:"MAX_CLASSES");
 	
 	Classes[NumClasses][C_Name] = name;
 	NumClasses++;

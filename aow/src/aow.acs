@@ -1,27 +1,6 @@
 #library "aow"
-
-#define ACSUTILS_HUDLIB_SAVEDSTATES 16
-#define TIDALLOCSTART 15000
-
 #include "zcommon.acs"
 #include "acsutils.acs"
-
-function void ACSUtilsErrorHandler(int type, int message)
-{
-	str prefix = "";
-	if (IsServer() != IsClient())
-	{
-		if (IsServer())
-			prefix = "[\cgserver\c-] ";
-		else
-			prefix = "[\cdclient\c-] ";
-	}
-	
-	if (!IsClient())
-		Log(s:prefix, d:Timer(), s:" error: ", s:message);
-
-	printbold(s:prefix, d:Timer(), s:" error: ", s:message);
-}
 
 #define TID_BLUESPAWN 1
 #define TID_REDSPAWN 2

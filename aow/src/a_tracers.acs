@@ -32,7 +32,7 @@ script "aow_spawntracer" (void)
 	int x = tx - sx;
 	int y = ty - sy;
 	int z = tz - sz;
-	int distance = length3d(x, y, z);
+	int distance = VectorLength3D(x, y, z);
  
 	// do not spawn tracers at close quarters
 	if (distance < TRACER_SPAWNDISTANCE * 1.0)
@@ -54,7 +54,7 @@ script "aow_spawntracer" (void)
 	int vz = lerp(sz, tz, 0.1) - sz;
  
 	// minimum velocity
-	if (length3d(vx, vy, vz) < TRACER_MINVELOCITY * 1.0)
+	if (VectorLength3D(vx, vy, vz) < TRACER_MINVELOCITY * 1.0)
 	{
 		vx = nx * TRACER_MINVELOCITY;
 		vy = ny * TRACER_MINVELOCITY;

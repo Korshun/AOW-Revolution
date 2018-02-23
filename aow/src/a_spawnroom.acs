@@ -14,7 +14,7 @@ function void TeleportToSpawnRoom(void)
 	int y = -SPAWNROOM_TILESIZE / 2 + top - ty * SPAWNROOM_TILESIZE;
 	
 	if (!SetActorPosition(0, x, y, 0, false))
-		ProgramError(StrParam(s:"Failed to teleport player ", d:PlayerNumber(), s:" to spawn room"));
+		printbold(s:"Failed to teleport player ", d:PlayerNumber(), s:" to spawn room");
 	
 	Players[PlayerNumber()][P_INSPAWNROOM] = true;
 	SetPlayerProperty(0, true, PROP_TOTALLYFROZEN);

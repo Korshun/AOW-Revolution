@@ -2,30 +2,3 @@ function int ConsolePlayerTid(void)
 {
 	return PlayerTid(ConsolePlayerNumber());
 }
-
-function int ConsolePlayerTeam(void)
-{
-	return GetPlayerTeam(ConsolePlayerNumber());
-}
-
-
-
-function int GetPlayerTeam(int player)
-{
-	if (!PlayerInGame(player))
-		return TEAM_NONE;
-	if (CheckActorInventory(PlayerTid(player), "IsRed"))
-		return TEAM_RED;
-	return TEAM_BLUE;
-}
-
-function bool ConsolePlayerInGame(void)
-{
-	if (!IsClient())
-	{
-		ProgramError("ConsolePlayerInGame() called serverside, returning false.");
-		return false;
-	}
-	
-	return PlayerInGame(ConsolePlayerNumber());
-}

@@ -1,5 +1,4 @@
 #define NUM_TEAMS 2
-#define TEAM_NONE 255
 
 function str TeamName(int team)
 {

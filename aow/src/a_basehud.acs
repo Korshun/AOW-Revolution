@@ -29,7 +29,7 @@ function void DrawBaseHudSide(int team, int left)
 	int x = cond(left, HudLeft() + 3.0, HudRight() - 2.0 - 35.0);
 	int y = 320.0;
 	
-	HudSetTextOriginY(HUD_TEXTORIGIN_TOP);
+	HudSetAlignmentY(HUD_ALIGN_TOP);
 
 	for (int type = 0; type < NUM_BUILDING_TYPES; type++)
 	{
@@ -62,7 +62,7 @@ function void DrawBaseHudSide(int team, int left)
 		BuildingPrevHealth[team][type] = hp2;
 			
 		HudSetPoint(x, y);
-		HudSetTextOriginX(cond(left, HUD_TEXTORIGIN_LEFT, HUD_TEXTORIGIN_RIGHT));
+		HudSetAlignmentX(cond(left, HUD_ALIGN_LEFT, HUD_ALIGN_RIGHT));
 		if (BuildingOperational(team, type))
 			HudSetTextColor(TeamColor(team));
 		else
@@ -79,7 +79,7 @@ function void DrawBaseHudSide(int team, int left)
 		}
 		
 		HudSetPoint(x + cond(left, 150.0, 35.0), y);
-		HudSetTextOriginX(HUD_TEXTORIGIN_RIGHT);
+		HudSetAlignmentX(HUD_ALIGN_RIGHT);
 		HudSetTextColor(CR_WHITE);
 		int percent = BuildingHealthPercentage(team, type);
 		str percenttext = StrParam(s:PercentageColorCode(percent), d:percent, s:"\c-%");

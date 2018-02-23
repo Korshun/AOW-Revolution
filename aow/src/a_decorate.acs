@@ -42,7 +42,7 @@ script "aow_painfade" (int type)
 		break;
 	
 	default:
-		ProgramError(StrParam(s:"aow_painfade called with ", d:type));
+		print(s:"aow_painfade called with ", d:type);
 	}
 }
 
